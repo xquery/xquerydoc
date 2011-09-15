@@ -1,3 +1,13 @@
+xquerydoc
+---------
+
+
+
+
+
+
+
+
 
 
 
@@ -7,11 +17,13 @@ Running Tests
 
 running single tests
 
-1) You will need XML Calabash to run tests, download and install from http://xmlcalabash.com
+1) Setup MarkLogic XCC Application Server
 
-2) edit src/tests/config.xml to reflect your setup
+2) You will need XML Calabash to run tests, download and install from http://xmlcalabash.com
 
-3) run test.xpl
+3) edit src/tests/config.xml to reflect your setup
+
+4) run test.xpl as follows
 
   /usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl
 
