@@ -1,0 +1,48 @@
+
+
+
+
+Running Tests
+-------------
+
+running single tests
+
+1) You will need XML Calabash to run tests, download and install from http://xmlcalabash.com
+
+2) edit src/tests/config.xml to reflect your setup
+
+3) run test.xpl
+
+  /usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl
+
+( TBD ) running test suite
+
+  bin/test.sh
+
+
+
+Jim's Notes
+-----------
+
+* build based on xproc
+  * upload EBNF to http://www.bottlecaps.de/rex/ 
+  * generate code parse tree
+  * download result and place in src/xquery
+
+* test
+  * configure src/test/config.xml
+  * create test result report (nice html)
+
+* xquery
+  * create entry points for generating
+    * html
+    * text
+    * markdown
+    * docbook
+
+
+* integrate existing xqdoc disply routines
+
+* make work across several xquery processors
+
+ 
