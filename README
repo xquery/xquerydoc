@@ -17,7 +17,7 @@ Running Tests
 
 running single tests
 
-1) Setup MarkLogic XCC Application Server
+1) Setup MarkLogic XCC Application Server setting root to /src directory
 
 2) You will need XML Calabash to run tests, download and install from http://xmlcalabash.com
 
