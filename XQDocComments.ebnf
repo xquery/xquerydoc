@@ -1,0 +1,36 @@
+Comments ::= (S | Comment | XQDocComment)*
+
+Comment  ::= '(:' ( CommentContents | Comment | '@' )* ':)'
+
+XQDocComment  ::= '(:~' Contents TaggedContents* ':)'
+Contents ::= ( Char | Trim | DirElemConstructor )*
+TaggedContents ::= '@' Tag Contents
+
+DirElemConstructor ::= '<' Tag ( S DirAttrConstructor? )*
+  ( '/>' | '>' (DirElemConstructor | ElementContentChar | Trim)* '</' Tag S? '>' )
+DirAttrConstructor ::= Tag S? '=' S? DirAttributeValue
+DirAttributeValue ::=
+    '"' (QuotAttrContentChar | Trim)* '"'
+  | "'" (AposAttrContentChar | Trim)* "'"
+
+
+
+<?TOKENS?>
+
+Tag ::= [A-Za-z]+
+
+CommentContents ::=
+    ( ( [^(:] | '('+ [^(:] | ':'+ [^:)] )+ | '(' ) '('* & '('
+  | ( ( [^(:] | '('+ [^(:] | ':'+ [^:)] )+ | ':' ) ':'* & ':'
+
+Char ::= [^@#x000A<]
+Trim ::= #x000A ( #x0020 | #x0009 )* ':'?
+
+NotRPar ::= [^)]
+NotRPar \\ Trim
+
+ElementContentChar ::= [^<]
+QuotAttrContentChar ::= [^"]
+AposAttrContentChar ::= [^']
+
+S ::= ( #x0020 | #x0009 | #x000D | #x000A )+
