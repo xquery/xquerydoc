@@ -15,7 +15,7 @@ xquerydoc
 Running Tests
 -------------
 
-running single tests
+There are various testsuites 
 
 1) Setup MarkLogic XCC Application Server setting root to /src directory
 
@@ -25,7 +25,8 @@ running single tests
 
 4) run test.xpl as follows
 
-  /usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl
+
+/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/default.xqy
 
 ( TBD ) running test suite
 

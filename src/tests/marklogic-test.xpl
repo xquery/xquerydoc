@@ -4,11 +4,11 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic" 
     xmlns:test="http://www.marklogic.com/test"
-    name="single-test"
+    name="ml-single-test"
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
-  <p:documentation>runs a single xquerydoc test</p:documentation>
+  <p:documentation>runs a single xquerydoc test in MarkLogic environment</p:documentation>
 
   <!-- import Calabash library so we can use ml:adhoc-query step //-->
   <p:import href="../lib/library-1.0.xpl"/>
