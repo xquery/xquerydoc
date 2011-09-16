@@ -7,6 +7,10 @@ xquerydoc
   * XQuery 1.0-ml (MarkLogic)
 
 
+
+
+
+
 -----
 Usage
 -----
@@ -158,34 +162,27 @@ Contact
 Jim's Notes
 -----------
 
-* build based on xproc
-  * upload EBNF to http://www.bottlecaps.de/rex/ 
-  * generate code parse tree
-  * download result and place in src/xquery
+* docs
+  * embed xqdoc in xquerydoc own code and generate for /docs
+  * create markdown version of README
 
+* build based on xproc
+  * upload EBNF (loop through all EBNF) to http://www.bottlecaps.de/rex/ 
+  * download result and place in src/xquery
+  
 * test
-  * configure src/test/config.xml
-  * create test result report (nice html)
+  * test xquery1, xquery3, xquery-ml
+  * create tests 
 
 * xquery
-  * create entry points for generating
+  * create xquery entry point for parsing and generating output
+  * create documentation targets for the following formats
     * html
     * text
     * markdown
     * docbook
 
-
 * integrate existing xqdoc disply routines
 
 * make work across several xquery processors
-
- 
-
-
-
-Tests
-
-
-test
-example xquery (with xqdoc statements)
 
