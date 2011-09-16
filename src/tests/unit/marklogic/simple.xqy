@@ -9,7 +9,9 @@ declare variable $example as xs:string external;
 let $expected := xdmp:document-get(fn:concat($distpath,'/src/tests/expected/default.xml'))
 let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) 
   return
-    <test pass="{test:assertXMLEqual($expected//*:description,$actual//*:description)}">
+    <testsuite>
+    <test name="default.xqy test" pass="{test:assertXMLEqual($expected//*:description,$actual//*:description)}">
       <expected>{$expected}</expected>
       <actual>{$actual}</actual>
     </test>
+    </testsuite>

@@ -4,11 +4,11 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic" 
     xmlns:test="http://www.marklogic.com/test"
-    name="single-test"
+    name="saxon-single-test"
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
-  <p:documentation>runs a single xquerydoc test in X environment</p:documentation>
+  <p:documentation>runs a single xquerydoc test in SAXON environment</p:documentation>
 
   <!-- import Calabash library  //-->
   <p:import href="../lib/library-1.0.xpl"/>
@@ -44,11 +44,17 @@
           declare variable $distpath as xs:string external;
           declare variable $example as xs:string external;
 
-          let $expected := fn:unparsed-text(fn:concat($distpath,'/src/tests/expected/default.xml'))
-(:          let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) :)
+          let $expectedpath  := fn:concat('file://',$distpath,'/src/tests/expected/default.xml')
+          let $expected      := fn:doc($expectedpath)
+          let $xquerypath    := fn:concat('file://',$distpath,$example,';unparsed=yes')
+          let $xquery        := fn:collection($xquerypath)
+          let $actual        := xqdoc:parse(fn:normalize-space($xquery))
 
           return
-          &lt;test&gt;1&lt;/test&gt;
+          &lt;test&gt;
+            &lt;expected path="{$expectedpath}"&gt;{$expected}&lt;/expected&gt;
+            &lt;actual path="{$xquerypath}"&gt;{$actual}&lt;/actual&gt;
+          &lt;/test&gt;
 
         </c:query>
       </p:inline>
@@ -62,7 +68,7 @@
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml testrunner.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/default.xqy"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml saxon-test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/?select=default.xqy"
     -- End:
     :)
   </p:documentation>

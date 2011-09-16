@@ -2,37 +2,157 @@ xquerydoc
 ---------
 
 
+  * XQuery v1.0 (Saxon, XQilla)
+  * XQuery v3.0 (Saxon)
+  * XQuery 1.0-ml (MarkLogic)
 
 
+------------
+Dependencies
+------------
+
+For convenience we have included all the dependencies xquerydoc
+requires.
+
+  * XML Calabash
+  * Saxon (ships with XML Calabash)
+  * xqDoc 
+
+Please review the licenses of included software.
+
+-----
+Usage
+-----
+
+As xquerydoc comes with bin/xquerydoc script which will run 
+
+   > xquerydoc -v 1.0-ml /some/directory
+
+   > xquerydoc -v 1.0 /some/specific/file.xqy
 
 
+Or you can choose to import xquerydoc into your xquery and use the
+xqdoc:xqdoc() entry function.
 
 
+   XQuery v1.0 Example (XQilla)
+   ---------------------------
+
+   TBD
 
 
+   XQuery v1.0 Example (Saxon)
+   ---------------------------
+
+   xquery version "1.0" encoding "UTF-8";
+
+   import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
+
+   xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
 
 
+   MarkLogic Example
+   -----------------
+
+   xquery version "1.0-ml" encoding "UTF-8";
+
+   import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
+
+   xqdoc:xqdoc(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) 
+
+
+-------------
 Running Tests
 -------------
 
-There are various testsuites 
+To run all tests
 
-1) Setup MarkLogic XCC Application Server setting root to /src directory
+   > bin/run-all-tests.sh
 
-2) You will need XML Calabash to run tests, download and install from http://xmlcalabash.com
+To run tests related to a specific processor
 
-3) edit src/tests/config.xml to reflect your setup
+   > bin/run-saxon-tests.sh 
+   > bin/run-marklogic-tests.sh
 
-4) run test.xpl as follows
+To run MarkLogic tests you will need to;
+
+   1) Setup MarkLogic XCC Application Server setting root to /src directory
+
+   2) edit src/tests/config.xml to reflect your setup
+
+   3) you can run tests using /bin scripts are directly using
+   src/tests/{}-test.xpl for your processor
+
+All tests are run using XML Calabash XProc processor and can be
+manually invoked, as follows;
+
+    > /usr/local/bin/calabash -isource=config.xml -oresult=result/MarkLogic/default.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy
+    > /usr/local/bin/calabash -isource=config.xml -oresult=result/marklogic-report.html report.xpl processor=MarkLogic
+
+The above would run the first test then generate report in the
+src/tests/result directory. To get a better understanding of how tests
+are run please inspect the run scripts in /bin.
 
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/default.xqy
+---------
+Resources
+---------
 
-( TBD ) running test suite
+xquerydoc github: http://www.github.com/xquery/xquerydoc
 
-  bin/test.sh
+xqdoc: 
 
 
+---------------------------------
+Credit, Acknowledgements, License
+----------------------------------
+
+original xqDoc
+
+John Snelson
+
+James Fuller
+
+xquerydoc is released under Apache License v2.0
+
+Copyright 2011 John Snelson, James Fuller
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+
+XML Calabash is released under {TBD}
+
+Saxon XQuery and XSLT 2.0 Processor by Michael Kay is released under {TBD}
+
+SyntaxHighlighter (used by testsuite) is released under {TBD}
+
+Prettify (used by testsuite) is released under {TBD}
+
+
+
+-------
+Contact
+-------
+
+{TBD}
+
+
+
+
+
+
+
+
+
+--------------------------------
 
 Jim's Notes
 -----------
