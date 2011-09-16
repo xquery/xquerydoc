@@ -1,9 +1,8 @@
-xquery version "1.0-ml";
+xquery version "1.0";
                                               
 (: Simple XQuery Unit Test Library - Jim Fuller 05/11/10 :)
 
 module namespace test = "http://www.marklogic.com/test";
-
 
 
 (: --------------------------------------------------------------------------------------------------- :)
@@ -47,16 +46,6 @@ declare function test:assertIntegerEqual($a as xs:integer, $b as xs:integer) as 
 };
 declare function test:assertIntegerNotEqual($a as xs:integer, $b as xs:integer) as xs:boolean {  
   fn:not(fn:boolean($a=$b)) 
-};
-
-
-(: --------------------------------------------------------------------------------------------------- :)
-(:                                                                                   Eval(evil) Tests  :)
-(: --------------------------------------------------------------------------------------------------- :)
-declare function test:assertEvalEqual($xpathstring, $expected){
-  let $actual := xdmp:eval($xpathstring)
-  return 
-    test:assertXMLEqual($actual, $expected)
 };
 
 

@@ -1,10 +1,10 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "1.0-ml" encoding "UTF-8";
 
 module namespace xqd="http://github.com/xquery/xquerydoc";
 declare default function namespace "http://github.com/xquery/xquerydoc";
 declare namespace doc="http://www.xqdoc.org/1.0";
 
-import module namespace xqp="XQueryV10" at "XQueryV10.xq";
+import module namespace xqp="XQueryML10" at "XQueryML10.xq";
 import module namespace xqdc="XQDocComments" at "XQDocComments.xq";
 
 declare (: private :) function _trimStringLiteral($literal as xs:string) as xs:string

@@ -8,7 +8,7 @@
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
-  <p:documentation>runs a single xquerydoc test in {} environment</p:documentation>
+  <p:documentation>runs a single xquerydoc test in X environment</p:documentation>
 
   <!-- import Calabash library  //-->
   <p:import href="../lib/library-1.0.xpl"/>
@@ -33,21 +33,24 @@
     <p:with-param name="test" select="$test"/>
     <p:with-param name="example" select="$example"/>
     <p:with-param name="distpath" select="$distpath"/>
-    <p:input port="source">
+    <p:input port="query">
       <p:inline>
-        <query>
+        <c:query>
           xquery version "1.0" encoding "UTF-8";
 
-          declare variable $test as xs:string external;
-          declare variable $example as xs:string external;
-          declare variable $distpath as xs:string external;
+          import module namespace test = "http://www.marklogic.com/test" at "../lib/test.xqy";
+          import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "../xquery/xquerydoc.xq";
 
-          xdmp:invoke($test,(
-            xs:QName("distpath"), $distpath,
-            xs:QName("example"), $example
-            )
-          )
-        </query>
+          declare variable $distpath as xs:string external;
+          declare variable $example as xs:string external;
+
+          let $expected := fn:unparsed-text(fn:concat($distpath,'/src/tests/expected/default.xml'))
+(:          let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) :)
+
+          return
+          &lt;test&gt;1&lt;/test&gt;
+
+        </c:query>
       </p:inline>
     </p:input>
     <p:input port="parameters">
