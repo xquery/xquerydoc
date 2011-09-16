@@ -1,5 +1,4 @@
 #xquerydoc
----------
 
 
   * XQuery v1.0 (Saxon, XQilla)
