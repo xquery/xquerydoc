@@ -4,46 +4,58 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic" 
     xmlns:test="http://www.marklogic.com/test"
-    name="xqdoc-parse"
+    name="single-test"
     version="1.0"
     exclude-inline-prefixes="c ml p">
-  
-  <p:input port="source"/>
-  <p:output port="result"/>
-  
-  <p:import href="../lib/library-1.0.xpl"/>
-  
-  <p:documentation>simple test case invoking xqdoc:parse</p:documentation>
 
+  <p:documentation>runs a single xquerydoc test</p:documentation>
+
+  <!-- import Calabash library so we can use ml:adhoc-query step //-->
+  <p:import href="../lib/library-1.0.xpl"/>
+
+  <!-- config file is main import //-->
+  <p:input port="source"/>
+
+  <!-- generate xml output which is transformed by report.xpl //-->
+  <p:output port="result"/>
+
+  <!-- path of test desired to be run, for example /tests/unit/simple.xqy //-->
+  <p:option name="test" required="true"/>  
+
+  <!-- path of example xquery containing xqdoc code comments //-->
+  <p:option name="example" required="true"/>  
+
+  <!-- path of xquerydoc dist //-->
   <p:variable name="distpath" select="/config/path"/>
+
+  <!-- obtain configuration details for accessing XDBC //-->
   <p:filter select="/config/connection[@protocol = 'xdbc']"/>
-  
-  <ml:adhoc-query name="retrieve"> 
+
+  <!-- this step will run xquery test via XDBC //-->
+  <ml:adhoc-query name="run"> 
+    <p:with-param name="test" select="$test"/>
+    <p:with-param name="example" select="$example"/>
     <p:with-param name="distpath" select="$distpath"/>
     <p:input port="source">
       <p:inline>
         <query>
           xquery version "1.0-ml" encoding "UTF-8";
-          
-          import module namespace test = "http://www.marklogic.com/test" at "/lib/test.xqy";
-          import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
-          
+
+          declare variable $test as xs:string external;
+          declare variable $example as xs:string external;
           declare variable $distpath as xs:string external;
 
-          let $expected := xdmp:document-get(fn:concat($distpath,'/src/tests/expected/default.xml'))
-          let $actual  := xqdoc:parse(
-          xdmp:quote(xdmp:document-get(fn:concat($distpath,'/src/tests/examples/default.xqy'))) )
-          return
-             test:assertXMLEqual($expected//*:description,$actual//*:description) 
-             (: NOTE - due to  timestamp can only select a portion of xml,
-             will expand on this test e.g. add schematron-validate :)
+          xdmp:invoke($test,(
+            xs:QName("distpath"), $distpath,
+            xs:QName("example"), $example
+            )
+          )
         </query>
       </p:inline>
     </p:input>
     <p:input port="parameters">
       <p:empty/>
-    </p:input>
-    
+    </p:input>    
     <p:with-option name="host" select="/connection/@host"/>
     <p:with-option name="port" select="/connection/@port"/>
     <p:with-option name="user" select="/connection/@username"/>
@@ -51,10 +63,11 @@
     <p:with-option name="content-base" select="//*"/>
   </ml:adhoc-query>
 
+  <!-- emacs compile hint //-->
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/default.xqy"
     -- End:
     :)
   </p:documentation>
