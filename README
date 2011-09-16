@@ -7,24 +7,11 @@ xquerydoc
   * XQuery 1.0-ml (MarkLogic)
 
 
-------------
-Dependencies
-------------
-
-For convenience we have included all the dependencies xquerydoc
-requires.
-
-  * XML Calabash
-  * Saxon (ships with XML Calabash)
-  * xqDoc 
-
-Please review the licenses of included software.
-
 -----
 Usage
 -----
 
-As xquerydoc comes with bin/xquerydoc script which will run 
+As xquerydoc comes with bin/xquerydoc script
 
    > xquerydoc -v 1.0-ml /some/directory
 
@@ -101,6 +88,20 @@ Resources
 xquerydoc github: http://www.github.com/xquery/xquerydoc
 
 xqdoc: 
+
+
+------------
+Dependencies
+------------
+
+For convenience we have included all the dependencies xquerydoc
+requires.
+
+  * XML Calabash
+  * Saxon (ships with XML Calabash)
+  * xqDoc 
+
+Please review the licenses of included software.
 
 
 ---------------------------------
