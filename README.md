@@ -133,10 +133,8 @@ XML Calabash is released under {TBD}
 
 Saxon XQuery and XSLT 2.0 Processor by Michael Kay is released under {TBD}
 
-SyntaxHighlighter (used by testsuite) is released under {TBD}
-
 Prettify (used by testsuite) is released under {TBD}
-
+XQuery prettify http://www.patrick-wied.at/static/xquery/prettify/
 
 
 

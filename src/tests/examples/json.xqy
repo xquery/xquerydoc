@@ -1,25 +1,33 @@
 xquery version "1.0-ml";
 
-(: Copyright 2006-2010 Mark Logic Corporation. :)
 
-(:
- : Licensed under the Apache License, Version 2.0 (the "License");
- : you may not use this file except in compliance with the License.
- : You may obtain a copy of the License at
+(:~
+ : This is an example xquery file taken from several files to demonstrate xqdoc commenting
+ : 
+ : Sample usage:
+ : <b>
+ :   example bold tag
+ : </b>  
+  : 
+ : Proin facilisis ultrices velit id bibendum. Curabitur eu nisi velit, vel pharetra 
+ : eros. Fusce eu metus sem. Etiam sed risus ultrices turpis blandit placerat. Suspendisse 
+ : eu massa arcu, eget feugiat arcu. Donec eget rutrum nisi. Vivamus eget massa libero. 
+ : Pellentesque placerat tortor elit. Vestibulum ante ipsum primis in faucibus orci luctus
+ : et ultrices posuere cubilia Curae; Sed molestie odio lacinia eros iaculis laoreet. 
  :
- :     http://www.apache.org/licenses/LICENSE-2.0
  :
- : Unless required by applicable law or agreed to in writing, software
- : distributed under the License is distributed on an "AS IS" BASIS,
- : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- : See the License for the specific language governing permissions and
- : limitations under the License.
- :)
+ : @author Jim Fuller
+ : @version 1
+ : 
+ : 
+:)
 
 module namespace json = "http://marklogic.com/json";
+declare namespace test="test";
+
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
-declare variable $new-line-regex := concat('[',codepoints-to-string((13, 10)),']+');
+declare variable $new-line-regex as xs:string := concat('[',codepoints-to-string((13, 10)),']+');
 
 (: Need to backslash escape any double quotes, backslashes, newlines and tabs :)
 declare function json:escape($s as xs:string) as xs:string {
@@ -27,23 +35,6 @@ declare function json:escape($s as xs:string) as xs:string {
   let $s := replace($s, $new-line-regex, "\\n")
   let $s := replace($s, codepoints-to-string(9), "\\t")
   return $s
-};
-
-declare function json:atomize($x as element()) as xs:string {
-  if (count($x/node()) = 0) then 'null'
-  else if ($x/@type = "number") then
-    let $castable := $x castable as xs:float or
-                     $x castable as xs:double or
-                     $x castable as xs:decimal
-    return
-    if ($castable) then xs:string($x)
-    else error(concat("Not a number: ", xdmp:describe($x)))
-  else if ($x/@type = "boolean") then
-    let $castable := $x castable as xs:boolean
-    return
-    if ($castable) then xs:string(xs:boolean($x))
-    else error(concat("Not a boolean: ", xdmp:describe($x)))
-  else concat('"', json:escape($x), '"')
 };
 
 (: Print the thing that comes after the colon :)
@@ -64,16 +55,9 @@ declare function json:print-name-value($x as element()) as xs:string? {
   let $later-in-array := some $s in $x/following-sibling::* satisfies name($s) = $name
   return
   if ($later-in-array) then
-    ()  (: I am going to be handled later :)
+    ()
   else 
-	let $preceding-siblings := $x/preceding-sibling::*[name(.) = $name]
-	let $last-in-array := ($x/@array = "true" or exists($preceding-siblings))
-	return if ($last-in-array) then
-		     string-join(('"', json:escape($name), '":[',
-      		   string-join((for $i in ($preceding-siblings, $x) return json:print-value($i)), ","),
-    	     ']'), "")
-   		   else
-             string-join(('"', json:escape($name), '":', json:print-value($x)), "")
+    ()
 };
 
 (:~

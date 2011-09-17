@@ -36,6 +36,11 @@ let $transform := xdmp:xslt-invoke(
     </test>
     <test name="ml3" desc="output-html with xqdoc:generate-docs">
       <expected>{$expect}</expected>
-      <actual>{xqdoc:generate-docs('html',$actual)}</actual>
+      <actual>{xqdoc:generate-docs('html',$actual,fn:normalize-space(xdmp:document-get(fn:concat($distpath,$example),
+<options xmlns="xdmp:document-get">
+  <encoding>UTF-8</encoding>
+  <format>text</format>
+</options>
+)))}</actual>
     </test>
     </tests>

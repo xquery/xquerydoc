@@ -6,30 +6,93 @@
     type: library<p/><h2>Module URI</h2>http://marklogic.com/json<h2>Variables</h2><h2>Function Summary</h2><h2>Function Detail</h2></div></body>
       </html></expected><actual><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
-	  <title/>
+	  <title>xqDoc - </title>
+	  <style type="text/css">
+          body {
+          font-family: Helvetica;
+          padding: 0.5em  1em;
+          }
+          pre {
+          font-family: Inconsolata, Consolas, monospace;
+          }
+          ol.results {
+          padding-left: 0;
+          }
+          .footer {
+          text-align:right;
+          border-top: solid 4px;
+          padding: 0.25em 0.5em;
+          font-size: 85%;
+          color: #999;
+          }
+          li.result {
+          list-style-position: inside;
+          list-style: none;
+          height:140px;
+          }
+          .result h3 {
+          font-weight: normal;
+          font-size: inherit;
+          margin: 0;
+          }
+
+          h2 {
+          display: inline-block;
+          margin: 0;
+          }
+          h2+div.stats {
+          display: inline-block;
+          margin-left: 1em;
+          }
+          h2 a,
+          .result h3 a {
+          text-decoration: inherit;
+          color: inherit;
+          }
+          h3{
+	  font-size: 140%;
+	  background-color: #ddd;
+	  border-bottom: 1px solid #99f;
+	  width: 100%;
+	  }
+
+          .namespace {
+          margin-left: 1em;
+          color: #999;
+          }
+          .namespace:before {
+          content: "{";
+          }
+          .namespace:after {
+          content: "}";
+          }
+          table{
+          width:75%;
+          float:right;
+          }
+          td {
+          height:100px;
+          width:50%;
+          vertical-align:text-top;
+          }
+        </style>
+	  <script src="src/tests/result/resource/prettify.js" type="text/javascript"> </script>
+	  <script src="src/tests/result/resource/lang-xq.js" type="text/javascript"> </script>
+	  <link rel="stylesheet" type="text/css" href="src/tests/result/resource/prettify.css"/>
 	</head>
-	<body class="home"><div id="main"><h2>Module</h2>
-    type: library<p/><h2>Module URI</h2>http://marklogic.com/json<br/><h2>Variables</h2><h2>Function Summary</h2><h4>name:escape</h4>
-    signature: ($s as xs:string) as  xs:string
-    parameters: <ul>
+	<body class="home"><div id="main"><h1>Module</h1>
+    type: library<p/><h3>Module URI</h3><div class="namespace">http://marklogic.com/json</div><br/><h3>Variables</h3><doc:variable xmlns:doc="http://www.xqdoc.org/1.0"><doc:uri>new-line-regex</doc:uri><doc:type> xs:string</doc:type></doc:variable><h3>Functions</h3><h4><u>Function:escape</u></h4><pre class="prettyprint">($s as xs:string) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>s:  xs:string</li>
-	    </ul><h4>name:atomize</h4>
-    signature: ($x as element()) as  xs:string
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:atomize</u></h4><pre class="prettyprint">($x as element()) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul><h4>name:print-value</h4>
-    signature: ($x as element()) as  xs:string
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:print-value</u></h4><pre class="prettyprint">($x as element()) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul><h4>name:print-name-value</h4>
-    signature: ($x as element()) as  xs:string?
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:print-name-value</u></h4><pre class="prettyprint">($x as element()) as  xs:string?</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul><h4>name:serialize</h4>
-    signature: ($x as element()) as  xs:string
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:serialize</u></h4><pre class="prettyprint">($x as element()) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul></div></body>
+	    </ul><h5>Description</h5><p><pre class="prettyprint"><pre xmlns:doc="http://www.xqdoc.org/1.0" xmlns=""> : xquery version "1.0-ml"; : import module namespace json="http://marklogic.com/json" at "json.xqy"; : json:serialize(&amp;lt;foo&amp;gt;&amp;lt;bar&amp;gt;kid&amp;lt;/bar&amp;gt;&amp;lt;/foo&amp;gt;) : </pre></pre></p>="true" that : indicates the JSON serialization should write the node, even if single, as an : array, and the attribute  that can be set to "boolean" or "number" to : dictate the value should be written as that type (unquoted). There's also : an  attribute that when set to true writes the inner content as text : rather than as structured JSON, useful for sending some XHTML over the : wire. : : Text nodes within mixed content are ignored. : :  $x Element node to convert :  String holding JSON serialized representation of $x : :  Jason Hunter :  1.0.1 : : Ported to xquery 1.0-ml; double escaped backslashes in json:escape <h5>Returns</h5><div class="footer"><a href="https://github.com/xquery/xquerydoc" target="xquerydoc">generated by
+          xquerydoc - https://github.com/xquery/xquerydoc</a></div></div></body>
       </html></actual></test><test name="ml3" desc="output-html with xqdoc:generate-docs"><expected><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
 	  <title/>
@@ -38,28 +101,91 @@
     type: library<p/><h2>Module URI</h2>http://marklogic.com/json<h2>Variables</h2><h2>Function Summary</h2><h2>Function Detail</h2></div></body>
       </html></expected><actual><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
-	  <title/>
+	  <title>xqDoc - </title>
+	  <style type="text/css">
+          body {
+          font-family: Helvetica;
+          padding: 0.5em  1em;
+          }
+          pre {
+          font-family: Inconsolata, Consolas, monospace;
+          }
+          ol.results {
+          padding-left: 0;
+          }
+          .footer {
+          text-align:right;
+          border-top: solid 4px;
+          padding: 0.25em 0.5em;
+          font-size: 85%;
+          color: #999;
+          }
+          li.result {
+          list-style-position: inside;
+          list-style: none;
+          height:140px;
+          }
+          .result h3 {
+          font-weight: normal;
+          font-size: inherit;
+          margin: 0;
+          }
+
+          h2 {
+          display: inline-block;
+          margin: 0;
+          }
+          h2+div.stats {
+          display: inline-block;
+          margin-left: 1em;
+          }
+          h2 a,
+          .result h3 a {
+          text-decoration: inherit;
+          color: inherit;
+          }
+          h3{
+	  font-size: 140%;
+	  background-color: #ddd;
+	  border-bottom: 1px solid #99f;
+	  width: 100%;
+	  }
+
+          .namespace {
+          margin-left: 1em;
+          color: #999;
+          }
+          .namespace:before {
+          content: "{";
+          }
+          .namespace:after {
+          content: "}";
+          }
+          table{
+          width:75%;
+          float:right;
+          }
+          td {
+          height:100px;
+          width:50%;
+          vertical-align:text-top;
+          }
+        </style>
+	  <script src="src/tests/result/resource/prettify.js" type="text/javascript"> </script>
+	  <script src="src/tests/result/resource/lang-xq.js" type="text/javascript"> </script>
+	  <link rel="stylesheet" type="text/css" href="src/tests/result/resource/prettify.css"/>
 	</head>
-	<body class="home"><div id="main"><h2>Module</h2>
-    type: library<p/><h2>Module URI</h2>http://marklogic.com/json<br/><h2>Variables</h2><h2>Function Summary</h2><h4>name:escape</h4>
-    signature: ($s as xs:string) as  xs:string
-    parameters: <ul>
+	<body class="home"><div id="main"><h1>Module</h1>
+    type: library<p/><h3>Module URI</h3><div class="namespace">http://marklogic.com/json</div><br/><h3>Variables</h3><doc:variable xmlns:doc="http://www.xqdoc.org/1.0"><doc:uri>new-line-regex</doc:uri><doc:type> xs:string</doc:type></doc:variable><h3>Functions</h3><h4><u>Function:escape</u></h4><pre class="prettyprint">($s as xs:string) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>s:  xs:string</li>
-	    </ul><h4>name:atomize</h4>
-    signature: ($x as element()) as  xs:string
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:atomize</u></h4><pre class="prettyprint">($x as element()) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul><h4>name:print-value</h4>
-    signature: ($x as element()) as  xs:string
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:print-value</u></h4><pre class="prettyprint">($x as element()) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul><h4>name:print-name-value</h4>
-    signature: ($x as element()) as  xs:string?
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:print-name-value</u></h4><pre class="prettyprint">($x as element()) as  xs:string?</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul><h4>name:serialize</h4>
-    signature: ($x as element()) as  xs:string
-    parameters: <ul>
+	    </ul><h5>Description</h5><h5>Returns</h5><h4><u>Function:serialize</u></h4><pre class="prettyprint">($x as element()) as  xs:string</pre><h5>Params</h5><ul>
 	      <li>x:  element()</li>
-	    </ul></div></body>
+	    </ul><h5>Description</h5><p><pre class="prettyprint"><pre xmlns:doc="http://www.xqdoc.org/1.0" xmlns=""> : xquery version "1.0-ml"; : import module namespace json="http://marklogic.com/json" at "json.xqy"; : json:serialize(&amp;lt;foo&amp;gt;&amp;lt;bar&amp;gt;kid&amp;lt;/bar&amp;gt;&amp;lt;/foo&amp;gt;) : </pre></pre></p>="true" that : indicates the JSON serialization should write the node, even if single, as an : array, and the attribute  that can be set to "boolean" or "number" to : dictate the value should be written as that type (unquoted). There's also : an  attribute that when set to true writes the inner content as text : rather than as structured JSON, useful for sending some XHTML over the : wire. : : Text nodes within mixed content are ignored. : :  $x Element node to convert :  String holding JSON serialized representation of $x : :  Jason Hunter :  1.0.1 : : Ported to xquery 1.0-ml; double escaped backslashes in json:escape <h5>Returns</h5><div class="footer"><a href="https://github.com/xquery/xquerydoc" target="xquerydoc">generated by
+          xquerydoc - https://github.com/xquery/xquerydoc</a></div></div></body>
       </html></actual></test></tests>

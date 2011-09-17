@@ -136,6 +136,6 @@ declare function parse($module as xs:string)
   }
 };
 
-declare function generate-docs($type,$xqdoc){
-  util:generate-html-module($xqdoc)
+declare function generate-docs($type as xs:string,$xqdoc as element(doc:xqdoc),$source as xs:string){
+  util:generate-html-module($xqdoc,$source)
 };

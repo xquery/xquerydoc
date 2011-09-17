@@ -1,3 +1,4 @@
+
 xquery version "1.0-ml" encoding "UTF-8";
 
 (:
@@ -22,9 +23,14 @@ declare namespace html="http://www.w3.org/1999/xhtml";
 declare variable $util:html-homepage-xslt := '../lib/html-home.xsl';
 declare variable $util:html-module-xslt := '../lib/html-module.xsl';
 
-declare function util:generate-html-module($xqdoc) 
-{
-  let $transform := xdmp:xslt-invoke( $util:html-module-xslt ,$xqdoc) 
+declare function util:generate-html-module($xqdoc,$source as xs:string) {
+  let $params := map:map()
+  let $_put := map:put(
+                    $params,
+                    xdmp:key-from-QName(fn:QName("", "source")),
+                    $source)
+  let $transform := xdmp:xslt-invoke( $util:html-module-xslt, $xqdoc, $params)
+
   return
     $transform
 };

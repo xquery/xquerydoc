@@ -35,14 +35,16 @@
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
           declare variable $xquery as xs:string external;
 
-          let $xquerydoc    := xqdoc:parse(fn:normalize-space(xdmp:document-get($xquery,
+
+          let $xquerydoc    :=xdmp:document-get($xquery,
           &lt;options xmlns="xdmp:document-get"&gt;
             &lt;encoding>UTF-8&lt;/encoding&gt;
             &lt;format>text&lt;/format&gt;
           &lt;/options&gt;
-          ))) 
+          )
+          let $parse := xqdoc:parse($xquerydoc)
           return
-           xqdoc:generate-docs('html',$xquerydoc)
+           xqdoc:generate-docs('html',$parse,$xquerydoc)
         </query>
       </p:inline>
     </p:input>
