@@ -35,7 +35,6 @@
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
           declare variable $xquery as xs:string external;
 
-
           let $xquerydoc    :=xdmp:document-get($xquery,
           &lt;options xmlns="xdmp:document-get"&gt;
             &lt;encoding>UTF-8&lt;/encoding&gt;
