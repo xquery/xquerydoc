@@ -94,8 +94,8 @@ declare function parse($module as xs:string)
 
     element doc:module {
       attribute type { if($module/self::MainModule) then "main" else "library" },
-      element doc:uri { _trimStringLiteral($module/ModuleDecl/URILiteral/StringLiteral) },
-      _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport))
+      element doc:uri { if($module/ModuleDecl/URILiteral/StringLiteral) then _trimStringLiteral($module/ModuleDecl/URILiteral/StringLiteral) else () },
+      if($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) else ()
       (: TBD name and body - jpcs :)
     },
 

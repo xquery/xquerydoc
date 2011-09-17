@@ -68,7 +68,7 @@
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml saxon-test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/?select=default.xqy"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/default.xml saxon-test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/?select=default.xqy"
     -- End:
     :)
   </p:documentation>

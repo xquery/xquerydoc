@@ -9,7 +9,5 @@ declare variable $util:html-module-xslt := '../lib/html-module.xsl';
 
 declare function util:generate-html-module($xqdoc) 
 {
-  let $transform := xdmp:xslt-invoke( $util:html-module-xslt ,$xqdoc) 
-  return
-    $transform
+  ()
 };
