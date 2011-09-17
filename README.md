@@ -15,9 +15,9 @@
 
 As xquerydoc comes with bin/xquerydoc script
 
-   > xquerydoc -v 1.0-ml /some/directory
+   > xquerydoc {xquerydoc} {output html}
 
-   > xquerydoc -v 1.0 /some/specific/file.xqy
+   > xquerydoc /some/specific/file.xqy /output/to/some/html/file.html
 
 
 Or you can choose to import xquerydoc into your xquery and use the
