@@ -1,8 +1,2 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title/>
-  </head>
-  <body class="home"><div id="main"/></body>
-</html>
-
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title/></head><body class="home"><div id="main"><h2>Module</h2>
+    type: main<p> : This main module controls the presentation of the home page for : xqDoc. The home page will list all of the library and main modules : contained in the 'xqDoc' collection. : The mainline function invokes only the : method to generate the HTML for the xqDoc home page. A parameter of type : xs:boolean is passed to indicate whether links on the page should be constructed : to static HTML pages (for off-line viewing) or to XQuery scripts for dynamic : real-time viewing. : : </p><h2>Module URI</h2><h2>Variables</h2><h2>Function Summary</h2><h2>Function Detail</h2></div></body></html>

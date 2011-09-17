@@ -85,10 +85,10 @@
           color: #999;
           }
           .namespace:before {
-          content: "(";
+          content: "{";
           }
           .namespace:after {
-          content: ")";
+          content: "}";
           }
           table{
           width:75%;
@@ -116,10 +116,11 @@ pass rate:
     </html>
   </xsl:template>
   <xsl:template match="*:tests">
-    <h2><xsl:value-of select="@name"/> <span
-    style="font-size:75%;color:grey"> [ unit-test: <xsl:value-of
-    select="@t"/> | example: <xsl:value-of
-    select="@example"/> ]</span></h2>
+    <h2> [ unit-test: <xsl:value-of
+    select="substring-after(@t,'/tests/unit')"/> ] [ example: <xsl:value-of
+    select="substring-after(@example,'/src/tests')"/>]<span
+    style="font-size:75%;color:grey"> <xsl:value-of select="@name"/> 
+ </span></h2>
     <ol class="results">
       <xsl:apply-templates/>
     </ol>
@@ -127,7 +128,8 @@ pass rate:
   <xsl:template match="*:test[deep-equal(actual/node(), expected/node())]">
     <li class="result pass">
       <h3><input name="test" value="" type="checkbox" checked="checked"></input>
-      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"><xsl:value-of select="namespace-uri(actual/node())"/></span></a>
+      <a href="?test="><xsl:value-of select="@name"/> <span
+      class="namespace">ns: <xsl:value-of select="namespace-uri(actual/node())"/></span></a>
       <table>
         <thead>
           <th>expected  (<xsl:value-of select="../@expected"/>)</th>
@@ -153,7 +155,7 @@ pass rate:
   <xsl:template match="*:test">
     <li class="result fail">
       <h3 ><input name="test" value="" type="checkbox" checked="checked"></input>
-      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"></span></a>
+      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace">ns: <xsl:value-of select="namespace-uri(actual/node())"/></span></a>
       <table>
         <thead>
           <th>expected  (<xsl:value-of select="../@expected"/>)</th>

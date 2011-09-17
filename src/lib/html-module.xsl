@@ -7,13 +7,12 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 exclude-result-prefixes="xs doc"
 version="2.0">
 
-<xsl:output method="html" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
+<xsl:output method="html" encoding="UTF-8" omit-xml-declaration="yes" indent="no"/>
 
   <!-- generate module html //-->
   <xsl:template match="doc:xqdoc">
-    <html xml:lang="en" lang="en">
+    <html version="-//W3C//DTD XHTML 1.1//EN">
       <head>
-	<meta charset="utf-8"/>
 	<title></title>
       </head>
       <body class="home">
