@@ -127,8 +127,8 @@ pass rate:
   </xsl:template>
   <xsl:template match="*:test[deep-equal(actual/node(), expected/node())]">
     <li class="result pass">
-      <h3><input name="test" value="" type="checkbox" checked="checked"></input>
-      <a href="?test="><xsl:value-of select="@name"/> <span
+      <h3><input name="test" value="" type="checkbox" checked="checked"><b><xsl:value-of select="@name"/>.</b></input>
+      <a href="?test="><xsl:value-of select="@desc"/> <span
       class="namespace">ns: <xsl:value-of select="namespace-uri(actual/node())"/></span></a>
       <table>
         <thead>
@@ -154,8 +154,8 @@ pass rate:
   </xsl:template>
   <xsl:template match="*:test">
     <li class="result fail">
-      <h3 ><input name="test" value="" type="checkbox" checked="checked"></input>
-      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace">ns: <xsl:value-of select="namespace-uri(actual/node())"/></span></a>
+      <h3><input name="test" value="" type="checkbox"><b><xsl:value-of select="@name"/>.</b></input>
+      <a href="?test="><xsl:value-of select="@desc"/> <span class="namespace">ns: <xsl:value-of select="namespace-uri(actual/node())"/></span></a>
       <table>
         <thead>
           <th>expected  (<xsl:value-of select="../@expected"/>)</th>

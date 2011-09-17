@@ -1,4 +1,4 @@
-<tests name="Output HTML" t="/tests/unit/marklogic/output-html.xqy" example="/src/tests/examples/json.xqy" expected="/src/tests/expected/json-html-output.xml"><test name="output-html manually"><expected><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
+<tests name="Output HTML" t="/tests/unit/marklogic/output-html.xqy" example="/src/tests/examples/json.xqy" expected="/src/tests/expected/json-html-output.xml"><test name="ml2" desc="output-html manually"><expected><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
 	  <title/>
 	</head>
@@ -10,7 +10,7 @@
 	</head>
 	<body class="home"><div id="main"><h2>Module</h2>
     type: library<p/><h2>Module URI</h2>http://marklogic.com/json<h2>Variables</h2><h2>Function Summary</h2><h2>Function Detail</h2></div></body>
-      </html></actual></test><test name="output-html with xqdoc:generate-docs"><expected><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
+      </html></actual></test><test name="ml3" desc="output-html with xqdoc:generate-docs"><expected><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
 	  <title/>
 	</head>

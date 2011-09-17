@@ -20,11 +20,11 @@ let $transform := xdmp:xslt-invoke(
 	                $actual) 
   return
     <tests name="Output HTML" t="{$t}" example="{$example}" expected="{$expected}">
-    <test name="output-html manually">
+    <test name="ml2" desc="output-html manually">
       <expected>{$expect}</expected>
       <actual>{$transform}</actual>
     </test>
-    <test name="output-html with xqdoc:generate-docs">
+    <test name="ml3" desc="output-html with xqdoc:generate-docs">
       <expected>{$expect}</expected>
       <actual>{xqdoc:generate-docs('html',$actual)}</actual>
     </test>
