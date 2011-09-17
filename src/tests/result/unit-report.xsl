@@ -1,6 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="2.0">
   <xsl:output omit-xml-declaration="yes" method="html" encoding="utf-8" indent="yes" />
+  <xsl:strip-space elements="*"/> 
+
   <xsl:param name="title"/>
   <xsl:variable name="total" select="count(//*:test)"/>
   <xsl:variable name="pass" select="count(//*:test[ deep-equal(actual/node(),expected/node())])"/>
@@ -114,7 +116,10 @@ pass rate:
     </html>
   </xsl:template>
   <xsl:template match="*:tests">
-    <h2><xsl:value-of select="@name"/></h2>
+    <h2><xsl:value-of select="@name"/> <span
+    style="font-size:75%;color:grey"> [ unit-test: <xsl:value-of
+    select="@t"/> | example: <xsl:value-of
+    select="@example"/> ]</span></h2>
     <ol class="results">
       <xsl:apply-templates/>
     </ol>
@@ -125,7 +130,7 @@ pass rate:
       <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"><xsl:value-of select="namespace-uri(actual/node())"/></span></a>
       <table>
         <thead>
-          <th>expected</th>
+          <th>expected  (<xsl:value-of select="../@expected"/>)</th>
           <th>actual</th>
         </thead>
         <tbody><tr>
@@ -151,8 +156,8 @@ pass rate:
       <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"></span></a>
       <table>
         <thead>
-          <th>expected</th>
-          <th>actual</th>
+          <th>expected  (<xsl:value-of select="../@expected"/>)</th>
+          <th>actual </th>
         </thead>
         <tbody>
           <tr>

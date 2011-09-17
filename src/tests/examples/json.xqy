@@ -1,4 +1,4 @@
-xquery version "1.0-ml" encoding "UTF-8";
+xquery version "1.0-ml";
 
 (: Copyright 2006-2010 Mark Logic Corporation. :)
 
@@ -19,11 +19,95 @@ xquery version "1.0-ml" encoding "UTF-8";
 module namespace json = "http://marklogic.com/json";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
+declare variable $new-line-regex := concat('[',codepoints-to-string((13, 10)),']+');
 
-(: Need to backslash escape any double quotes backslashes, newlines and tabs :)
+(: Need to backslash escape any double quotes, backslashes, newlines and tabs :)
 declare function json:escape($s as xs:string) as xs:string {
   let $s := replace($s, "(\\|"")", "\\$1")
   let $s := replace($s, $new-line-regex, "\\n")
   let $s := replace($s, codepoints-to-string(9), "\\t")
   return $s
 };
+
+declare function json:atomize($x as element()) as xs:string {
+  if (count($x/node()) = 0) then 'null'
+  else if ($x/@type = "number") then
+    let $castable := $x castable as xs:float or
+                     $x castable as xs:double or
+                     $x castable as xs:decimal
+    return
+    if ($castable) then xs:string($x)
+    else error(concat("Not a number: ", xdmp:describe($x)))
+  else if ($x/@type = "boolean") then
+    let $castable := $x castable as xs:boolean
+    return
+    if ($castable) then xs:string(xs:boolean($x))
+    else error(concat("Not a boolean: ", xdmp:describe($x)))
+  else concat('"', json:escape($x), '"')
+};
+
+(: Print the thing that comes after the colon :)
+declare function json:print-value($x as element()) as xs:string {
+  if (count($x/*) = 0) then
+    json:atomize($x)
+  else if ($x/@quote = "true") then
+    concat('"', json:escape(xdmp:quote($x/node())), '"')
+  else
+    string-join(('{',
+      string-join(for $i in $x/* return json:print-name-value($i), ","),
+    '}'), "")
+};
+
+(: Print the name and value both :)
+declare function json:print-name-value($x as element()) as xs:string? {
+  let $name := name($x)
+  let $later-in-array := some $s in $x/following-sibling::* satisfies name($s) = $name
+  return
+  if ($later-in-array) then
+    ()  (: I am going to be handled later :)
+  else 
+	let $preceding-siblings := $x/preceding-sibling::*[name(.) = $name]
+	let $last-in-array := ($x/@array = "true" or exists($preceding-siblings))
+	return if ($last-in-array) then
+		     string-join(('"', json:escape($name), '":[',
+      		   string-join((for $i in ($preceding-siblings, $x) return json:print-value($i)), ","),
+    	     ']'), "")
+   		   else
+             string-join(('"', json:escape($name), '":', json:print-value($x)), "")
+};
+
+(:~
+  Transforms an XML element into a JSON string representation.  See http://json.org.
+  <p/>
+  Sample usage:
+  <pre>
+    xquery version "1.0-ml";
+    import module namespace json="http://marklogic.com/json" at "json.xqy";
+    json:serialize(&lt;foo&gt;&lt;bar&gt;kid&lt;/bar&gt;&lt;/foo&gt;)
+  </pre>
+  Sample transformations:
+  <p/>
+  Namespace URIs are ignored.  Namespace prefixes are included in the JSON name.
+  <p/>
+  Attributes are ignored, except for the special attribute @array="true" that
+  indicates the JSON serialization should write the node, even if single, as an
+  array, and the attribute @type that can be set to "boolean" or "number" to
+  dictate the value should be written as that type (unquoted).  There's also
+  an @quote attribute that when set to true writes the inner content as text
+  rather than as structured JSON, useful for sending some XHTML over the
+  wire.
+  <p/>
+  Text nodes within mixed content are ignored.
+
+  @param $x Element node to convert
+  @return String holding JSON serialized representation of $x
+
+  @author Jason Hunter
+  @version 1.0.1
+  
+  Ported to xquery 1.0-ml; double escaped backslashes in json:escape
+:)
+declare function json:serialize($x as element())  as xs:string {
+  string-join(('{', json:print-name-value($x), '}'), "")
+};
+

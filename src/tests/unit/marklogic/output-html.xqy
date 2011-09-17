@@ -6,8 +6,9 @@ import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/m
 declare variable $distpath as xs:string external;
 declare variable $example as xs:string external;
 declare variable $expected as xs:string external;
+declare variable $t as xs:string external;
 
-let $expected  := xdmp:document-get(fn:concat($distpath,$expected))
+let $expect  := xdmp:document-get(fn:concat($distpath,$expected))
 let $actual    := xqdoc:parse(fn:normalize-space(xdmp:document-get(fn:concat($distpath,$example),
 <options xmlns="xdmp:document-get">
   <encoding>UTF-8</encoding>
@@ -18,13 +19,13 @@ let $transform := xdmp:xslt-invoke(
                         '/lib/html-module.xsl',
 	                $actual) 
   return
-    <tests name="Output HTML" example="{$example}">
+    <tests name="Output HTML" t="{$t}" example="{$example}" expected="{$expected}">
     <test name="output-html manually">
-      <expected>{$expected}</expected>
+      <expected>{$expect}</expected>
       <actual>{$transform}</actual>
     </test>
     <test name="output-html with xqdoc:generate-docs">
-      <expected>{$expected}</expected>
+      <expected>{$expect}</expected>
       <actual>{xqdoc:generate-docs('html',$actual)}</actual>
     </test>
     </tests>

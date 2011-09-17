@@ -50,11 +50,13 @@
           declare variable $example as xs:string external;
           declare variable $distpath as xs:string external;
           declare variable $expected as xs:string external;
+          declare variable $t as xs:string external;
 
           xdmp:invoke($test,(
             xs:QName("distpath"), $distpath,
             xs:QName("example"), $example,
-            xs:QName("expected"), $expected
+            xs:QName("expected"), $expected,
+            xs:QName("t"), $test
             )
           )
         </query>
@@ -70,11 +72,11 @@
     <p:with-option name="content-base" select="//*"/>
   </ml:adhoc-query>
 
-  <!-- emacs compile hint //-->
+  <!-- run individual tests with  m-x compile //-->
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml marklogic-test.xpl expected=/src/tests/expected/default.xml test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy"
     -- End:
     :)
   </p:documentation>

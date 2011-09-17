@@ -1,4 +1,4 @@
-<tests name="Output HTML" example="/src/tests/examples/default.xqy"><test name="output-html manually"><expected><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" version="-//W3C//DTD XHTML 1.1//EN">
+<tests name="Output HTML" t="/tests/unit/marklogic/output-html.xqy" example="/src/tests/examples/default.xqy" expected="/src/tests/expected/output-html.xml"><test name="output-html manually"><expected><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
 	  <meta charset="utf-8"/>
 	  <title/>

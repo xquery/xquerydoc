@@ -6,13 +6,14 @@ import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/m
 declare variable $distpath as xs:string external;
 declare variable $example as xs:string external;
 declare variable $expected as xs:string external;
+declare variable $t as xs:string external;
 
-let $expected := xdmp:document-get(fn:concat($distpath,$expected))
+let $expect := xdmp:document-get(fn:concat($distpath,$expected))
 let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) 
   return
-    <tests name="simple" example="{$example}">
+    <tests name="simple" t="{$t}" example="{$example}" expected="{$expected}">
     <test name="default.xqy test">
-      <expected>{$expected}</expected>
+      <expected>{$expect}</expected>
       <actual>{$actual}</actual>
     </test>
     </tests>
