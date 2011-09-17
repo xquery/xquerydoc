@@ -6,6 +6,9 @@
   * XQuery 1.0-ml (MarkLogic)
 
 
+##Install
+
+
 
 ##Usage
 
@@ -93,7 +96,7 @@ xqdoc:
 For convenience we have included all the dependencies xquerydoc
 requires.
 
-  * XML Calabash
+  * XML Calabash - to install run > java -jar calabash-0.9.34.jar
   * Saxon (ships with XML Calabash)
   * xqDoc 
 
