@@ -6,6 +6,7 @@ declare namespace doc="http://www.xqdoc.org/1.0";
 
 import module namespace xqp="XQueryML10" at "XQueryML10.xq";
 import module namespace xqdc="XQDocComments" at "XQDocComments.xq";
+import module namespace util="http://github.com/xquery/xquerydoc/utils" at "ml-utils.xq";
 
 declare (: private :) function _trimStringLiteral($literal as xs:string) as xs:string
 {
@@ -119,4 +120,8 @@ declare function parse($module as xs:string)
       }
     }
   }
+};
+
+declare function generate-docs($type,$xqdoc){
+  util:generate-html-module($xqdoc)
 };

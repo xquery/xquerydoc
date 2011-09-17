@@ -103,12 +103,13 @@ Please review the licenses of included software.
 
 ##Credit, Acknowledgements, License
 
-
-original xqDoc
+original xqDoc - http://xqdoc.org/
 
 John Snelson
 
 James Fuller
+
+parsers were generated from EBNF using Gunther Rademacher http://www.bottlecaps.de/rex/
 
 xquerydoc is released under Apache License v2.0
 

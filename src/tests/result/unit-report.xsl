@@ -3,8 +3,8 @@
   <xsl:output omit-xml-declaration="yes" method="html" encoding="utf-8" indent="yes" />
   <xsl:param name="title"/>
   <xsl:variable name="total" select="count(//*:test)"/>
-  <xsl:variable name="pass" select="count(//*:test[actual eq expected])"/>
-  <xsl:variable name="fail" select="count(//*:test[actual ne expected])"/>
+  <xsl:variable name="pass" select="count(//*:test[ deep-equal(actual/node(),expected/node())])"/>
+  <xsl:variable name="fail" select="$total - $pass"/>
   <xsl:template match="/">
     <html>
       <head>
@@ -35,7 +35,7 @@
           li.result {
           list-style-position: inside;
           list-style: none;
-          height:120px;
+          height:140px;
           }
           .result h3 {
           font-weight: normal;
@@ -103,7 +103,10 @@
       </head>
       <body onload="prettyPrint()">
         <h1><xsl:value-of select="$title"/> Results</h1>
-        <p> <strong><xsl:value-of select="round(($pass div ($pass + $fail)) * 100)"/>% pass rate: </strong><strong class="fail"><xsl:value-of select="$fail"/></strong> failed tests and <strong><xsl:value-of select="$pass"/></strong> passed tests.</p>
+        <p> <strong>
+<xsl:value-of select="round(($pass div ($pass + $fail)) * 100)"/>%
+pass rate: 
+</strong><strong class="fail"><xsl:value-of select="$fail"/></strong> failed tests and <strong><xsl:value-of select="$pass"/></strong> passed tests.</p>
           <xsl:apply-templates/>
         <br/><br/>
         <div class="footer"><p style="text-align:right"><i><xsl:value-of select="current-dateTime()"/></i></p></div>
@@ -116,22 +119,25 @@
       <xsl:apply-templates/>
     </ol>
   </xsl:template>
-  <xsl:template match="*:test[expected ne actual]">
-    <li class="result fail">
-      <h3 ><input name="test" value="" type="checkbox" checked="checked"></input>
-      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"></span></a>
+  <xsl:template match="*:test[deep-equal(actual/node(), expected/node())]">
+    <li class="result pass">
+      <h3><input name="test" value="" type="checkbox" checked="checked"></input>
+      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"><xsl:value-of select="namespace-uri(actual/node())"/></span></a>
       <table>
-        <tbody>
-          <tr>
+        <thead>
+          <th>expected</th>
+          <th>actual</th>
+        </thead>
+        <tbody><tr>
           <td>
             <pre style="border: 1px solid #888;padding: 2px"
 ><textarea rows="5" cols="60"><xsl:copy-of
-                                               select="expected"/></textarea></pre>
+                                               select="expected/node()"/></textarea></pre>
           </td>
           <td>
             <pre style="border: 1px solid #888;padding: 2px"
 ><textarea rows="5" cols="60"><xsl:copy-of
-                                               select="actual"/></textarea></pre>
+                                               select="actual/node()"/></textarea></pre>
           </td>
         </tr>
         </tbody>
@@ -139,21 +145,26 @@
       </h3><br/>
     </li>
   </xsl:template>
-  <xsl:template match="*:test[expected eq actual]">
-    <li class="result pass">
-      <h3><input name="test" value="" type="checkbox" checked="checked"></input>
-      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"><xsl:value-of select="namespace-uri(actual/node())"/></span></a>
+  <xsl:template match="*:test">
+    <li class="result fail">
+      <h3 ><input name="test" value="" type="checkbox" checked="checked"></input>
+      <a href="?test="><xsl:value-of select="@name"/> <span class="namespace"></span></a>
       <table>
-        <tbody><tr>
+        <thead>
+          <th>expected</th>
+          <th>actual</th>
+        </thead>
+        <tbody>
+          <tr>
           <td>
             <pre style="border: 1px solid #888;padding: 2px"
 ><textarea rows="5" cols="60"><xsl:copy-of
-                                               select="expected"/></textarea></pre>
+                                               select="expected/node()"/></textarea></pre>
           </td>
           <td>
             <pre style="border: 1px solid #888;padding: 2px"
 ><textarea rows="5" cols="60"><xsl:copy-of
-                                               select="actual"/></textarea></pre>
+                                               select="actual/node()"/></textarea></pre>
           </td>
         </tr>
         </tbody>

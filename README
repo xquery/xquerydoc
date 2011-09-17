@@ -186,3 +186,26 @@ Jim's Notes
 
 * make work across several xquery processors
 
+
+
+-----
+docs
+-----
+
+works on 
+
+Homepage
+* list library modules/namespaces
+* list main modules/namespaces
+
+Module page
+ * Module URI
+ * Description
+ * Imported Modules
+   * links to page
+ * Variables
+   * references to vars
+ * Function Summary
+   * in page links to function detail
+ * Function Detail
+
