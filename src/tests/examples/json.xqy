@@ -78,7 +78,7 @@ declare function json:print-name-value($x as element()) as xs:string? {
 
 (:~
  : Transforms an XML element into a JSON string representation.  See http://json.org.
- : <p/>
+ : 
  : Sample usage:
  : <pre>
  :   xquery version "1.0-ml";
@@ -86,9 +86,9 @@ declare function json:print-name-value($x as element()) as xs:string? {
  :   json:serialize(&lt;foo&gt;&lt;bar&gt;kid&lt;/bar&gt;&lt;/foo&gt;)
  : </pre>
  : Sample transformations:
- : <p/>
+ : 
  : Namespace URIs are ignored.  Namespace prefixes are included in the JSON name.
- : <p/>
+ :
  : Attributes are ignored, except for the special attribute @array="true" that
  : indicates the JSON serialization should write the node, even if single, as an
  : array, and the attribute @type that can be set to "boolean" or "number" to
@@ -96,7 +96,7 @@ declare function json:print-name-value($x as element()) as xs:string? {
  : an @quote attribute that when set to true writes the inner content as text
  : rather than as structured JSON, useful for sending some XHTML over the
  : wire.
- : <p/>
+ :
  : Text nodes within mixed content are ignored.
  :
  : @param $x Element node to convert
