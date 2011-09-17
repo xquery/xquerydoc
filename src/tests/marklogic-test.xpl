@@ -25,6 +25,9 @@
   <!-- path of example xquery containing xqdoc code comments //-->
   <p:option name="example" required="true"/>  
 
+  <!-- path of expected output  //-->
+  <p:option name="expected" required="true"/>  
+
   <!-- path of xquerydoc dist //-->
   <p:variable name="distpath" select="/config/path"/>
 
@@ -36,6 +39,8 @@
     <p:with-param name="test" select="$test"/>
     <p:with-param name="example" select="$example"/>
     <p:with-param name="distpath" select="$distpath"/>
+    <p:with-param name="expected" select="$expected"/>
+
     <p:input port="source">
       <p:inline>
         <query>
@@ -44,10 +49,12 @@
           declare variable $test as xs:string external;
           declare variable $example as xs:string external;
           declare variable $distpath as xs:string external;
+          declare variable $expected as xs:string external;
 
           xdmp:invoke($test,(
             xs:QName("distpath"), $distpath,
-            xs:QName("example"), $example
+            xs:QName("example"), $example,
+            xs:QName("expected"), $expected
             )
           )
         </query>

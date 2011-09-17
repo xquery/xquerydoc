@@ -10,7 +10,7 @@ declare variable $expected as xs:string external;
 let $expected := xdmp:document-get(fn:concat($distpath,$expected))
 let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) 
   return
-    <tests name="simple" example="{$example}">
+    <tests name="simple" example="{$example}" expected="{$expected}">
     <test name="default.xqy test">
       <expected>{$expected}</expected>
       <actual>{$actual}</actual>

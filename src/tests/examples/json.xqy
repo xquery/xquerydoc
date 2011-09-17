@@ -1,5 +1,7 @@
 xquery version "1.0-ml" encoding "UTF-8";
 
+(: Copyright 2006-2010 Mark Logic Corporation. :)
+
 (:
  : Licensed under the Apache License, Version 2.0 (the "License");
  : you may not use this file except in compliance with the License.
@@ -14,17 +16,14 @@ xquery version "1.0-ml" encoding "UTF-8";
  : limitations under the License.
  :)
 
-module namespace util="http://github.com/xquery/xquerydoc/utils";
+module namespace json = "http://marklogic.com/json";
+declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
-declare namespace doc="http://www.xqdoc.org/1.0";
-declare namespace html="http://www.w3.org/1999/xhtml";
 
-declare variable $util:html-homepage-xslt := '../lib/html-home.xsl';
-declare variable $util:html-module-xslt := '../lib/html-module.xsl';
-
-declare function util:generate-html-module($xqdoc) 
-{
-  let $transform := xdmp:xslt-invoke( $util:html-module-xslt ,$xqdoc) 
-  return
-    $transform
+(: Need to backslash escape any double quotes backslashes, newlines and tabs :)
+declare function json:escape($s as xs:string) as xs:string {
+  let $s := replace($s, "(\\|"")", "\\$1")
+  let $s := replace($s, $new-line-regex, "\\n")
+  let $s := replace($s, codepoints-to-string(9), "\\t")
+  return $s
 };
