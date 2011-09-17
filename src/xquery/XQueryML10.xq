@@ -1,4 +1,4 @@
-xquery version "1.0-ml" encoding "UTF-8";
+xquery version "1.0" encoding "UTF-8";
 
 (: This file was generated on Wed Sep 14, 2011 23:47 by REx v5.9 which is Copyright (c) 1979-2011 by Gunther Rademacher <grd@gmx.net> :)
 (: REx command line: XQueryML10.ebnf -xquery -tree :)

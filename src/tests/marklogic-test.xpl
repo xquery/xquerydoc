@@ -76,7 +76,7 @@
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml marklogic-test.xpl expected=/src/tests/expected/default.xml test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/report.xml marklogic-test.xpl expected=/src/tests/expected/marklogic/default.xml test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy"
     -- End:
     :)
   </p:documentation>

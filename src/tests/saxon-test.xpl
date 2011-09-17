@@ -43,18 +43,21 @@
 
           declare variable $distpath as xs:string external;
           declare variable $example as xs:string external;
+          declare variable $t as xs:string external;
 
           let $expectedpath  := fn:concat('file://',$distpath,'/src/tests/expected/default.xml')
-          let $expected      := fn:doc($expectedpath)
+          let $expect        := fn:doc($expectedpath)
           let $xquerypath    := fn:concat('file://',$distpath,$example,';unparsed=yes')
           let $xquery        := fn:collection($xquerypath)
-          let $actual        := xqdoc:parse(fn:normalize-space($xquery))
+          let $actual        := xqdoc:parse($xquery)
 
           return
-          &lt;test&gt;
-            &lt;expected path="{$expectedpath}"&gt;{$expected}&lt;/expected&gt;
-            &lt;actual path="{$xquerypath}"&gt;{$actual}&lt;/actual&gt;
+          &lt;tests expected="{$expectedpath}" example="{$example}"&gt;
+          &lt;test desc="generate xqdoc"&gt;
+            &lt;expected&gt;{$expect}&lt;/expected&gt;
+            &lt;actual&gt;{$actual}&lt;/actual&gt;
           &lt;/test&gt;
+          &lt;/tests&gt;
 
         </c:query>
       </p:inline>
@@ -68,7 +71,10 @@
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/default.xml saxon-test.xpl test=/tests/unit/simple.xqy example=/src/tests/examples/?select=default.xqy"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml
+    -oresult=result/Saxon/default.xml saxon-test.xpl
+    test=/tests/unit/simple.xqy
+    example=/src/tests/examples/?select=default.xqy expected=/src/tests/expected/saxon/default.xml"
     -- End:
     :)
   </p:documentation>
