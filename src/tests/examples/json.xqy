@@ -77,35 +77,35 @@ declare function json:print-name-value($x as element()) as xs:string? {
 };
 
 (:~
-  Transforms an XML element into a JSON string representation.  See http://json.org.
-  <p/>
-  Sample usage:
-  <pre>
-    xquery version "1.0-ml";
-    import module namespace json="http://marklogic.com/json" at "json.xqy";
-    json:serialize(&lt;foo&gt;&lt;bar&gt;kid&lt;/bar&gt;&lt;/foo&gt;)
-  </pre>
-  Sample transformations:
-  <p/>
-  Namespace URIs are ignored.  Namespace prefixes are included in the JSON name.
-  <p/>
-  Attributes are ignored, except for the special attribute @array="true" that
-  indicates the JSON serialization should write the node, even if single, as an
-  array, and the attribute @type that can be set to "boolean" or "number" to
-  dictate the value should be written as that type (unquoted).  There's also
-  an @quote attribute that when set to true writes the inner content as text
-  rather than as structured JSON, useful for sending some XHTML over the
-  wire.
-  <p/>
-  Text nodes within mixed content are ignored.
-
-  @param $x Element node to convert
-  @return String holding JSON serialized representation of $x
-
-  @author Jason Hunter
-  @version 1.0.1
-  
-  Ported to xquery 1.0-ml; double escaped backslashes in json:escape
+ : Transforms an XML element into a JSON string representation.  See http://json.org.
+ : <p/>
+ : Sample usage:
+ : <pre>
+ :   xquery version "1.0-ml";
+ :   import module namespace json="http://marklogic.com/json" at "json.xqy";
+ :   json:serialize(&lt;foo&gt;&lt;bar&gt;kid&lt;/bar&gt;&lt;/foo&gt;)
+ : </pre>
+ : Sample transformations:
+ : <p/>
+ : Namespace URIs are ignored.  Namespace prefixes are included in the JSON name.
+ : <p/>
+ : Attributes are ignored, except for the special attribute @array="true" that
+ : indicates the JSON serialization should write the node, even if single, as an
+ : array, and the attribute @type that can be set to "boolean" or "number" to
+ : dictate the value should be written as that type (unquoted).  There's also
+ : an @quote attribute that when set to true writes the inner content as text
+ : rather than as structured JSON, useful for sending some XHTML over the
+ : wire.
+ : <p/>
+ : Text nodes within mixed content are ignored.
+ :
+ : @param $x Element node to convert
+ : @return String holding JSON serialized representation of $x
+ :
+ : @author Jason Hunter
+ : @version 1.0.1
+ : 
+ : Ported to xquery 1.0-ml; double escaped backslashes in json:escape
 :)
 declare function json:serialize($x as element())  as xs:string {
   string-join(('{', json:print-name-value($x), '}'), "")

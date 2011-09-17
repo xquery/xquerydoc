@@ -1,5 +1,15 @@
 xquery version "1.0-ml" encoding "UTF-8";
 
+(:~
+: This module tests the output of html generated documentation
+: from MarkLogic flavoured XQuery containing xqDoc commenting.
+
+: @author Jim Fuller
+: @version 1.0
+:
+: @return element(tests) 
+:)
+
 import module namespace test = "http://www.marklogic.com/test" at "/lib/test.xqy";
 import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
 

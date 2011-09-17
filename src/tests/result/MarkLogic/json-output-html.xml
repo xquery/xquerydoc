@@ -9,7 +9,27 @@
 	  <title/>
 	</head>
 	<body class="home"><div id="main"><h2>Module</h2>
-    type: library<p/><h2>Module URI</h2>http://marklogic.com/json<h2>Variables</h2><h2>Function Summary</h2><h2>Function Detail</h2></div></body>
+    type: library<p/><h2>Module URI</h2>http://marklogic.com/json<br/><h2>Variables</h2><h2>Function Summary</h2><h4>name:escape</h4>
+    signature: ($s as xs:string) as  xs:string
+    parameters: <ul>
+	      <li>s:  xs:string</li>
+	    </ul><h4>name:atomize</h4>
+    signature: ($x as element()) as  xs:string
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul><h4>name:print-value</h4>
+    signature: ($x as element()) as  xs:string
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul><h4>name:print-name-value</h4>
+    signature: ($x as element()) as  xs:string?
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul><h4>name:serialize</h4>
+    signature: ($x as element()) as  xs:string
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul></div></body>
       </html></actual></test><test name="ml3" desc="output-html with xqdoc:generate-docs"><expected><html xmlns="http://www.w3.org/1999/xhtml" version="-//W3C//DTD XHTML 1.1//EN">
 	<head>
 	  <title/>
@@ -21,5 +41,25 @@
 	  <title/>
 	</head>
 	<body class="home"><div id="main"><h2>Module</h2>
-    type: library<p/><h2>Module URI</h2>http://marklogic.com/json<h2>Variables</h2><h2>Function Summary</h2><h2>Function Detail</h2></div></body>
+    type: library<p/><h2>Module URI</h2>http://marklogic.com/json<br/><h2>Variables</h2><h2>Function Summary</h2><h4>name:escape</h4>
+    signature: ($s as xs:string) as  xs:string
+    parameters: <ul>
+	      <li>s:  xs:string</li>
+	    </ul><h4>name:atomize</h4>
+    signature: ($x as element()) as  xs:string
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul><h4>name:print-value</h4>
+    signature: ($x as element()) as  xs:string
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul><h4>name:print-name-value</h4>
+    signature: ($x as element()) as  xs:string?
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul><h4>name:serialize</h4>
+    signature: ($x as element()) as  xs:string
+    parameters: <ul>
+	      <li>x:  element()</li>
+	    </ul></div></body>
       </html></actual></test></tests>
