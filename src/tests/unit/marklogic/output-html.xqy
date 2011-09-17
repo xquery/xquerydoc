@@ -18,16 +18,24 @@ declare variable $example as xs:string external;
 declare variable $expected as xs:string external;
 declare variable $t as xs:string external;
 
-let $expect  := xdmp:document-get(fn:concat($distpath,$expected))
-let $actual    := xqdoc:parse(fn:normalize-space(xdmp:document-get(fn:concat($distpath,$example),
+let $expect    := xdmp:document-get(fn:concat($distpath,$expected))
+let $xquerydoc := xdmp:document-get(fn:concat($distpath,$example),
 <options xmlns="xdmp:document-get">
   <encoding>UTF-8</encoding>
   <format>text</format>
 </options>
-))) 
+)
+let $actual    := xqdoc:parse($xquerydoc) 
+
+
+  let $params := map:map()
+  let $_put := map:put(
+                    $params,
+                    xdmp:key-from-QName(fn:QName("", "source")),
+                    $xquerydoc)
 let $transform := xdmp:xslt-invoke(
                         '/lib/html-module.xsl',
-	                $actual) 
+	                $actual,$params) 
   return
     <tests name="Output HTML" t="{$t}" example="{$example}" expected="{$expected}">
     <test name="ml2" desc="output-html manually">
@@ -36,11 +44,6 @@ let $transform := xdmp:xslt-invoke(
     </test>
     <test name="ml3" desc="output-html with xqdoc:generate-docs">
       <expected>{$expect}</expected>
-      <actual>{xqdoc:generate-docs('html',$actual,fn:normalize-space(xdmp:document-get(fn:concat($distpath,$example),
-<options xmlns="xdmp:document-get">
-  <encoding>UTF-8</encoding>
-  <format>text</format>
-</options>
-)))}</actual>
+      <actual>{xqdoc:generate-docs('html',$actual,$xquerydoc)}</actual>
     </test>
     </tests>
