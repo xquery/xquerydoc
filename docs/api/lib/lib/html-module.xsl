@@ -8,13 +8,14 @@ xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
 exclude-result-prefixes="xs doc fn"
 version="2.0">
 
-<xsl:output method="xhtml" indent="no" encoding="UTF-8"/>
+<xsl:output method="html" indent="yes" encoding="UTF-8"/>
 <xsl:strip-space elements="*"/>
 
 <xsl:param name="source" as="xs:string"/>
+
   <!-- generate module html //-->
-  <xsl:template match="doc:xqdoc">
-    <html version="-//W3C//DTD XHTML 1.1//EN">
+  <xsl:template match="//doc:xqdoc">
+    <html>
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc" />
@@ -87,13 +88,13 @@ version="2.0">
         </style>
 
 	<script src="lib/prettify.js"
-                type="lib/javascript">&#160; </script>
+                type="text/javascript">&#160;</script>
 	<script src="lib/lang-xq.js"
-                type="text/javascript">&#160; </script>
-	<link rel="stylesheet" type="text/css" href="lib/prettify.css">&#160;</link>
+                type="text/javascript">&#160;</script>
+	<link rel="stylesheet" type="text/css" href="lib/prettify.css"/>
       </head>
       <body class="home">
-        <a href="index.html">XQuery API index</a>
+        <div style="text-align:right;"><a href="index.html">XQuery API index</a></div>
 	<div id="main">
           <xsl:apply-templates/>
 

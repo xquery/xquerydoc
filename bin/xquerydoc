@@ -9,6 +9,7 @@
 #
 
 XQUERYDOC_HOME=/Users/jfuller/Source/Webcomposite/xquerydoc
+
 CURRENTDIR=`pwd`
 XQUERY=$1
 OUTPUT=$2

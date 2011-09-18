@@ -9,13 +9,13 @@ xmlns:c="http://www.w3.org/ns/xproc-step"
 exclude-result-prefixes="xs doc fn"
 version="2.0">
 
-<xsl:output method="xhtml" indent="no" encoding="UTF-8"/>
+<xsl:output method="html" indent="yes" encoding="UTF-8"/>
 <xsl:strip-space elements="*"/>
 
 <xsl:param name="source" as="xs:string"/>
   <!-- generate module html //-->
   <xsl:template match="/">
-    <html version="-//W3C//DTD XHTML 1.1//EN">
+    <html>
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc" />

@@ -34,39 +34,37 @@
   <!-- desired output format  //-->
   <p:option name="format" required="true"/>  
 
+  <p:variable name="dirpath" select="if(starts-with($xquery,'/')) then
+                                     $xquery else concat($currentdir,'/',$xquery)"/>
+
+  <p:variable name="outputdirpath" select="if(starts-with($output,'/')) then
+                                     $output else concat($currentdir,'/',$output)"/>
+
   <cx:recursive-directory-list name="dirlist"
                                include-filter="^(.)*.xq(.)*$"
                                exclude-filter="(XQueryML10.xq|XQueryV10.xq|XQueryV30.xq)">
-    <p:with-option name="path" select="concat($currentdir,'/',$xquery)"/>
+    <p:with-option name="path" select="$dirpath"/>
   </cx:recursive-directory-list>
 
-  <p:variable name="dirpath" select="concat($currentdir,'/',$xquery)"/>
 
   <p:for-each name="iterate">
     <p:iteration-source select="/c:directory/c:file"/>
+
     <p:variable name="filename" select="c:file/@name"/>
+    <p:variable name="source" select='collection(concat($dirpath,"?select=",$filename,";unparsed=yes"))'/>
 
   <!-- this step will run xquerydoc.xq on supplied xquery document //-->
   <p:xquery name="run"> 
-    <p:with-param name="currentdir" select="$currentdir"/>
-    <p:with-param name="format"     select="$format"/>
-    <p:with-param name="dirpath"  select="$dirpath"/>
-    <p:with-param name="filename"  select="$filename"/>
-
+    <p:with-param name="source" select='$source'/>
     <p:input port="query">
       <p:inline>
         <query>
           xquery version "1.0" encoding "UTF-8";
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "src/xquery/xquerydoc.xq";
 
-          declare variable $format as xs:string external;
-          declare variable $currentdir as xs:string external;
-          declare variable $dirpath as xs:string external;
-          declare variable $filename as xs:string external;
+          declare variable $source as xs:string external;
 
-          let $xquerydoc := fn:collection(fn:concat($dirpath,'?select=',$filename,";unparsed=yes")) 
-          return
-              xqdoc:parse($xquerydoc) 
+          xqdoc:parse($source)
         </query>
       </p:inline>
     </p:input>
@@ -77,7 +75,7 @@
 
   <!-- apply html transform //-->
   <p:xslt name="transform">
-    <p:with-param name="source" select="'test'"/>    
+    <p:with-param name="source" select='$source'/>    
     <p:input port="stylesheet">
       <p:document href="src/lib/html-module.xsl"/>
     </p:input>
@@ -87,12 +85,7 @@
   </p:xslt>
 
   <p:store>
-    <p:with-option name="href" select="if
-                                       (starts-with($output,'/'))
-                                       then
-                                       concat('file://',$output,'/',$filename,'.html')
-                                       else
-                                       concat('file://',$currentdir,'/',$output,'/',$filename,'.html')"/>
+    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$filename,'.html')"/>
   </p:store>
 
   </p:for-each>		

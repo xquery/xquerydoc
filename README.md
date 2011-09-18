@@ -10,6 +10,8 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ##Install
 
+Edit XQUERYDOC_HOME in *bin/xquerydoc* to reflect where you installed xquerydoc
+
 To use from the commandline you must have JVM and XML Calabash XProc
 processor installed.
 
