@@ -1,7 +1,7 @@
 #xquerydoc
 
 Parses xqDoc comments from your xquery and generates a set of API
-level documentation using pure XQuery.
+level documentation implemented in pure XQuery v1.0.
 
 The following versions of XQuery are supported.
 
