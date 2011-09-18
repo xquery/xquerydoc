@@ -101,11 +101,11 @@
           }
         </style>
 
-	<script src="resource/prettify.js"
+	<script src="../../lib/prettify.js"
                 type="text/javascript">&#160; </script>
-	<script src="resource/lang-xq.js"
+	<script src="../../lib/lang-xq.js"
                 type="text/javascript">&#160; </script>
-	<link rel="stylesheet" type="text/css" href="resource/prettify.css">&#160;</link>
+	<link rel="stylesheet" type="text/css" href="../../lib/prettify.css">&#160;</link>
 
       </head>
       <body onload="prettyPrint()">

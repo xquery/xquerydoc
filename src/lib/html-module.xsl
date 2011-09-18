@@ -81,11 +81,11 @@ version="2.0">
           }
         </style>
 
-	<script src="src/tests/result/resource/prettify.js"
+	<script src="lib/prettify.js"
+                type="lib/javascript">&#160; </script>
+	<script src="lib/lang-xq.js"
                 type="text/javascript">&#160; </script>
-	<script src="src/tests/result/resource/lang-xq.js"
-                type="text/javascript">&#160; </script>
-	<link rel="stylesheet" type="text/css" href="src/tests/result/resource/prettify.css">&#160;</link>
+	<link rel="stylesheet" type="text/css" href="lib/prettify.css">&#160;</link>
       </head>
       <body class="home">
 	<div id="main">

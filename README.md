@@ -136,14 +136,25 @@ dynamic&#xD;  real-time viewing.&#xD; &#xD;
 ```
 
 Its relatively easy to then take this XML and style it using provided
-XSLT stylesheets.
-
+XSLT stylesheets provided for under *src/lib*. The Marklogic variant
+XQuery library provides this in a utility function contained in *src/xquery/ml-utils.xqy*.
 
 
 ## API Docs
 
 Yup we eat our own dog chow, view API docs here.
 
+## Distro
+
+* xquerydoc
+  * bin
+  * etc
+  * docs
+  * src
+    * tests: contains tests
+    * lib: contains xslt and associated javascript, css, etc
+    * src: contains xquerydoc XQuery modules 
+  * ebnf: contains Extended Backus–Naur Form definitions of XQuery language
 
 ##Running Tests
 
@@ -214,6 +225,21 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
+
+##FAQ
+
+*Why a pure XQuery v1.0 implementation ?"
+
+This means you can generate api level documentation using just XQuery
+! Need we say more ?
+
+* Why use XML Calabash XProc ?*
+
+As we are applying an XQuery process and an XSLT process on a set of
+xquery documents it seemed like a good match for the commandline
+invokation. You can of course use the XQuery v1.0 libraries without
+XProc but you will need to apply XSLT stylesheets using your
+processors capabilities.
 
 
 ##Contact

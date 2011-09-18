@@ -259,9 +259,9 @@ declare function json:serialize($x as element())  as xs:string {
           vertical-align:text-top;
           }
         </style>
-	  <script src="src/tests/result/resource/prettify.js" type="text/javascript">  </script>
-	  <script src="src/tests/result/resource/lang-xq.js" type="text/javascript">  </script>
-	  <link rel="stylesheet" type="text/css" href="src/tests/result/resource/prettify.css"> </link>
+	  <script src="lib/prettify.js" type="lib/javascript">  </script>
+	  <script src="lib/lang-xq.js" type="text/javascript">  </script>
+	  <link rel="stylesheet" type="text/css" href="lib/prettify.css"> </link>
 	</head>
 	<body class="home"><div id="main"><h1><span class="namespace">http://marklogic.com/json</span>  library module </h1><h5>Comment</h5><p> This is an example xquery file taken from several files to demonstrate xqdoc commenting  Sample usage:    example bold tag     Proin facilisis ultrices velit id bibendum. Curabitur eu nisi velit, vel pharetra  eros. Fusce eu metus sem. Etiam sed risus ultrices turpis blandit placerat. Suspendisse  eu massa arcu, eget feugiat arcu. Donec eget rutrum nisi. Vivamus eget massa libero.  Pellentesque placerat tortor elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed molestie odio lacinia eros iaculis laoreet.  </p>
     Author:  Jim Fuller 
@@ -647,9 +647,9 @@ declare function json:serialize($x as element())  as xs:string {
           vertical-align:text-top;
           }
         </style>
-	  <script src="src/tests/result/resource/prettify.js" type="text/javascript">  </script>
-	  <script src="src/tests/result/resource/lang-xq.js" type="text/javascript">  </script>
-	  <link rel="stylesheet" type="text/css" href="src/tests/result/resource/prettify.css"> </link>
+	  <script src="lib/prettify.js" type="lib/javascript">  </script>
+	  <script src="lib/lang-xq.js" type="text/javascript">  </script>
+	  <link rel="stylesheet" type="text/css" href="lib/prettify.css"> </link>
 	</head>
 	<body class="home"><div id="main"><h1><span class="namespace">http://marklogic.com/json</span>  library module </h1><h5>Comment</h5><p> This is an example xquery file taken from several files to demonstrate xqdoc commenting  Sample usage:    example bold tag     Proin facilisis ultrices velit id bibendum. Curabitur eu nisi velit, vel pharetra  eros. Fusce eu metus sem. Etiam sed risus ultrices turpis blandit placerat. Suspendisse  eu massa arcu, eget feugiat arcu. Donec eget rutrum nisi. Vivamus eget massa libero.  Pellentesque placerat tortor elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed molestie odio lacinia eros iaculis laoreet.  </p>
     Author:  Jim Fuller 
