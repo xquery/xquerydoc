@@ -177,11 +177,13 @@ https://github.com/xquery/xquerydoc/tree/master/docs/api
 ## Distro
 
 xquerydoc
+
 * bin: contains bash run scripts
 * docs: contains api generated documentation
 * ebnf: contains Extended Backus–Naur Form definitions of XQuery language
 
 xquerydoc/src
+
 * tests: contains tests
 * lib: contains xslt and associated javascript, css, etc
 * src: contains xquerydoc XQuery modules 
