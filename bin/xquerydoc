@@ -14,8 +14,11 @@ XQUERY=$1
 OUTPUT=$2
 FORMAT=$3
 
+# create output directory
+mkdir $OUTPUT
+
 # run xproc pipeline
-/usr/local/bin/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT
+/usr/local/bin/calabash -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT exclude= include=
 
 # copy lib resources 
 cp -R -f $XQUERYDOC_HOME/src/lib $OUTPUT/lib

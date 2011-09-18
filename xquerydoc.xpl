@@ -35,7 +35,7 @@
   <p:option name="format" required="true"/>  
 
   <cx:recursive-directory-list name="dirlist"
-                               include-filter="^(.)*.xq$"
+                               include-filter="^(.)*.xq(.)*$"
                                exclude-filter="(XQueryML10.xq|XQueryV10.xq|XQueryV30.xq)">
     <p:with-option name="path" select="concat($currentdir,'/',$xquery)"/>
   </cx:recursive-directory-list>
@@ -112,7 +112,7 @@
   </p:xslt>
 
 
-  <!-- run pipeline manually with m-x compile //-->
+  <!-- run pipeline manually in emacs with m-x compile //-->
   <p:documentation>
     (:
     -- Local Variables:

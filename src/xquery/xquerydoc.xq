@@ -161,7 +161,9 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
   }
 };
 
-
+(:~ 
+ :  example function for generating html from within XQuery, will need to employ processor specific method of invoking XSLT 
+ :)
 declare function generate-docs($type,$xqdoc ){
   util:generate-html-module($xqdoc)
 };

@@ -3,12 +3,6 @@
 Parses xqDoc comments from your xquery and generates a set of API
 level documentation implemented in pure XQuery v1.0.
 
-The following versions of XQuery are supported.
-
-  * XQuery v1.0 
-  * XQuery 1.0-ml
-  * XQuery v3.0 
-
 xquerydoc commandline uses XMLCalabash (which ships with Saxon) though 
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
@@ -31,6 +25,14 @@ http://xmlcalabash.org
 xquerydoc can be invoked directly from any XQuery v1.0 compliant
 processor but you will have to take care of applying styling to xqDoc
 markup.
+
+If you intend to use xquerydoc from the commandline I would recommend
+generating a symlink to the xquerydoc bash script
+
+
+```bash
+ln -s /wherever/you/put/xquerydoc/bin/xquerydoc /usr/local/bin/xquerydoc
+```
 
 ##Usage
 
@@ -257,6 +259,17 @@ The build process is not included in the distro currently.
 We are very interested in parsing as correctly as possible so please
 submit issue to https://github.com/xquery/xquerydoc/issues
 
+*Doesn't work on windows!"
+
+The commandline scripts have been written with unix/linux/osx in mind
+but xquerydoc can be invoked by any XQuery v1.0 compliant processor.
+
+As the commandline scripts are just a wrapper around an XProc pipeline
+you should be able to easily work out invoking XML Calabash.
+
+Otherwise very happy to review pull requests and patch any windows
+support but I am not setup to test for this platform.
+
 ##More Info
 
 https://github.com/xquery/xquerydoc
@@ -264,6 +277,8 @@ https://github.com/xquery/xquerydoc
 
 ## Status
 
+* add specific parsing options (XQueryv3.0, etc)
+* add recursive directory processing
 * create markdown output format
 * create docbook output format
 * create text output format
