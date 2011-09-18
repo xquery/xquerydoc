@@ -34,8 +34,15 @@ ln -s /wherever/you/put/xquerydoc/bin/xquerydoc /usr/local/bin/xquerydoc
 
 xquerydoc can also be invoked directly from your own XQuery scripts
 but for now you will have to take care of applying XSLT stylesheets to
-the xqdoc markup.
+the xqdoc markup. 
 
+The following directories are needed for use when directly invoking
+from XQuery.
+
+* src/xquery: contains XQuery implementation
+* src/lib: contains css/xslt/js used to transform to final html 
+
+The entrypoint is contained in *src/xquery/xquerydoc.xq* module.
 
 ##Usage
 
