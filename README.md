@@ -77,7 +77,7 @@ that for you.
 ###Invoking xquerydoc from xquery
 
 As xquerydoc is itself written in pure XQuery v1.0  you can invoke  directly
-from your own xquery applications and employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
+from your own xquery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
 
 Whilst xquerydoc itself is written in XQuery v1.0, as a convenience we have provided XQuery processor specific 
 implementations to apply stying.
@@ -91,7 +91,7 @@ import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/x
 xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
 ```
 As with the commandline version we provide for your convenience a
-MarkLogic version (though the XQuery v1.0 should also run, within
+MarkLogic version (though the XQuery v1.0 should also run within
 MarkLogic just as well). 
 
 ####MarkLogic Example
