@@ -10,10 +10,11 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ##Install
 
+To use from the commandline you must;
+
 Edit XQUERYDOC_HOME in *bin/xquerydoc* to reflect where you installed xquerydoc
 
-To use from the commandline you must have JVM and XML Calabash XProc
-processor installed.
+You must also  have JVM and XML Calabash XProc processor installed.
 
 To install XML Calabash use the included installer at deps/calabash-0.9.34.jar.
 
@@ -24,17 +25,17 @@ java -jar calabash-0.9.34.jar
 Alternately you may download latest XML Calabash from
 http://xmlcalabash.org
 
-xquerydoc can be invoked directly from any XQuery v1.0 compliant
-processor but you will have to take care of applying styling to xqDoc
-markup.
-
 If you intend to use xquerydoc from the commandline I would recommend
-generating a symlink to the xquerydoc bash script
-
+generating a symlink to the xquerydoc bash script to */usr/local/bin/xquerydoc*.
 
 ```bash
 ln -s /wherever/you/put/xquerydoc/bin/xquerydoc /usr/local/bin/xquerydoc
 ```
+
+xquerydoc can also be invoked directly from your own XQuery scripts
+but for now you will have to take care of applying XSLT stylesheets to
+the xqdoc markup.
+
 
 ##Usage
 
@@ -53,14 +54,19 @@ To use provide xquerydoc with a directory containing xquery or single xquery fil
 and the directory you wish to place generated documentation.
 
 ```bash
-xquerydoc {xquerydoc} {output html}
+xquerydoc {xquerydoc} {output html} {format}
 ```
 
 The following example will process a directory containing xquery and
 output documentation to another directory.
 
 ```bash
-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
+xquerydoc som/xquery/ output/api html
+```
+You should also be able to provide absolute paths.
+
+```bash
+xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/ html
 ```
 
 In addition we provide a MarkLogic variant of this script which will
@@ -121,21 +127,21 @@ These examples show how to extract xqDoc comments with the xqdoc:xqdoc() functio
   <doc:module type="main">
     <doc:uri/>
     <doc:comment>
-      <doc:description> &#xD;  This main module controls the
-      presentation of the home page for&#xD;  xqDoc.  The home page
-      will list all of the library and main modules&#xD;  contained in
-      the 'xqDoc' collection.&#xD;  The mainline function invokes only
-      the&#xD;  method to generate the HTML for the xqDoc home page.
-      A parameter of type &#xD;  xs:boolean is passed to indicate
-      whether links on the page should be constructed &#xD;  to static
+      <doc:description>   This main module controls the
+      presentation of the home page for  xqDoc.  The home page
+      will list all of the library and main modules  contained in
+      the 'xqDoc' collection.  The mainline function invokes only
+      the  method to generate the HTML for the xqDoc home page.
+      A parameter of type   xs:boolean is passed to indicate
+      whether links on the page should be constructed   to static
       HTML pages (for off-line viewing) or to XQuery scripts for
-dynamic&#xD;  real-time viewing.&#xD; &#xD;
+dynamic  real-time viewing. 
       </doc:description>
-      <doc:author> Darin McBeath&#xD;
+      <doc:author> Darin McBeath
       </doc:author>
-      <doc:since> June 9, 2006&#xD;
+      <doc:since> June 9, 2006
       </doc:since>
-      <doc:version> 1.3&#xD;
+      <doc:version> 1.3
       </doc:version>
     </doc:comment>
   </doc:module>
