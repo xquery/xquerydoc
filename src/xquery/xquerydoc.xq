@@ -14,15 +14,26 @@ xquery version "1.0" encoding "UTF-8";
  : limitations under the License.
  :)
 
+(:~ 
+ :  This library module controls the parsing of XQuery xqdoc comments
+ : 
+ :  @author John Snelson, James Fuller
+ :  @since Sept 18, 2011
+ :  @version 0.1
+ :)
+
 
 module namespace xqd="http://github.com/xquery/xquerydoc";
 declare default function namespace "http://github.com/xquery/xquerydoc";
 declare namespace doc="http://www.xqdoc.org/1.0";
 
-import module namespace xqp="XQueryML10" at "XQueryML10.xq";
-import module namespace xqdc="XQDocComments" at "XQDocComments.xq";
+import module namespace xqp="XQueryML10" at "parsers/XQueryML10.xq";
+import module namespace xqdc="XQDocComments" at "parsers/XQDocComments.xq";
 import module namespace util="http://github.com/xquery/xquerydoc/utils" at "utils.xq";
 
+(:~ 
+ :  private function trimming string literals
+ :)
 declare (: private :) function _trimStringLiteral($literal as xs:string) as xs:string
 {
   fn:substring($literal, 2, fn:string-length($literal) - 2)
@@ -81,11 +92,20 @@ declare (: private :) function _comment($e as element()+)
   }
 };
 
-declare function parse($module as xs:string){
+
+(:~ 
+ :  main entrypoint into xquerydoc
+ :)
+declare function parse($module as xs:string) as element(doc:xqdoc)
+{
   parse($module,'')
 };
 
-declare function parse($module as xs:string, $mode as xs:string)
+
+(:~ 
+ :  main entrypoint into xquerydoc
+ :)
+declare function parse($module as xs:string, $mode as xs:string) as element(doc:xqdoc)
 {
   let $markup := xqp:parse-XQuery($module)
   let $module := $markup/Module/(MainModuleSequence/MainModule | LibraryModule)

@@ -8,9 +8,14 @@
 #
 #
 
-XQUERYDOC_HOME="$( cd -P "$( dirname "$0" )" && pwd )"
-
 XQUERYDOC_HOME=/Users/jfuller/Source/Webcomposite/xquerydoc
 CURRENTDIR=`pwd`
+XQUERY=$1
+OUTPUT=$2
+FORMAT=$3
 
-/usr/local/bin/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$2 $XQUERYDOC_HOME/xquerydoc.xpl xquery=$CURRENTDIR/$1
+# run xproc pipeline
+/usr/local/bin/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT
+
+# copy lib resources 
+cp -R -f $XQUERYDOC_HOME/src/lib $OUTPUT/lib

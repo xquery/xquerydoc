@@ -61,14 +61,15 @@ xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
 
 In addition we provide a MarkLogic variant of this script which will
 connect to MarkLogic server (via XDBC) and invoke the MarkLogic v1.0
-xquerydoc and generate documentation.
+xquerydoc and generate documentation. These can be found in the
+*extras/marklogic* directory.
 
 ```
 ml-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
 ```
 
 To use this variant you will need to setup MarkLogic XDBC server and
-provide details in *etc/config.xml* file.
+provide details in *extras/marklogic/config.xml* file.
 
 Note that you do not need to use ml-xquerydoc to genreate
 documentation from a set of 1.0-ml version scripts, xquerydoc will do

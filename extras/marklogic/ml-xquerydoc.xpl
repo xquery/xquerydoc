@@ -59,10 +59,7 @@
 
 
 
-
-
-
-  <!-- run individual tests with  m-x compile //-->
+  <!-- run pipeline manually with m-x compile //-->
   <p:documentation>
     (:
     -- Local Variables:
