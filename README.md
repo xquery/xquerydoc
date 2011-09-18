@@ -9,13 +9,23 @@ The following versions of XQuery are supported.
   * XQuery 1.0-ml
   * XQuery v3.0 
 
-And should generate source code documentation variants from most
-XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
-
+xquerydoc commandline uses XMLCalabash (which ships with Saxon) though 
+as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
+from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 
 ##Install
 
+To use from the commandline you must have JVM and XML Calabash XProc processor.
+
+To install XML Calabash use theincluded installer at deps/calabash-0.9.34.jar.
+
+```bash
+java -jar calabash-0.9.34.jar.
+```
+
+Alternately you may download latest XML Calabash from
+http://xmlcalabash.org
 
 
 ##Usage
@@ -35,14 +45,14 @@ as well as provide a directory for the documentation to be generated
 into to.
 
 ```bash
-   > xquerydoc {xquerydoc} {output html}
+xquerydoc {xquerydoc} {output html}
 ```
 
 The following example will process a directory containing xquery and
 output documentation to another directory.
 
 ```bash
-   > xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
+xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
 ```
 
 In addition we provide a MarkLogic variant of this script which will
@@ -50,7 +60,7 @@ connect to MarkLogic server (via XDBC) and invoke the MarkLogic v1.0
 xquerydoc and generate documentation.
 
 ```
-   > ml-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
+ml-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
 ```
 
 To use this variant you will need to setup MarkLogic XDBC server and
@@ -111,14 +121,14 @@ Yup we eat our own dog chow, view API docs here.
 To run all tests
 
 ```bash
-   > bin/run-all-tests.sh
+bin/run-all-tests.sh
 ```
 
 All this script does is run the following xquery processor specific scripts.
 
 ```bash
-> bin/run-saxon-tests.sh 
-> bin/run-marklogic-tests.sh
+bin/run-saxon-tests.sh 
+bin/run-marklogic-tests.sh
 ```
 
 Test scripts work by invoking an XProc pipeline in *src/tests* (either saxon-test.xpl or marklogic-test.xpl).
