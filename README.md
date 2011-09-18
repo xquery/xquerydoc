@@ -244,6 +244,14 @@ invokation. You can of course use the XQuery v1.0 libraries without
 XProc but you will need to apply XSLT stylesheets using your
 processors capabilities.
 
+*How can I build xquerydoc ?*
+
+The build process is not included in the distro currently.
+
+*xquerydoc does not seem to parse correctly !*
+
+We are very interested in parsing as correctly as possible so please
+submit issue to https://github.com/xquery/xquerydoc/issues
 
 ##More Info
 
