@@ -101,6 +101,9 @@ import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/x
 
 xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
 ```
+Note that we are using SAXON convention with collection to bring in
+unparsed xquery file.
+
 As with the commandline version we provide for your convenience a
 MarkLogic version (though the XQuery v1.0 should also run within
 MarkLogic just as well). 
@@ -111,7 +114,7 @@ xquery version "1.0-ml" encoding "UTF-8";
 
 import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
 
-xqdoc:xqdoc(xdmp:document-get(fn:concat($distpath,$example))) 
+xqdoc:xqdoc(xdmp:document-get('/path/to/xquery/file.xqy')) 
 ```
 
 These examples show how to extract xqDoc comments with the xqdoc:xqdoc() function outputing xml as follows.
@@ -230,7 +233,7 @@ we have opted to use a subset of the xqDoc XML format, the codebase is released 
 
 xquerydoc is released under Apache License v2.0
 
-Copyright 2011 John Snelson, James Fuller
+Copyright 2011 John Snelson, James Fuller, Gary Videl
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
