@@ -1,4 +1,4 @@
-#xquerydoc
+#xquerydoc v.1 18/9/2011
 
 Parses xqDoc comments from your xquery and generates a set of API
 level documentation implemented in pure XQuery v1.0.
@@ -155,9 +155,9 @@ Yup we eat our own dog chow, view API docs here.
   * etc
   * docs
   * src
-    * tests: contains tests
-    * lib: contains xslt and associated javascript, css, etc
-    * src: contains xquerydoc XQuery modules 
+    + tests: contains tests
+    + lib: contains xslt and associated javascript, css, etc
+    + src: contains xquerydoc XQuery modules 
   * ebnf: contains Extended Backus–Naur Form definitions of XQuery language
 
 ##Running Tests
@@ -167,7 +167,6 @@ To run all tests
 ```bash
 bin/run-all-tests.sh
 ```
-
 All this script does is run the following xquery processor specific scripts.
 
 ```bash
@@ -189,7 +188,7 @@ For convenience we have included all the dependencies xquerydoc
 requires.
 
   * XML Calabash (http://xmlcalabash.com- to install run > java -jar calabash-0.9.34.jar
-  * Saxon XQuery and XSLT Processor by Michael Kay (http://www.saxonica.com)  ships with XML Calabash
+  * Saxon XQuery and XSLT Processor by Michael Kay (http://www.saxonica.com) ships with XML Calabash
 
 Please review the licenses of all included software.
 
@@ -232,12 +231,12 @@ See the License for the specific language governing permissions and
 
 ##FAQ
 
-*Why a pure XQuery v1.0 implementation ?"
+*Why a pure XQuery v1.0 implementation ?*
 
 This means you can generate api level documentation using just XQuery
 ! Need we say more ?
 
-* Why use XML Calabash XProc ?*
+*Why use XML Calabash XProc ?*
 
 As we are applying an XQuery process and an XSLT process on a set of
 xquery documents it seemed like a good match for the commandline
@@ -246,10 +245,9 @@ XProc but you will need to apply XSLT stylesheets using your
 processors capabilities.
 
 
-##Contact
+##More Info
 
-
-{TBD}
+https://github.com/xquery/xquerydoc
 
 
 
@@ -266,7 +264,6 @@ Jim's Notes
 
 * docs
   * embed xqdoc in xquerydoc own code and generate for /docs
-  * create markdown version of README
 
 * build based on xproc
   * upload EBNF (loop through all EBNF) to http://www.bottlecaps.de/rex/ 
@@ -283,8 +280,6 @@ Jim's Notes
     * text
     * markdown
     * docbook
-
-* integrate existing xqdoc disply routines
 
 * make work across several xquery processors
 
