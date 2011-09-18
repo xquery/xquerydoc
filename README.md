@@ -3,10 +3,15 @@
 Parses xqDoc comments from your xquery and generates a set of API
 level documentation using pure XQuery.
 
+The following versions of XQuery are supported.
 
-  * XQuery v1.0 (Saxon, XQilla)
-  * XQuery v3.0 (Saxon)
-  * XQuery 1.0-ml (MarkLogic)
+  * XQuery v1.0 
+  * XQuery 1.0-ml
+  * XQuery v3.0 
+
+And should generate source code documentation variants from most
+XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
+
 
 
 ##Install
@@ -127,13 +132,10 @@ Calabash:
 For convenience we have included all the dependencies xquerydoc
 requires.
 
-  * XML Calabash - to install run > java -jar calabash-0.9.34.jar
-  * Saxon (ships with XML Calabash)
-  * xqDoc 
+  * XML Calabash (http://xmlcalabash.com- to install run > java -jar calabash-0.9.34.jar
+  * Saxon XQuery and XSLT Processor by Michael Kay (http://www.saxonica.com)  ships with XML Calabash
 
-Please review the licenses of included software.
-
-
+Please review the licenses of all included software.
 
 ##Credit, Acknowledgements
 
