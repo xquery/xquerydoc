@@ -19,8 +19,8 @@
   <!-- generate xml output which is transformed by report.xpl //-->
   <p:output port="result"/>
 
-  <!-- path of test desired to be run, for example /tests/unit/simple.xqy //-->
-  <p:option name="test" required="true"/>  
+  <!-- path of example xquery containing xqdoc code comments //-->
+  <p:option name="expected" required="true"/>  
 
   <!-- path of example xquery containing xqdoc code comments //-->
   <p:option name="example" required="true"/>  
@@ -30,8 +30,9 @@
 
   <!-- this step will run xquery test via XDBC //-->
   <p:xquery name="run"> 
-    <p:with-param name="test" select="$test"/>
     <p:with-param name="example" select="$example"/>
+    <p:with-param name="expected" select="$expected"/>
+
     <p:with-param name="distpath" select="$distpath"/>
     <p:input port="query">
       <p:inline>
@@ -42,10 +43,12 @@
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "../xquery/xquerydoc.xq";
 
           declare variable $distpath as xs:string external;
+          declare variable $expected as xs:string external;
+
           declare variable $example as xs:string external;
           declare variable $t as xs:string external;
 
-          let $expectedpath  := fn:concat('file://',$distpath,'/src/tests/expected/default.xml')
+          let $expectedpath  := fn:concat('file://',$distpath,$expected)
           let $expect        := fn:doc($expectedpath)
           let $xquerypath    := fn:concat('file://',$distpath,$example,';unparsed=yes')
           let $xquery        := fn:collection($xquerypath)

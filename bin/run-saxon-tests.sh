@@ -20,9 +20,9 @@
 
 cd src/tests
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/default.xml saxon-test.xpl test=/tests/unit/saxon/simple.xqy example=/src/tests/examples/?select=default.xqy expected=/src/tests/expected/default.xml
+/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/default.xml saxon-test.xpl example=/src/tests/examples/?select=default.xqy expected=/src/tests/expected/saxon/default.xml
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/get-code.xml saxon-test.xpl test=/tests/unit/saxon/simple.xqy example=/src/tests/examples/?select=get-code.xqy expected=/src/tests/expected/get-code.xml
+/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/get-code.xml saxon-test.xpl example=/src/tests/examples/?select=get-code.xqy expected=/src/tests/expected/saxon/get-code.xml
 
 
 /usr/local/bin/calabash -isource=config.xml -oresult=result/saxon-report.html report.xpl processor=Saxon

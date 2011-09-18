@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This script generates one page of html documentation of an xquery module
+#
+# usage:
+#
+# > xquerydoc /som/xquery/file.xq /some/output/html.html
+#
+#
+
+/usr/local/bin/calabash -isource=src/tests/config.xml -oresult=$2 xquerydoc.xpl xquery=$1
