@@ -34,7 +34,7 @@ There are several ways to use xquerydoc.
 
 ###Invoking xquerydoc from the commandline
 
-The  bin/xquerydoc script can be invoked from the commandline and
+The *bin/xquerydoc* script can be invoked from the commandline and
 generate documentation from xquery containing xqdoc comments. This
 uses XML Calabash XProc pipeline (which comes with SAXON XQuery
 processor) to invoke XQuery v1.0 xquerydoc and generate documentation
