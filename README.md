@@ -1,7 +1,7 @@
 #xquerydoc
 
 Parses xqDoc comments from your xquery and generates a set of API
-level documentation.
+level documentation using pure XQuery.
 
 
   * XQuery v1.0 (Saxon, XQilla)
@@ -30,46 +30,40 @@ into to.
    > xquerydoc {xquerydoc} {output html}
 ```
 
+The following example will process a directory containing xquery and
+output documentation to another directory.
 
 ```
-   > xquerydoc /some/specific/file.xqy /output/to/some/html/file.html
+   > xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
 ```
 
 ###from xquery
 
+As xquerydoc is pure xquery you can also invoke xquerydoc directly
+from your own xquery applications and employing the
+xqdoc:xqdoc() function to extract xqDoc comments.
 
+Whilst xquerydoc itself is written in XQuery v1.0, as a convenience we have provided XQuery processor specific 
+implementations to apply stying.
 
-
-
-Or you can choose to import xquerydoc into your xquery and use the
-xqdoc:xqdoc() entry function.
-
-
-   XQuery v1.0 Example (XQilla)
-   ---------------------------
-
-   TBD
-
-
-   XQuery v1.0 Example (Saxon)
-   ---------------------------
+####XQuery v1.0 Example (Saxon)
+```
 
    xquery version "1.0" encoding "UTF-8";
 
    import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
 
    xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
+```
 
-
-   MarkLogic Example
-   -----------------
-
+####MarkLogic Example
+```
    xquery version "1.0-ml" encoding "UTF-8";
 
    import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
 
    xqdoc:xqdoc(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) 
-
+```
 
 
 ##Running Tests
