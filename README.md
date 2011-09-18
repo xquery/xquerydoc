@@ -16,9 +16,10 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ##Install
 
-To use from the commandline you must have JVM and XML Calabash XProc processor.
+To use from the commandline you must have JVM and XML Calabash XProc
+processor installed.
 
-To install XML Calabash use theincluded installer at deps/calabash-0.9.34.jar.
+To install XML Calabash use the included installer at deps/calabash-0.9.34.jar.
 
 ```bash
 java -jar calabash-0.9.34.jar.
@@ -27,6 +28,9 @@ java -jar calabash-0.9.34.jar.
 Alternately you may download latest XML Calabash from
 http://xmlcalabash.org
 
+xquerydoc can be invoked directly from any XQuery v1.0 compliant
+processor but you will have to take care of applying styling to xqDoc
+markup.
 
 ##Usage
 
