@@ -8,7 +8,7 @@
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
-  <p:documentation>runs a single xquerydoc test in SAXON environment</p:documentation>
+  <p:documentation>runs a single xquerydoc test using SAXON XQuery processor</p:documentation>
 
   <!-- import Calabash library  //-->
   <p:import href="../lib/library-1.0.xpl"/>
@@ -52,7 +52,7 @@
           let $expect        := fn:doc($expectedpath)
           let $xquerypath    := fn:concat('file://',$distpath,$example,';unparsed=yes')
           let $xquery        := fn:collection($xquerypath)
-          let $actual        := xqdoc:parse($xquery)
+          let $actual        := xqdoc:parse($xquery,'test')
 
           return
           &lt;tests expected="{$expectedpath}" example="{$example}"&gt;
@@ -70,14 +70,11 @@
     </p:input>    
   </p:xquery>
 
-  <!-- emacs compile hint //-->
+  <!-- run individual tests with  m-x compile //-->
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=config.xml
-    -oresult=result/Saxon/default.xml saxon-test.xpl
-    test=/tests/unit/simple.xqy
-    example=/src/tests/examples/?select=default.xqy expected=/src/tests/expected/saxon/default.xml"
+    -- compile-command: "/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/default.xml saxon-test.xpl example=/src/tests/examples/?select=default.xqy expected=/src/tests/expected/saxon/default.xml"
     -- End:
     :)
   </p:documentation>

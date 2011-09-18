@@ -25,7 +25,7 @@ let $xquerydoc := xdmp:document-get(fn:concat($distpath,$example),
   <format>text</format>
 </options>
 )
-let $actual    := xqdoc:parse($xquerydoc) 
+let $actual    := xqdoc:parse($xquerydoc,'test') 
 
 
   let $params := map:map()

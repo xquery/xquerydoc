@@ -8,4 +8,4 @@
 #
 #
 
-/usr/local/bin/calabash -isource=src/tests/config.xml -oresult=$2 ml-xquerydoc.xpl xquery=$1
+/usr/local/bin/calabash -isource=etc/config.xml -oresult=$2 ml-xquerydoc.xpl xquery=$1 

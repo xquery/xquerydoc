@@ -8,7 +8,8 @@
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
-  <p:documentation>runs a single xquerydoc test in MarkLogic environment</p:documentation>
+  <p:documentation>runs a single xquerydoc test using  MarkLogic
+  XQuery Processor</p:documentation>
 
   <!-- import Calabash library so we can use ml:adhoc-query step //-->
   <p:import href="../lib/library-1.0.xpl"/>

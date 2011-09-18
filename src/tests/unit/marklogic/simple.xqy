@@ -19,7 +19,7 @@ declare variable $t as xs:string external;
 
 
 let $expect := xdmp:document-get(fn:concat($distpath,$expected))
-let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example)))) 
+let $actual  := xqdoc:parse(xdmp:quote(xdmp:document-get(fn:concat($distpath,$example))),'test') 
   return
     <tests name="simple" t="{$t}" example="{$example}" expected="{$expected}">
     <test name="ml1" desc="default.xqy test">
