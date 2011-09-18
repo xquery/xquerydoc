@@ -180,21 +180,22 @@ Please review the licenses of all included software.
 
 ##Credit, Acknowledgements
 
-Copyright 2011 John Snelson and James Fuller
-
-original xqDoc - http://xqdoc.org/
+Created by John Snelson, James Fuller 
 
 XQuery parsers were generated from EBNF using Gunther Rademacher
 excellent http://www.bottlecaps.de/rex/
 
-XML Calabash is released under {TBD}
+Norman Walsh's XML Calabash is available under either the GPLv2 or Sun's CDDL license 
 
-Saxon XQuery and XSLT 2.0 Processor by Michael Kay is released under {TBD}
+Saxon XQuery and XSLT 2.0 Processor by Michael Kay is released under Mozilla Public License
 
-Prettify (used by api doc and testsuite) is released under {TBD}
+Prettify (used by api doc and testsuite) is released under Apache License, Version 2.0
 
-XQuery prettify was provided by Patrick Wied
-http://www.patrick-wied.at/static/xquery/prettify/ 
+XQuery prettify 'brush' was provided by Patrick Wied (as part of a MarkLogic
+bounty contest ;) ) and can be obtained here http://www.patrick-wied.at/static/xquery/prettify/ 
+
+Though there is no reuse of any code from the  original xqDoc project,
+we have opted to use a subset of the xqDoc XML format, the codebase is released under Apache License, Version 2.0
 
 
 ## License
