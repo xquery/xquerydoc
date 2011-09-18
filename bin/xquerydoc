@@ -8,4 +8,9 @@
 #
 #
 
-/usr/local/bin/calabash -isource=src/tests/config.xml -oresult=$2 xquerydoc.xpl xquery=$1
+XQUERYDOC_HOME="$( cd -P "$( dirname "$0" )" && pwd )"
+
+XQUERYDOC_HOME=/Users/jfuller/Source/Webcomposite/xquerydoc
+CURRENTDIR=`pwd`
+
+/usr/local/bin/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$2 $XQUERYDOC_HOME/xquerydoc.xpl xquery=$CURRENTDIR/$1

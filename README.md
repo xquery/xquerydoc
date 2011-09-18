@@ -22,7 +22,7 @@ processor installed.
 To install XML Calabash use the included installer at deps/calabash-0.9.34.jar.
 
 ```bash
-java -jar calabash-0.9.34.jar.
+java -jar calabash-0.9.34.jar
 ```
 
 Alternately you may download latest XML Calabash from
@@ -39,14 +39,14 @@ There are several ways to use xquerydoc.
 ###Invoking xquerydoc from the commandline
 
 The *bin/xquerydoc* script can be invoked from the commandline and
-generate documentation from xquery containing xqdoc comments. This
-uses XML Calabash XProc pipeline (which comes with SAXON XQuery
+generate documentation from xquery containing xqdoc comments. 
+
+This script uses XML Calabash XProc pipeline (which comes with SAXON XQuery
 processor) to invoke XQuery v1.0 xquerydoc and generate documentation
 by applying XSLT transformation.
 
-To use you simply point xquerydoc to a directory or single xquery file
-as well as provide a directory for the documentation to be generated
-into to.
+To use provide xquerydoc with a directory containing xquery or single xquery file
+and the directory you wish to place generated documentation.
 
 ```bash
 xquerydoc {xquerydoc} {output html}

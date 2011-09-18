@@ -8,13 +8,15 @@ xmlns:fn="http://www.w3.org/2005/02/xpath-functions"
 exclude-result-prefixes="xs doc fn"
 version="2.0">
 
-<xsl:output method="xhtml" indent="no"/>
+<xsl:output method="xhtml" indent="no" encoding="UTF-8"/>
+<xsl:strip-space elements="*"/>
 
 <xsl:param name="source" as="xs:string"/>
   <!-- generate module html //-->
   <xsl:template match="doc:xqdoc">
     <html version="-//W3C//DTD XHTML 1.1//EN">
       <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>xqDoc - </title>
         <style type="text/css">
           body {
@@ -58,7 +60,7 @@ version="2.0">
           h4{
 	  font-size: 100%;
 	  background-color: #ddd;
-	  width: 50%;
+	  width: 90%;
 	  }
 
           .namespace {
@@ -92,9 +94,10 @@ version="2.0">
 
           <xsl:apply-templates/>
 
+          <div>
           <h3>Original Source Code</h3>
           <pre class="prettyprint lang-xq"><xsl:value-of select="$source"/></pre>
-
+          </div>
           <br/>
           <div class="footer"><p
                                 style="text-align:right"><i><xsl:value-of
@@ -117,10 +120,12 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:variables">
+    <div>
     <h3>Variables</h3>
     <ul>
     <xsl:apply-templates/>
     </ul>
+    </div>
   </xsl:template>
 
   <xsl:template match="doc:variable">
@@ -132,12 +137,14 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:functions">
+    <div>
     <h3>Functions</h3>
     <xsl:apply-templates/>
+    </div>
   </xsl:template>
 
   <xsl:template match="doc:function">
-    <h4>Function&#160;<pre class="prettyprint lang-xq"><u><xsl:value-of select="doc:name"/></u><xsl:value-of select="doc:signature"/></pre></h4>
+    <h4><pre class="prettyprint lang-xq"><u><xsl:value-of select="doc:name"/></u><xsl:value-of select="doc:signature"/></pre></h4>
     <xsl:apply-templates select="*[not(name(.) eq 'doc:signature')][not(name(.) eq 'doc:name')]"/> 
  </xsl:template>
 
@@ -158,7 +165,7 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:comment">
-    <h5>Comment</h5>
+    <h5>Description</h5>
     <xsl:apply-templates mode="custom"/>
   </xsl:template>
 
@@ -205,5 +212,8 @@ version="2.0">
 
   <xsl:template match="doc:control"/>
 
+  <xsl:template match="text()">
+    <xsl:value-of select="normalize-space(.)"/>
+  </xsl:template>
 
 </xsl:stylesheet>

@@ -108,7 +108,7 @@ declare function parse($module as xs:string, $mode as xs:string)
     element doc:variables {
       for $v in $module/Prolog/VarDecl
       return element doc:variable {
-        element doc:uri { _localname($v/QName/FunctionName/QName) },
+        element doc:uri { if($v/QName/FunctionName/QName) then _localname($v/QName/FunctionName/QName) else () },
         _type($v/TypeDeclaration/SequenceType),
         _comment($v)
       }
@@ -117,8 +117,7 @@ declare function parse($module as xs:string, $mode as xs:string)
     element doc:functions {
       for $f in $module/Prolog/FunctionDecl
       return element doc:function {
-        _comment($f),
-        element doc:name { _localname($f/FunctionName/QName) },
+        element doc:name { if ($f/FunctionName/QName) then _localname($f/FunctionName/QName) else () },
         element doc:signature {
           fn:string-join(("(", $f/ParamList/fn:string(), ")",
             if($f/SequenceType) then (" as ", $f/SequenceType/fn:string()) else ()
@@ -127,10 +126,11 @@ declare function parse($module as xs:string, $mode as xs:string)
         if($f/ParamList) then element doc:parameters {
           for $p in $f/ParamList/Param
           return element doc:parameter {
-            element doc:name { _localname($p/QName/FunctionName/QName) },
+            element doc:name { if($p/QName/FunctionName/QName) then _localname($p/QName/FunctionName/QName) else () },
             _type($p/TypeDeclaration/SequenceType)
           }
         } else (),
+        _comment($f),
         if($f/SequenceType) then element doc:return {
           _type($f/SequenceType)
         } else ()
