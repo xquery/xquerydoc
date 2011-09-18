@@ -56,6 +56,8 @@ and the directory you wish to place generated documentation.
 ```bash
 xquerydoc {xquerydoc} {output html} {format}
 ```
+Currently only the HTML format is supported but hoping soon we will be
+able to generate other formats (like markdown, text, docbook, etc...).
 
 The following example will process a directory containing xquery and
 output documentation to another directory.
