@@ -20,14 +20,16 @@
 
 cd src/tests
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/MarkLogic/default.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy expected=/src/tests/expected/marklogic/default.xml
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/MarkLogic/get-code.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/get-code.xqy expected=/src/tests/expected/marklogic/get-code.xml
+calabash -isource=config.xml -oresult=result/MarkLogic/default.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/default.xqy expected=/src/tests/expected/marklogic/default.xml
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/MarkLogic/output-html.xml marklogic-test.xpl test=/tests/unit/marklogic/output-html.xqy example=/src/tests/examples/default.xqy  expected=/src/tests/expected/marklogic/output-html.xml
+calabash -isource=config.xml -oresult=result/MarkLogic/get-code.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/get-code.xqy expected=/src/tests/expected/marklogic/get-code.xml
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/MarkLogic/json.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/json.xqy  expected=/src/tests/expected/marklogic/json.xml
+calabash -isource=config.xml -oresult=result/MarkLogic/output-html.xml marklogic-test.xpl test=/tests/unit/marklogic/output-html.xqy example=/src/tests/examples/default.xqy  expected=/src/tests/expected/marklogic/output-html.xml
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/MarkLogic/json-output-html.xml marklogic-test.xpl test=/tests/unit/marklogic/output-html.xqy example=/src/tests/examples/json.xqy  expected=/src/tests/expected/marklogic/json-html-output.xml
 
-/usr/local/bin/calabash -isource=config.xml -oresult=result/marklogic-report.html report.xpl processor=MarkLogic
+calabash -isource=config.xml -oresult=result/MarkLogic/json.xml marklogic-test.xpl test=/tests/unit/marklogic/simple.xqy example=/src/tests/examples/json.xqy  expected=/src/tests/expected/marklogic/json.xml
+
+calabash -isource=config.xml -oresult=result/MarkLogic/json-output-html.xml marklogic-test.xpl test=/tests/unit/marklogic/output-html.xqy example=/src/tests/examples/json.xqy  expected=/src/tests/expected/marklogic/json-html-output.xml
+
+calabash -isource=config.xml -oresult=result/marklogic-report.html report.xpl processor=MarkLogic
