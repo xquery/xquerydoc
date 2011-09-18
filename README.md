@@ -1,5 +1,8 @@
 #xquerydoc
 
+Parses xqDoc comments from your xquery and generates a set of API
+level documentation.
+
 
   * XQuery v1.0 (Saxon, XQilla)
   * XQuery v3.0 (Saxon)
@@ -12,12 +15,30 @@
 
 ##Usage
 
+There are several ways to use xquerydoc.
 
-As xquerydoc comes with bin/xquerydoc script
+###commandline
 
+The  bin/xquerydoc script can be invoked from the commandline and
+generate documentation from xquery containing xqdoc comments.
+
+To use you simply point xquerydoc to a directory or single xquery file
+as well as provide a directory for the documentation to be generated
+into to.
+
+```
    > xquerydoc {xquerydoc} {output html}
+```
 
+
+```
    > xquerydoc /some/specific/file.xqy /output/to/some/html/file.html
+```
+
+###from xquery
+
+
+
 
 
 Or you can choose to import xquerydoc into your xquery and use the
