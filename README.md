@@ -149,6 +149,9 @@ XQuery library provides this in a utility function contained in *src/xquery/ml-u
 
 Yup we eat our own dog chow, view API docs here.
 
+https://github.com/xquery/xquerydoc/tree/master/docs/api
+
+
 ## Distro
 
 * xquerydoc
@@ -259,36 +262,9 @@ submit issue to https://github.com/xquery/xquerydoc/issues
 https://github.com/xquery/xquerydoc
 
 
+## Status
 
-
-
-
-
-
-
---------------------------------
-
-Jim's Notes
------------
-
-* docs
-  * embed xqdoc in xquerydoc own code and generate for /docs
-
-* build based on xproc
-  * upload EBNF (loop through all EBNF) to http://www.bottlecaps.de/rex/ 
-  * download result and place in src/xquery
-  
-* test
-  * test xquery1, xquery3, xquery-ml
-  * create tests 
-
-* xquery
-  * create xquery entry point for parsing and generating output
-  * create documentation targets for the following formats
-    * html
-    * text
-    * markdown
-    * docbook
-
-* make work across several xquery processors
-
+* create markdown output format
+* create docbook output format
+* create text output format
+* enhance output
