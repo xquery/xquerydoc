@@ -34,14 +34,14 @@ To use you simply point xquerydoc to a directory or single xquery file
 as well as provide a directory for the documentation to be generated
 into to.
 
-```
+```bash
    > xquerydoc {xquerydoc} {output html}
 ```
 
 The following example will process a directory containing xquery and
 output documentation to another directory.
 
-```
+```bash
    > xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
 ```
 
@@ -69,8 +69,7 @@ Whilst xquerydoc itself is written in XQuery v1.0, as a convenience we have prov
 implementations to apply stying.
 
 ####XQuery v1.0 Example (Saxon)
-```
-
+```xquery
    xquery version "1.0" encoding "UTF-8";
 
    import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
@@ -82,7 +81,7 @@ MarkLogic version (though the XQuery v1.0 should also run, within
 MarkLogic just as well). 
 
 ####MarkLogic Example
-```
+```xquery
    xquery version "1.0-ml" encoding "UTF-8";
 
    import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
@@ -99,13 +98,13 @@ Yup we eat our own dog chow, view API docs here.
 
 To run all tests
 
-```
+```bash
    > bin/run-all-tests.sh
 ```
 
 All this script does is run the following xquery processor specific scripts.
 
-```
+```bash
 > bin/run-saxon-tests.sh 
 > bin/run-marklogic-tests.sh
 ```
