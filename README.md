@@ -54,7 +54,7 @@ xquerydoc and generate documentation.
 ```
 
 To use this variant you will need to setup MarkLogic XDBC server and
-provide details in etc/config.xml file.
+provide details in *etc/config.xml* file.
 
 Note that you do not need to use ml-xquerydoc to genreate
 documentation from a set of 1.0-ml version scripts, xquerydoc will do
@@ -63,7 +63,7 @@ that for you.
 ###Invoking xquerydoc from xquery
 
 As xquerydoc is itself written in pure XQuery v1.0  you can invoke xquerydoc directly
-from your own xquery applications and employing the xqdoc:xqdoc() function to extract xqDoc comments.
+from your own xquery applications and employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
 
 Whilst xquerydoc itself is written in XQuery v1.0, as a convenience we have provided XQuery processor specific 
 implementations to apply stying.
@@ -121,22 +121,13 @@ All this script does is run the following xquery processor specific scripts.
 > bin/run-marklogic-tests.sh
 ```
 
-Test scripts work by invoking an XProc pipeline in src/tests (either saxon-test.xpl or marklogic-test.xpl).
+Test scripts work by invoking an XProc pipeline in *src/tests* (either saxon-test.xpl or marklogic-test.xpl).
 
 To run MarkLogic tests you will need to setup XDBC server and edit
-src/tests/config.xml with relevant details.
+*src/tests/config.xml* with relevant details.
 
 If you want to invoke these scripts manually please review the test
 run scripts to understand what needs to be passed into Calabash.
-
-
-##Resources
-
-xquerydoc github: http://www.github.com/xquery/xquerydoc
-
-xqdoc: 
-
-Calabash:
 
 ##Dependencies
 
@@ -183,8 +174,6 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-
-
 
 
 ##Contact
