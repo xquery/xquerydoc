@@ -244,7 +244,7 @@ we have opted to use a subset of the xqDoc XML format, the codebase is released 
 
 xquerydoc is released under Apache License v2.0
 
-Copyright 2011 John Snelson, James Fuller, Gary Videl
+Copyright 2011 John Snelson, James Fuller
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
