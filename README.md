@@ -1,4 +1,4 @@
-#xquerydoc v.1 18/9/2011
+#xquerydoc 
 
 Parses xqDoc comments from your xquery and generates a set of API
 level documentation implemented in pure XQuery v1.0.
@@ -305,3 +305,6 @@ https://github.com/xquery/xquerydoc
 * create docbook output format
 * create text output format
 * enhance output
+
+
+xquerydoc v.1 18/9/2011
