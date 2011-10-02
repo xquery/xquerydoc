@@ -8,6 +8,9 @@
 #
 #
 
+
+CURRENTDIR=`pwd`
+
 # get xquerydoc home directory
 CMDDIR="$( cd -P "$( dirname "$0" )" && pwd )"
 TARGET_FILE=$CMDDIR/xquerydoc
@@ -24,17 +27,17 @@ done
 # for the directory we're in and appending the target file.
 PHYS_DIR=`pwd -P`
 RESULT=$PHYS_DIR/
-XQUERYHOME_DOC=${RESULT/\/bin/}
+XQUERYDOC_HOME=${RESULT/\/bin/}
 
-CURRENTDIR=`pwd`
-XQUERY=$1
-OUTPUT=`cd $2`
+cd $CURRENTDIR
+XQUERY=`cd $1 && pwd`
+
+cd $CURRENTDIR
+OUTPUT=`cd $2 && pwd`
+
 FORMAT=$3
 
-echo $OUTPUT
-
-
-exit
+cd $CURRENTDIR
 
 # create output directory
 mkdir $OUTPUT
