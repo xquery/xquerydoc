@@ -8,7 +8,7 @@
   <p:option name="path" required="true"/>
   <p:option name="include-filter"/>
   <p:option name="exclude-filter"/>
-  <p:option name="depth" select="-1"/>
+  <p:option name="depth" select="4"/>
   
   <p:choose>
     <p:when test="p:value-available('include-filter')

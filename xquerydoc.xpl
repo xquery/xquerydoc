@@ -43,6 +43,7 @@
   <cx:recursive-directory-list name="dirlist"
                                include-filter="^(.)*.xq(.)*$"
                                exclude-filter="(XQueryML10.xq|XQueryV10.xq|XQueryV30.xq)">
+    <p:with-option name="depth" select="3"/>
     <p:with-option name="path" select="$dirpath"/>
   </cx:recursive-directory-list>
 

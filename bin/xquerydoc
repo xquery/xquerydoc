@@ -40,12 +40,13 @@ FORMAT=$3
 cd $CURRENTDIR
 
 # create output directory
-mkdir -p $OUTPUT
+mkdir $OUTPUT
 
-# copy lib resources 
+# copy lib resources
 cp -R -f $XQUERYDOC_HOME/src/lib $OUTPUT/lib
 
 # run xproc pipeline
 calabash -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT exclude= include=
+
 
 exit
