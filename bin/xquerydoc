@@ -4,22 +4,43 @@
 #
 # usage:
 #
-# > xquerydoc /som/xquery/file.xq /some/output/html.html
+# > xquerydoc /som/xquery/file.xq /some/output/html.html -f=format
 #
 #
 
-XQUERYDOC_HOME=/Users/jfuller/Source/Webcomposite/xquerydoc
+# get xquerydoc home directory
+CMDDIR="$( cd -P "$( dirname "$0" )" && pwd )"
+TARGET_FILE=$CMDDIR/xquerydoc
+cd `dirname $TARGET_FILE`
+TARGET_FILE=`basename $TARGET_FILE`
+# Iterate down a (possible) chain of symlinks
+while [ -L "$TARGET_FILE" ]
+do
+    TARGET_FILE=`readlink $TARGET_FILE`
+    cd `dirname $TARGET_FILE`
+    TARGET_FILE=`basename $TARGET_FILE`
+done
+# Compute the canonicalized name by finding the physical path 
+# for the directory we're in and appending the target file.
+PHYS_DIR=`pwd -P`
+RESULT=$PHYS_DIR/
+XQUERYHOME_DOC=${RESULT/\/bin/}
 
 CURRENTDIR=`pwd`
 XQUERY=$1
-OUTPUT=$2
+OUTPUT=`cd $2`
 FORMAT=$3
+
+echo $OUTPUT
+
+
+exit
 
 # create output directory
 mkdir $OUTPUT
 
 # run xproc pipeline
-/usr/local/bin/calabash -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT exclude= include=
+calabash -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT exclude= include=
 
 # copy lib resources 
 cp -R -f $XQUERYDOC_HOME/src/lib $OUTPUT/lib
