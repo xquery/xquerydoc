@@ -10,26 +10,10 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ##Install
 
-To use from the commandline you must;
-
-Edit XQUERYDOC_HOME in *bin/xquerydoc* to reflect where you installed xquerydoc
-
-You must also  have JVM and XML Calabash XProc processor installed.
-
-To install XML Calabash use the included installer at deps/calabash-0.9.34.jar.
+To use from the commandline you should just be able to run Makefile e.g.
 
 ```bash
-java -jar calabash-0.9.34.jar
-```
-
-Alternately you may download latest XML Calabash from
-http://xmlcalabash.org
-
-If you intend to use xquerydoc from the commandline I would recommend
-generating a symlink to the xquerydoc bash script to */usr/local/bin/xquerydoc*.
-
-```bash
-ln -s /wherever/you/put/xquerydoc/bin/xquerydoc /usr/local/bin/xquerydoc
+make install
 ```
 
 xquerydoc can also be invoked directly from your own XQuery scripts
