@@ -45,8 +45,9 @@ To use provide xquerydoc with a directory containing xquery or single xquery fil
 and the directory you wish to place generated documentation.
 
 ```bash
-xquerydoc {xquerydoc} {output html} {format}
+xquerydoc {xquery dir} {output dir} {format}
 ```
+
 Currently only the HTML format is supported but hoping soon we will be
 able to generate other formats (like markdown, text, docbook, etc...).
 
