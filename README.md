@@ -7,9 +7,6 @@ The xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which shi
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
-##Install for Commandline usage (Windows)
-
-Currently working on this.
 
 ##Install for Commandline usage (Mac/Unix/Linux)
 
@@ -21,6 +18,10 @@ make install
 
 This will try to install calabash as well. You will need to make sure
 calabash is on your system path.
+
+##Install for Commandline usage (Windows)
+
+TBA
 
 ##Install as XQuery library
 
