@@ -3,7 +3,7 @@
 Parses xqDoc comments from your xquery and generates a set of API
 level documentation implemented in pure XQuery v1.0.
 
-xquerydoc commandline uses XMLCalabash (which ships with Saxon) though 
+xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which ships with [Saxon](http://www.saxonica.com)) though 
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
