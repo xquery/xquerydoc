@@ -1,16 +1,15 @@
 #xquerydoc 
 
-Parses xqDoc comments from your xquery and generates a set of API
-level documentation implemented in pure XQuery v1.0.
+Parses [xqDoc](http://xqdoc.org/source.html) style comments from your xquery and generates a set of API
+level html documentation all implemented in pure XQuery v1.0.
 
-xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which ships with [Saxon](http://www.saxonica.com)) though 
+The xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which ships with [Saxon](http://www.saxonica.com)) though 
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
+##Install for Commandline usage
 
-##Install
-
-To use from the commandline you should just be able to run Makefile e.g.
+To use from the commandline you should run Makefile e.g.
 
 ```bash
 make install
@@ -18,6 +17,8 @@ make install
 
 This will try to install calabash as well. You will need to make sure
 calabash is on your system path.
+
+##Install as XQuery library
 
 xquerydoc can also be invoked directly from your own XQuery scripts
 but for now you will have to take care of applying XSLT stylesheets to
@@ -33,16 +34,12 @@ The entrypoint is contained in *src/xquery/xquerydoc.xq* module.
 
 ##Usage
 
-There are several ways to use xquerydoc.
+There are two ways to use xquerydoc.
 
 ###Invoking xquerydoc from the commandline
 
 The *bin/xquerydoc* script can be invoked from the commandline and
 generate documentation from xquery containing xqdoc comments. 
-
-This script uses XML Calabash XProc pipeline (which comes with SAXON XQuery
-processor) to invoke XQuery v1.0 xquerydoc and generate documentation
-by applying XSLT transformation.
 
 To use provide xquerydoc with a directory containing xquery or single xquery file
 and the directory you wish to place generated documentation.
@@ -60,27 +57,6 @@ output documentation to another directory.
 ```bash
 xquerydoc som/xquery/ output/api html
 ```
-You should also be able to provide absolute paths.
-
-```bash
-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/ html
-```
-
-In addition we provide a MarkLogic variant of this script which will
-connect to MarkLogic server (via XDBC) and invoke the MarkLogic v1.0
-xquerydoc and generate documentation. These can be found in the
-*extras/marklogic* directory.
-
-```
-ml-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
-```
-
-To use this variant you will need to setup MarkLogic XDBC server and
-provide details in *extras/marklogic/config.xml* file.
-
-Note that you do not need to use ml-xquerydoc to genreate
-documentation from a set of 1.0-ml version scripts, xquerydoc will do
-that for you. 
 
 ###Invoking xquerydoc from xquery
 
@@ -105,6 +81,24 @@ As with the commandline version we provide for your convenience a
 MarkLogic version (though the XQuery v1.0 should also run within
 MarkLogic just as well). 
 
+###Invoking xquerydoc with MarkLogic
+
+In addition we provide a MarkLogic variant of this script which will
+connect to MarkLogic server (via XDBC) and invoke the MarkLogic v1.0
+xquerydoc and generate documentation. These can be found in the
+*extras/marklogic* directory.
+
+```
+ml-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
+```
+
+To use this variant you will need to setup MarkLogic XDBC server and
+provide details in *extras/marklogic/config.xml* file.
+
+Note that you do not need to use ml-xquerydoc to genreate
+documentation from a set of 1.0-ml version scripts, xquerydoc will do
+that for you. 
+
 ####MarkLogic Example
 ```xquery
 xquery version "1.0-ml" encoding "UTF-8";
@@ -114,7 +108,9 @@ import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/m
 xqdoc:xqdoc(xdmp:document-get('/path/to/xquery/file.xqy')) 
 ```
 
-These examples show how to extract xqDoc comments with the xqdoc:xqdoc() function outputing xml as follows.
+## xqDoc Markup
+
+The following markup is what the xqdoc:xqdoc() function outputs.
 
 ```xml
 <doc:xqdoc xmlns:doc="http://www.xqdoc.org/1.0">
