@@ -194,16 +194,6 @@ To run MarkLogic tests you will need to setup XDBC server and edit
 If you want to invoke these scripts manually please review the test
 run scripts to understand what needs to be passed into Calabash.
 
-##Dependencies
-
-For convenience we have included all the dependencies xquerydoc
-requires.
-
-  * XML Calabash (http://xmlcalabash.com- to install run > java -jar calabash-0.9.34.jar
-  * Saxon XQuery and XSLT Processor by Michael Kay (http://www.saxonica.com) ships with XML Calabash
-
-Please review the licenses of all included software.
-
 ##Credit, Acknowledgements
 
 Created by John Snelson, James Fuller 
