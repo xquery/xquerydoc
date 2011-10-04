@@ -211,14 +211,14 @@ Created by John Snelson, James Fuller
 XQuery parsers were generated from EBNF using Gunther Rademacher
 excellent http://www.bottlecaps.de/rex/
 
-Norman Walsh's XML Calabash is available under either the GPLv2 or Sun's CDDL license 
+Norman Walsh's XML Calabash is [available](http://xmlcalabash.org) under either the GPLv2 or Sun's CDDL license 
 
-Saxon XQuery and XSLT 2.0 Processor by Michael Kay is released under Mozilla Public License
+[Saxon](http://www.saxonica.com) XQuery and XSLT 2.0 Processor by Michael Kay is released under Mozilla Public License
 
-Prettify (used by api doc and testsuite) is released under Apache License, Version 2.0
+[Prettify](http://code.google.com/p/google-code-prettify/) (used by api doc and testsuite) is released under Apache License, Version 2.0
 
 XQuery prettify 'brush' was provided by Patrick Wied (as part of a MarkLogic
-bounty contest ;) ) and can be obtained here http://www.patrick-wied.at/static/xquery/prettify/ 
+bounty contest ;) ) and can be obtained [here](http://www.patrick-wied.at/static/xquery/prettify/) 
 
 Though there is no reuse of any code from the  original xqDoc project,
 we have opted to use a subset of the xqDoc XML format, the codebase is released under Apache License, Version 2.0
