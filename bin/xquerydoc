@@ -48,5 +48,4 @@ cp -R -f $XQUERYDOC_HOME/src/lib $OUTPUT/lib
 # run xproc pipeline
 calabash -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT exclude= include=
 
-
 exit

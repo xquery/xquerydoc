@@ -16,6 +16,8 @@ To use from the commandline you should just be able to run Makefile e.g.
 make install
 ```
 
+This will try to install calabash as well.
+
 xquerydoc can also be invoked directly from your own XQuery scripts
 but for now you will have to take care of applying XSLT stylesheets to
 the xqdoc markup. 
