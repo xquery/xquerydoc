@@ -285,5 +285,3 @@ https://github.com/xquery/xquerydoc
 * create text output format
 * enhance output
 
-
-xquerydoc v.1 18/9/2011
