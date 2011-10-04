@@ -1,4 +1,4 @@
-ROOT=$("pwd")
+ROOT=$(CURDIR)
 install:
 	echo "installing xquerydoc ................"
 	mkdir -p /usr/local/bin

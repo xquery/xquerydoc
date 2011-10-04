@@ -11,6 +11,9 @@
 
 CURRENTDIR=`pwd`
 
+# create output directory
+mkdir -p $2
+
 # get xquerydoc home directory
 CMDDIR="$( cd -P "$( dirname "$0" )" && pwd )"
 TARGET_FILE=$CMDDIR/xquerydoc
@@ -38,9 +41,6 @@ OUTPUT=`cd $2 && pwd`
 FORMAT=$3
 
 cd $CURRENTDIR
-
-# create output directory
-mkdir $OUTPUT
 
 # copy lib resources
 cp -R -f $XQUERYDOC_HOME/src/lib $OUTPUT/lib
