@@ -255,7 +255,7 @@ The build process is not included in the distro currently.
 We are very interested in parsing as correctly as possible so please
 submit issue to https://github.com/xquery/xquerydoc/issues
 
-*Doesn't work on windows!"
+*Doesn't work on windows!*
 
 The commandline scripts have been written with unix/linux/osx in mind
 but xquerydoc can be invoked by any XQuery v1.0 compliant processor.
