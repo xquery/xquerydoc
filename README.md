@@ -68,9 +68,6 @@ xquerydoc som/xquery/ output/api html
 As xquerydoc is itself written in pure XQuery v1.0  you can invoke  directly
 from your own xquery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
 
-Whilst xquerydoc itself is written in XQuery v1.0, as a convenience we have provided XQuery processor specific 
-implementations to apply stying.
-
 ####XQuery v1.0 Example (Saxon)
 ```xquery
 xquery version "1.0" encoding "UTF-8";
@@ -203,6 +200,10 @@ run scripts to understand what needs to be passed into Calabash.
 
 Created by John Snelson, James Fuller 
 
+Thanks to [Darin McBeath](http://xqdoc.org/history.html) for creating
+the original xqdoc, which we have opted to reuse the xqDoc xml format
+from. xqDoc is released under Apache License, Version 2.0
+
 XQuery parsers were generated from EBNF using Gunther Rademacher
 excellent http://www.bottlecaps.de/rex/
 
@@ -214,9 +215,6 @@ Norman Walsh's XML Calabash is [available](http://xmlcalabash.org) under either 
 
 XQuery prettify 'brush' was provided by Patrick Wied (as part of a MarkLogic
 bounty contest ;) ) and can be obtained [here](http://www.patrick-wied.at/static/xquery/prettify/) 
-
-Though there is no reuse of any code from the  original xqDoc project,
-we have opted to use a subset of the xqDoc XML format, the codebase is released under Apache License, Version 2.0
 
 
 ## License
