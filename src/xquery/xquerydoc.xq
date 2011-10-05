@@ -158,11 +158,11 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
         (: TBD invoked and ref-variable - jpcs :)
         (: TBD body - jpcs :)
       }
-    },
+    }
 
-   element doc:body {
+   (: element doc:body {
 
-   }
+   }:)
 
   }
 };
