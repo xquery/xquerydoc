@@ -1,11 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="2.0">
-
-  <xsl:import href="xml-to-string.xsl"/>
-
-  <xsl:output omit-xml-declaration="yes" method="text" encoding="utf-8" indent="yes" />
+  <xsl:output omit-xml-declaration="yes" method="html" encoding="utf-8" indent="yes" />
   <xsl:strip-space elements="*"/> 
-
 
   <xsl:param name="title"/>
   <xsl:variable name="total" select="count(//*:test)"/>
@@ -17,23 +13,11 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title><xsl:value-of select="$title"/></title>
         <style type="text/css">
-	html,
-	body {
-		margin:0;
-		padding:0;
-		height:100%;
-                font-family: Helvetica;
-	} 
-
+          body {
+          font-family: Helvetica;
+          padding: 0.5em  1em;
+          }
           pre {
-	overflow: auto;
-	width: 500px;
-        height:300px;
-          white-space: pre-wrap;       /* css-3 */
-          white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-          white-space: -pre-wrap;      /* Opera 4-6 */
-          white-space: -o-pre-wrap;    /* Opera 7 */
-          word-wrap: break-word;       /* Internet Explorer 5.5+ */
           font-family: Inconsolata, Consolas, monospace;
           }
           ol.results {
@@ -45,16 +29,10 @@
           font-size: 85%;
           }
           .footer {
-		position:absolute;
-		bottom:0;
-		width:100%;
-		height:60px;			/* Height of the footer */
-
-
           border-top: solid 4px;
           padding: 0.25em 0.5em;
           font-size: 85%;
-
+          color: #999;
           }
           li.result {
           list-style-position: inside;
@@ -118,6 +96,7 @@
           }
           td {
           height:100px;
+          width:50%;
           vertical-align:text-top;
           }
         </style>
@@ -168,18 +147,14 @@ pass rate:
         </thead>
         <tbody><tr>
           <td>
-            <pre class="prettyprint">
-              <xsl:call-template name="xml-to-string">
-                <xsl:with-param name="node-set" select="expected/node()"/>
-              </xsl:call-template>
-            </pre>
+            <pre style="border: 1px solid #888;padding: 2px"
+><textarea rows="5" cols="60"><xsl:copy-of
+                                               select="expected/node()"/></textarea></pre>
           </td>
           <td>
-            <pre class="prettyprint">
-              <xsl:call-template name="xml-to-string">
-                <xsl:with-param name="node-set" select="actual/node()"/>
-              </xsl:call-template>
-            </pre>
+            <pre style="border: 1px solid #888;padding: 2px"
+><textarea rows="5" cols="60"><xsl:copy-of
+                                               select="actual/node()"/></textarea></pre>
           </td>
         </tr>
         </tbody>
@@ -199,18 +174,14 @@ pass rate:
         <tbody>
           <tr>
           <td>
-            <pre class="prettyprint">
-              <xsl:call-template name="xml-to-string">
-                <xsl:with-param name="node-set" select="expected/node()"/>
-              </xsl:call-template>
-            </pre>
+            <pre style="border: 1px solid #888;padding: 2px"
+><textarea rows="5" cols="60"><xsl:copy-of
+                                               select="expected/node()"/></textarea></pre>
           </td>
           <td>
-            <pre class="prettyprint">
-              <xsl:call-template name="xml-to-string">
-                <xsl:with-param name="node-set" select="actual/node()"/>
-              </xsl:call-template>
-            </pre>
+            <pre style="border: 1px solid #888;padding: 2px"
+><textarea rows="5" cols="60"><xsl:copy-of
+                                               select="actual/node()"/></textarea></pre>
           </td>
         </tr>
         </tbody>

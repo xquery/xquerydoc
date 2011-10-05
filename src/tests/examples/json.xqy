@@ -1,28 +1,24 @@
 xquery version "1.0-ml";
-
-
-(:~
- : This is an example xquery file taken from several files to demonstrate xqdoc commenting
- : 
- : Sample usage:
- : <b>
- :   example bold tag
- : </b>  
-  : 
- : Proin facilisis ultrices velit id bibendum. Curabitur eu nisi velit, vel pharetra 
- : eros. Fusce eu metus sem. Etiam sed risus ultrices turpis blandit placerat. Suspendisse 
- : eu massa arcu, eget feugiat arcu. Donec eget rutrum nisi. Vivamus eget massa libero. 
- : Pellentesque placerat tortor elit. Vestibulum ante ipsum primis in faucibus orci luctus
- : et ultrices posuere cubilia Curae; Sed molestie odio lacinia eros iaculis laoreet. 
- :
- :
- : @author Jim Fuller
- : @version 1
- : 
- : 
-:)
-
 module namespace json = "http://marklogic.com/json";
+(:~
+ : Module Name: Sample Library Module 
+ : Module Version: 1.0 
+ : Date: October 6, 2011 
+ : Copyright: none
+ : Proprietary XQuery Extensions Used: None 
+ : XQuery Specification: November 2005 
+ : Module Overview: This is a sample library module 
+ : <ul>
+ : <li> Module introductory information</li> 
+ : <li> Global variables declared in this module</li> 
+ : <li> Modules imported by this module</li> 
+ : <li> Summary information for each function defined in the module</li> 
+ : <li> Detailed information for each function defined in the module</li> 
+ : </ul>
+ : @author Jim Fuller
+ : @version 1.0
+ :)
+
 declare namespace test="test";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
@@ -30,6 +26,14 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare variable $new-line-regex as xs:string := concat('[',codepoints-to-string((13, 10)),']+');
 
 (: Need to backslash escape any double quotes, backslashes, newlines and tabs :)
+
+
+(:~
+ : Escapes json string managing newlines as well
+ :
+ : @param $s the json to be escaped
+ : @return escaped json string
+ :)
 declare function json:escape($s as xs:string) as xs:string {
   let $s := replace($s, "(\\|"")", "\\$1")
   let $s := replace($s, $new-line-regex, "\\n")

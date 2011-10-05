@@ -24,5 +24,7 @@ cd src/tests
 
 /usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/get-code.xml saxon-test.xpl example=/src/tests/examples/?select=get-code.xqy expected=/src/tests/expected/saxon/get-code.xml
 
+/usr/local/bin/calabash -isource=config.xml -oresult=result/Saxon/sample.xml saxon-test.xpl example=/src/tests/examples/?select=sample.xqy expected=/src/tests/expected/saxon/sample.xml
+
 /usr/local/bin/calabash -isource=config.xml -oresult=result/saxon-report.html report.xpl processor=Saxon
 

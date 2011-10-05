@@ -169,7 +169,6 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:comment">
-    <h5>Description</h5>
     <xsl:apply-templates mode="custom"/>
   </xsl:template>
 
