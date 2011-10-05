@@ -15,8 +15,7 @@ xquery version "1.0";
 
 (:~ This module provides a sample main module authored according 
 : to the proposed XQuery Style Guidelines 
-: @author Curt Kohler 
-: @author Darin McBeath 
+: @author John Snelson
 : @since January 17, 2006 
 : @version 1.0 :)
 import module namespace math="http://xqdoc.org/sample-math-lib" at "sample-math-lib.xqy";
