@@ -1,0 +1,212 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc"/><meta http-equiv="Authors" content="Copyright 2011 - John Snelson, James Fuller"/><title>xqDoc - </title><style type="text/css">
+          body {
+          font-family: Helvetica;
+          padding: 0.5em  1em;
+          }
+          pre {
+          font-family: Inconsolata, Consolas, monospace;
+          }
+          ol.results {
+          padding-left: 0;
+          }
+          .footer {
+          text-align:right;
+          border-top: solid 4px;
+          padding: 0.25em 0.5em;
+          font-size: 85%;
+          color: #999;
+          }
+          li.result {
+          list-style-position: inside;
+          list-style: none;
+          height:140px;
+          }
+          h2 {
+          display: inline-block;
+          margin: 0;
+          }
+
+          h2 a,
+          .result h3 a {
+          text-decoration: inherit;
+          color: inherit;
+          }
+          h3{
+	  font-size: 140%;
+	  background-color: #aaa;
+	  border-bottom: 1px solid #000;
+	  width: 100%;
+	  }
+          h4{
+	  font-size: 100%;
+	  background-color: #ddd;
+	  width: 90%;
+	  }
+
+          .namespace {
+          color: #999;
+          }
+          .namespace:before {
+          content: "{";
+          }
+          .namespace:after {
+          content: "}";
+          }
+          table{
+          width:75%;
+          float:right;
+          }
+          td {
+          height:100px;
+          width:50%;
+          vertical-align:text-top;
+          }
+        </style><script src="lib/prettify.js" type="text/javascript"> </script><script src="lib/lang-xq.js" type="text/javascript"> </script><link rel="stylesheet" type="text/css" href="lib/prettify.css"/></head><body class="home"><div style="text-align:right;"><a href="index.html">XQuery API index</a></div><div id="main"><h1><span class="namespace">http://github.com/xquery/xquerydoc</span>  library module </h1><div><h3>Variables</h3><ul/></div><div><h3>Functions</h3><h4><pre class="prettyprint lang-xq"><u>Function:</u> _trimStringLiteral($literal as xs:string) as  xs:string</pre></h4><h5>Params</h5><ul><li>literal:  xs:string</li></ul><h5>Returns</h5><ul><li>:  xs:string</li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> _localname($qname as xs:string) as  xs:string</pre></h4><h5>Params</h5><ul><li>qname:  xs:string</li></ul><h5>Returns</h5><ul><li>:  xs:string</li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> _type($t as element(SequenceType)?)</pre></h4><h5>Params</h5><ul><li>t:  element(SequenceType)</li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> _commentContents($e)</pre></h4><h5>Params</h5><ul><li>e: </li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> _comment($e as element()+)</pre></h4><h5>Params</h5><ul><li>e:  element()</li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> parse($module as xs:string)</pre></h4><h5>Params</h5><ul><li>:  xs:string</li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> parse($module as xs:string, $mode as xs:string)</pre></h4><h5>Params</h5><ul><li>:  xs:string</li><li>mode:  xs:string</li></ul><h4><pre class="prettyprint lang-xq"><u>Function:</u> generate-docs($type as xs:string,$xqdoc as element(doc:xqdoc),$source as xs:string)</pre></h4><h5>Params</h5><ul><li>type:  xs:string</li><li>xqdoc:  element(doc:xqdoc)</li><li>source:  xs:string</li></ul></div><div><h3>Original Source Code</h3><pre class="prettyprint lang-xq">xquery version "1.0-ml" encoding "UTF-8";
+
+(:
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ :     http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+ :)
+
+module namespace xqd="http://github.com/xquery/xquerydoc";
+declare default function namespace "http://github.com/xquery/xquerydoc";
+declare namespace doc="http://www.xqdoc.org/1.0";
+
+import module namespace xqp="XQueryML10" at "parsers/XQueryML10.xq";
+import module namespace xqdc="XQDocComments" at "parsers/XQDocComments.xq";
+import module namespace util="http://github.com/xquery/xquerydoc/utils" at "ml-utils.xq";
+
+declare (: private :) function _trimStringLiteral($literal as xs:string) as xs:string
+{
+  fn:substring($literal, 2, fn:string-length($literal) - 2)
+};
+
+declare (: private :) function _localname($qname as xs:string) as xs:string
+{
+  let $localname := fn:substring-after($qname, ":")
+  return if($localname = "") then $qname else $localname
+};
+
+declare (: private :) function _type($t as element(SequenceType)?)
+{
+  if(fn:empty($t)) then () else
+  element doc:type {
+    if($t/OccurrenceIndicator) then
+      attribute occurrence { $t/OccurrenceIndicator/TOKEN/fn:string() } else (),
+    if($t/ItemType) then $t/ItemType/fn:string() else $t/fn:string()
+  }
+};
+
+declare (: private :) function _commentContents($e)
+{
+  typeswitch($e)
+  case element(Char) return $e/node()
+  case element(ElementContentChar) return $e/node()
+  case element(QuotAttrContentChar) return $e/node()
+  case element(AposAttrContentChar) return $e/node()
+  case element(DirElemConstructor) return element { $e/Tag[1] } {
+    for $c in $e/* return _commentContents($c)
+  }
+  case element(DirAttrConstructor) return attribute { $e/Tag } {
+    fn:string-join(for $c in $e/* return _commentContents($c)/fn:string(), "")
+  }
+  default return for $c in $e/* return _commentContents($c)
+};
+
+declare (: private :) function _comment($e as element()+)
+{
+  for $text in $e/node()[1]/self::text()
+  let $markup := xqdc:parse-Comments($text)
+  for $comment in ($markup/XQDocComment)[fn:last()]
+  return element doc:comment {
+    if($comment/Contents) then element doc:description {
+      _commentContents($comment/Contents)
+    } else (),
+    for $tag in $comment/TaggedContents
+    let $name := $tag/Tag/fn:string()
+    return if($name = ("author", "version", "param", "return", "error", "deprecated", "see", "since"))
+      then element { fn:QName("http://www.xqdoc.org/1.0", fn:concat("doc:", $name)) } {
+        _commentContents($tag/Contents)
+      } else element doc:custom {
+        attribute tag { $name },
+        _commentContents($tag/Contents)
+      }
+  }
+};
+
+declare function parse($module as xs:string){
+  parse($module,'')
+};
+
+declare function parse($module as xs:string, $mode as xs:string)
+{
+  let $markup := xqp:parse-XQuery($module)
+  let $module := $markup/Module/(MainModuleSequence/MainModule | LibraryModule)
+  return element doc:xqdoc {
+    element doc:control {
+      comment { "Generated by xquerydoc: http://github.com/xquery/xquerydoc" },
+      element doc:date {if($mode eq 'test') then () else fn:current-dateTime()},
+      element doc:version { "N/A" }
+    },
+
+    element doc:module {
+      attribute type { if($module/self::MainModule) then "main" else "library" },
+      element doc:uri { if($module/ModuleDecl/URILiteral/StringLiteral) then  _trimStringLiteral($module/ModuleDecl/URILiteral/StringLiteral) else () },
+      if ($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) else ()
+      (: TBD name and body - jpcs :)
+    },
+
+    (: TBD imports - jpcs :)
+
+    element doc:variables {
+      for $v in $module/Prolog/VarDecl
+      return element doc:variable {
+        element doc:uri { _localname($v/QName/FunctionName/QName) },
+        _type($v/TypeDeclaration/SequenceType),
+        _comment($v)
+      }
+    },
+
+    element doc:functions {
+      for $f in $module/Prolog/FunctionDecl
+      return element doc:function {
+        _comment($f),
+        element doc:name { _localname($f/FunctionName/QName) },
+        element doc:signature {
+          fn:string-join(("(", $f/ParamList/fn:string(), ")",
+            if($f/SequenceType) then (" as ", $f/SequenceType/fn:string()) else ()
+            ), "")
+        },
+        if($f/ParamList) then element doc:parameters {
+          for $p in $f/ParamList/Param
+          return element doc:parameter {
+            element doc:name { _localname($p/QName/FunctionName/QName) },
+            _type($p/TypeDeclaration/SequenceType)
+          }
+        } else (),
+        if($f/SequenceType) then element doc:return {
+          _type($f/SequenceType)
+        } else ()
+        (: TBD invoked and ref-variable - jpcs :)
+        (: TBD body - jpcs :)
+      }
+    }
+  }
+};
+
+declare function generate-docs($type as xs:string,$xqdoc as element(doc:xqdoc),$source as xs:string){
+  util:generate-html-module($xqdoc,$source)
+};
+</pre></div><br/><div class="footer"><p style="text-align:right"><i/> |
+          generated by xquerydoc <a href="https://github.com/xquery/xquerydoc" target="xquerydoc">https://github.com/xquery/xquerydoc</a></p></div></div><script type="application/javascript">
+	  window.onload = function(){ prettyPrint(); }
+	</script></body></html>
