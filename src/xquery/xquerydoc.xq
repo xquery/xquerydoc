@@ -27,7 +27,7 @@ module namespace xqd="http://github.com/xquery/xquerydoc";
 declare default function namespace "http://github.com/xquery/xquerydoc";
 declare namespace doc="http://www.xqdoc.org/1.0";
 
-import module namespace xqp="XQueryML10" at "parsers/XQueryML10.xq";
+import module namespace xqp="XQueryML30" at "parsers/XQueryML30.xq";
 import module namespace xqdc="XQDocComments" at "parsers/XQDocComments.xq";
 import module namespace util="http://github.com/xquery/xquerydoc/utils" at "utils.xq";
 
@@ -59,6 +59,7 @@ declare (: private :) function _commentContents($e)
 {
   typeswitch($e)
   case element(Char) return $e/node()
+  case element(Trim) return text { " " }
   case element(ElementContentChar) return $e/node()
   case element(QuotAttrContentChar) return $e/node()
   case element(AposAttrContentChar) return $e/node()
@@ -119,7 +120,7 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
 
     element doc:module {
       attribute type { if($module/self::MainModule) then "main" else "library" },
-      element doc:uri { if($module/ModuleDecl/URILiteral/StringLiteral) then _trimStringLiteral($module/ModuleDecl/URILiteral/StringLiteral) else () },
+      element doc:uri { if($module/ModuleDecl/URILiteral) then _trimStringLiteral($module/ModuleDecl/URILiteral) else () },
       if($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) else ()
       (: TBD name and body - jpcs :)
     },
@@ -127,18 +128,22 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
     (: TBD imports - jpcs :)
 
     element doc:variables {
-      for $v in $module/Prolog/VarDecl
+      for $v in $module/Prolog/AnnotatedDecl/VarDecl
       return element doc:variable {
-        element doc:uri { if($v/QName/FunctionName/QName) then _localname($v/QName/FunctionName/QName) else () },
+        element doc:uri { if($v/VarName) then _localname($v/VarName) else () },
         _type($v/TypeDeclaration/SequenceType),
-        _comment($v)
+        _comment($v/..)
       }
     },
 
     element doc:functions {
-      for $f in $module/Prolog/FunctionDecl
+      for $f in $module/Prolog/AnnotatedDecl/FunctionDecl
       return element doc:function {
-        element doc:name { if ($f/FunctionName/QName) then _localname($f/FunctionName/QName) else () },
+        if($f/../Annotation/(TOKEN|EQName) = ("private","fn:private"))
+        then attribute private { "true" } else (),
+        attribute arity { fn:count($f/ParamList/Param) },
+        _comment($f/..),
+        element doc:name { if ($f/EQName) then _localname($f/EQName) else () },
         element doc:signature {
           fn:string-join(("(", $f/ParamList/fn:string(), ")",
             if($f/SequenceType) then (" as ", $f/SequenceType/fn:string()) else ()
@@ -147,11 +152,10 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
         if($f/ParamList) then element doc:parameters {
           for $p in $f/ParamList/Param
           return element doc:parameter {
-            element doc:name { if($p/QName/FunctionName/QName) then _localname($p/QName/FunctionName/QName) else () },
+            element doc:name { if($p/EQName) then _localname($p/EQName) else () },
             _type($p/TypeDeclaration/SequenceType)
           }
         } else (),
-        _comment($f),
         if($f/SequenceType) then element doc:return {
           _type($f/SequenceType)
         } else ()

@@ -126,14 +126,13 @@ version="2.0">
   <xsl:template match="doc:variables">
     <div>
     <h3>Variables</h3>
-    <ul>
     <xsl:apply-templates/>
-    </ul>
     </div>
   </xsl:template>
 
   <xsl:template match="doc:variable">
-    <li><xsl:apply-templates/></li>
+    <h4><pre class="prettyprint lang-xq"><u>Variable:</u>&#160;$<xsl:value-of select="doc:uri"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></pre></h4>
+    <xsl:apply-templates select="doc:comment"/>
   </xsl:template>
 
   <xsl:template match="doc:uri">
@@ -149,7 +148,7 @@ version="2.0">
 
   <xsl:template match="doc:function">
     <h4><pre class="prettyprint lang-xq"><u>Function:</u>&#160;<xsl:value-of select="doc:name"/><xsl:value-of select="doc:signature"/></pre></h4>
-    <xsl:apply-templates select="*[not(name(.) eq 'doc:signature')][not(name(.) eq 'doc:name')]"/> 
+    <xsl:apply-templates select="* except (doc:name|doc:signature)"/> 
   </xsl:template>
 
   <xsl:template match="doc:parameters">
@@ -160,12 +159,12 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:parameter">
-    <li><xsl:value-of select="doc:name"/>: <xsl:value-of select="doc:type"/></li>
+    <li><xsl:value-of select="doc:name"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></li>
   </xsl:template>
 
   <xsl:template match="doc:return">
     <h5>Returns</h5>
-    <ul><li><xsl:value-of select="@occurrencee"/>: <xsl:value-of select="."/></li></ul>
+    <ul><li><xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></li></ul>
   </xsl:template>
 
   <xsl:template match="doc:comment">
