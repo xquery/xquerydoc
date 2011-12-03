@@ -17,7 +17,7 @@ DirAttributeValue ::=
 
 <?TOKENS?>
 
-Tag ::= [A-Za-z]+
+Tag ::= [A-Za-z0-9]+
 
 CommentContents ::=
     ( ( [^(:] | '('+ [^(:] | ':'+ [^:)] )+ | '(' ) '('* & '('

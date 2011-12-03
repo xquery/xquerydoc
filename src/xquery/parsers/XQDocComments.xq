@@ -1,6 +1,6 @@
 xquery version "1.0" encoding "UTF-8";
 
-(: This file was generated on Thu Sep 15, 2011 05:01 by REx v5.9 which is Copyright (c) 1979-2011 by Gunther Rademacher <grd@gmx.net> :)
+(: This file was generated on Sat Dec  3, 2011 15:09 by REx v5.10 which is Copyright (c) 1979-2011 by Gunther Rademacher <grd@gmx.net> :)
 (: REx command line: XQDocComments.ebnf -xquery -tree :)
 
 (:~
@@ -16,9 +16,9 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare variable $p:MAP0 as xs:integer+ :=
 (
   0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 3, 4, 3, 3, 3, 3,
-  5, 6, 7, 3, 3, 3, 3, 3, 8, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9, 3, 10, 11, 12, 3, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14,
-  14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 3, 3, 3, 3, 3, 3, 14, 14, 14, 14, 14, 14, 14, 14,
-  14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 3, 3, 3, 15, 3
+  5, 6, 7, 3, 3, 3, 3, 3, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 3, 11, 12, 13, 3, 14, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+  9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 3, 3, 3, 3, 3, 3, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
+  9, 9, 9, 9, 9, 9, 9, 3, 3, 3, 15, 3
 );
 
 (:~
@@ -28,12 +28,12 @@ declare variable $p:MAP1 as xs:integer+ :=
 (
   54, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62,
   62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 62, 133, 126, 149,
-  213, 165, 170, 186, 191, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207,
-  207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207,
-  207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 207, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 1, 0, 0, 2, 0, 0, 16, 3, 4, 3, 3, 3, 3, 5, 6, 7, 3, 3, 3, 3, 3, 8,
-  13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 3, 3, 3, 3, 3, 3, 14, 14, 14, 14, 14, 14, 14, 14, 14,
-  14, 14, 14, 14, 14, 14, 3, 3, 3, 15, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9, 3, 10, 11, 12, 3
+  165, 216, 221, 195, 200, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180,
+  180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180,
+  180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 1, 0, 0, 2, 0, 0, 16, 3, 4, 3, 3, 3, 3, 5, 6, 7, 3, 3, 3, 3, 3, 8, 9,
+  9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 3, 11, 12, 13, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9, 9, 9, 9, 9, 9, 9, 9,
+  9, 9, 9, 9, 9, 9, 9, 3, 3, 3, 15, 3, 14, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 3, 3, 3, 3, 3
 );
 
 (:~
@@ -57,18 +57,18 @@ declare variable $p:INITIAL as xs:integer+ :=
  :)
 declare variable $p:TRANSITION as xs:integer+ :=
 (
-  214, 214, 214, 214, 214, 214, 214, 214, 240, 155, 136, 143, 147, 232, 273, 213, 240, 139, 152, 159, 147, 232, 273,
-  213, 214, 164, 163, 168, 272, 232, 273, 213, 214, 172, 176, 168, 272, 232, 273, 213, 214, 182, 186, 168, 272, 232,
-  273, 213, 214, 164, 194, 258, 272, 200, 198, 213, 214, 164, 163, 168, 204, 210, 215, 214, 214, 164, 219, 226, 272,
-  232, 230, 213, 214, 178, 163, 288, 255, 236, 148, 239, 214, 164, 163, 244, 272, 232, 273, 213, 248, 164, 163, 168,
-  272, 232, 273, 213, 188, 190, 252, 262, 222, 232, 273, 213, 214, 206, 163, 266, 272, 232, 273, 213, 270, 164, 163,
-  277, 272, 232, 273, 213, 214, 164, 163, 168, 272, 232, 281, 213, 240, 139, 152, 159, 285, 232, 273, 213, 307, 337,
+  214, 214, 214, 214, 214, 214, 214, 214, 237, 155, 136, 143, 147, 232, 251, 213, 237, 139, 152, 159, 147, 232, 251,
+  213, 214, 164, 163, 168, 250, 232, 251, 213, 214, 172, 176, 168, 250, 232, 251, 213, 214, 182, 186, 168, 250, 232,
+  251, 213, 214, 164, 194, 269, 250, 200, 198, 213, 214, 164, 163, 168, 204, 210, 215, 214, 214, 164, 219, 226, 250,
+  232, 230, 213, 236, 164, 163, 241, 250, 232, 251, 213, 214, 178, 163, 288, 266, 245, 148, 248, 214, 164, 163, 255,
+  250, 232, 251, 213, 259, 164, 163, 168, 250, 232, 251, 213, 188, 190, 263, 273, 222, 232, 251, 213, 214, 206, 163,
+  277, 250, 232, 251, 213, 214, 164, 163, 168, 250, 232, 281, 213, 237, 139, 152, 159, 285, 232, 251, 213, 307, 337,
   337, 337, 0, 0, 256, 337, 24, 243, 19, 337, 0, 1216, 0, 0, 288, 337, 337, 337, 0, 0, 275, 337, 24, 224, 160, 288, 0,
   0, 0, 256, 0, 24, 224, 160, 0, 352, 0, 352, 288, 352, 0, 0, 18, 256, 0, 384, 0, 256, 384, 384, 0, 0, 640, 0, 0, 256,
   288, 0, 0, 21, 0, 1216, 0, 1180, 24, 1180, 0, 512, 0, 0, 672, 256, 0, 24, 512, 24, 0, 0, 0, 0, 24, 288, 0, 20, 0, 0,
-  1216, 480, 20, 24, 224, 160, 576, 1216, 0, 24, 24, 24, 443, 416, 1181, 1181, 0, 0, 0, 337, 0, 24, 569, 544, 0, 608, 0,
-  608, 288, 0, 640, 0, 0, 1242, 0, 22, 224, 160, 640, 24, 224, 160, 0, 696, 224, 672, 97, 0, 0, 0, 1216, 0, 24, 97, 24,
-  224, 160, 0, 1216, 448, 24, 337, 0, 1235, 0, 23, 224, 178
+  1216, 480, 20, 24, 224, 160, 576, 1216, 0, 24, 24, 24, 97, 0, 0, 0, 337, 97, 24, 224, 160, 443, 416, 1181, 1181, 0, 0,
+  0, 1216, 0, 24, 0, 24, 569, 544, 0, 608, 0, 608, 288, 0, 640, 0, 0, 1242, 0, 22, 224, 160, 640, 24, 224, 160, 0, 696,
+  224, 672, 0, 1216, 448, 24, 337, 0, 1235, 0, 23, 224, 178
 );
 
 (:~
@@ -702,9 +702,9 @@ declare function p:parse-Contents-1($input as xs:string, $state as item()+) as i
   if ($state[$p:error]) then
     $state
   else
-    let $state := p:lookahead1(15, $input, $state)          (: Char | Trim | '.)' | '<' | '@' :)
+    let $state := p:lookahead1(15, $input, $state)          (: Char | Trim | (':' ')') | '<' | '@' :)
     return
-      if ($state[$p:l1] = 15                                (: '.)' :)
+      if ($state[$p:l1] = 15                                (: (':' ')') :)
        or $state[$p:l1] = 20) then                          (: '@' :)
         $state
       else
@@ -750,7 +750,7 @@ declare function p:parse-XQDocComment-1($input as xs:string, $state as item()+) 
   if ($state[$p:error]) then
     $state
   else
-    let $state := p:lookahead1(6, $input, $state)           (: '.)' | '@' :)
+    let $state := p:lookahead1(6, $input, $state)           (: (':' ')') | '@' :)
     return
       if ($state[$p:l1] != 20) then                         (: '@' :)
         $state
@@ -769,10 +769,10 @@ declare function p:parse-XQDocComment-1($input as xs:string, $state as item()+) 
 declare function p:parse-XQDocComment($input as xs:string, $state as item()+) as item()+
 {
   let $count := count($state)
-  let $state := p:shift(13, $input, $state)                 (: '(.~' :)
+  let $state := p:shift(13, $input, $state)                 (: ('(' ':~') :)
   let $state := p:parse-Contents($input, $state)
   let $state := p:parse-XQDocComment-1($input, $state)
-  let $state := p:shift(15, $input, $state)                 (: '.)' :)
+  let $state := p:shift(15, $input, $state)                 (: (':' ')') :)
   return p:reduce($state, "XQDocComment", $count)
 };
 
@@ -789,16 +789,16 @@ declare function p:parse-Comment-1($input as xs:string, $state as item()+) as it
   if ($state[$p:error]) then
     $state
   else
-    let $state := p:lookahead1(13, $input, $state)          (: CommentContents | '(.' | '.)' | '@' :)
+    let $state := p:lookahead1(13, $input, $state)          (: CommentContents | ('(' ':') | (':' ')') | '@' :)
     return
-      if ($state[$p:l1] = 15) then                          (: '.)' :)
+      if ($state[$p:l1] = 15) then                          (: (':' ')') :)
         $state
       else
         let $state :=
           if ($state[$p:l1] = 3) then                       (: CommentContents :)
             let $state := p:shift(3, $input, $state)        (: CommentContents :)
             return $state
-          else if ($state[$p:l1] = 12) then                 (: '(.' :)
+          else if ($state[$p:l1] = 12) then                 (: ('(' ':') :)
             let $state := p:parse-Comment($input, $state)
             return $state
           else if ($state[$p:error]) then
@@ -819,9 +819,9 @@ declare function p:parse-Comment-1($input as xs:string, $state as item()+) as it
 declare function p:parse-Comment($input as xs:string, $state as item()+) as item()+
 {
   let $count := count($state)
-  let $state := p:shift(12, $input, $state)                 (: '(.' :)
+  let $state := p:shift(12, $input, $state)                 (: ('(' ':') :)
   let $state := p:parse-Comment-1($input, $state)
-  let $state := p:shift(15, $input, $state)                 (: '.)' :)
+  let $state := p:shift(15, $input, $state)                 (: (':' ')') :)
   return p:reduce($state, "Comment", $count)
 };
 
@@ -838,7 +838,7 @@ declare function p:parse-Comments-1($input as xs:string, $state as item()+) as i
   if ($state[$p:error]) then
     $state
   else
-    let $state := p:lookahead1(11, $input, $state)          (: END | S | '(.' | '(.~' :)
+    let $state := p:lookahead1(11, $input, $state)          (: END | S | ('(' ':') | ('(' ':~') :)
     return
       if ($state[$p:l1] = 1) then                           (: END :)
         $state
@@ -847,7 +847,7 @@ declare function p:parse-Comments-1($input as xs:string, $state as item()+) as i
           if ($state[$p:l1] = 9) then                       (: S :)
             let $state := p:shift(9, $input, $state)        (: S :)
             return $state
-          else if ($state[$p:l1] = 12) then                 (: '(.' :)
+          else if ($state[$p:l1] = 12) then                 (: ('(' ':') :)
             let $state := p:parse-Comment($input, $state)
             return $state
           else if ($state[$p:error]) then

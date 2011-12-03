@@ -19,7 +19,6 @@ version="2.0">
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc" />
-        <meta http-equiv="Authors" content="Copyright 2011 - John Snelson, James Fuller" />
 
 	<title>xqDoc - </title>
         <style type="text/css">

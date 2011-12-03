@@ -19,7 +19,6 @@ version="2.0">
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc" />
-        <meta http-equiv="Authors" content="Copyright 2011 - John Snelson, James Fuller" />
 
 	<title>xqDoc - </title>
         <style type="text/css">
@@ -124,15 +123,17 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:variables">
-    <div>
-    <h3>Variables</h3>
-    <xsl:apply-templates/>
+    <div id="variables">
+      <h3>Variables</h3>
+      <xsl:apply-templates/>
     </div>
   </xsl:template>
 
   <xsl:template match="doc:variable">
-    <h4><pre class="prettyprint lang-xq"><u>Variable:</u>&#160;$<xsl:value-of select="doc:uri"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></pre></h4>
-    <xsl:apply-templates select="doc:comment"/>
+    <div id="{ concat('var_', replace(doc:uri, ':', '_')) }">
+      <h4><pre class="prettyprint lang-xq"><u>Variable</u>:&#160;$<xsl:value-of select="doc:uri"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></pre></h4>
+      <xsl:apply-templates select="doc:comment"/>
+    </div>
   </xsl:template>
 
   <xsl:template match="doc:uri">
@@ -140,15 +141,19 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:functions">
-    <div>
-    <h3>Functions</h3>
-    <xsl:apply-templates/>
+    <div id="functions">
+      <h3>Functions</h3>
+      <xsl:apply-templates/>
     </div>
   </xsl:template>
 
+  <xsl:template match="doc:function[@private]"/>
+
   <xsl:template match="doc:function">
-    <h4><pre class="prettyprint lang-xq"><u>Function:</u>&#160;<xsl:value-of select="doc:name"/><xsl:value-of select="doc:signature"/></pre></h4>
-    <xsl:apply-templates select="* except (doc:name|doc:signature)"/> 
+    <div id="{ concat('func_', replace(doc:name, ':', '_'), '_', @arity) }">
+      <h4><pre class="prettyprint lang-xq"><u>Function</u>:&#160;<xsl:value-of select="doc:name"/><xsl:value-of select="doc:signature"/></pre></h4>
+      <xsl:apply-templates select="* except (doc:name|doc:signature)"/>
+    </div>
   </xsl:template>
 
   <xsl:template match="doc:parameters">
@@ -159,12 +164,24 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:parameter">
-    <li><xsl:value-of select="doc:name"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></li>
+    <li>
+      <xsl:value-of select="doc:name"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/>
+      <xsl:variable name="name" select="string(doc:name)"/>
+      <xsl:for-each select="../../doc:comment/doc:param[starts-with(normalize-space(.), $name)]">
+        <xsl:value-of select="substring-after(normalize-space(.), $name)"/>
+      </xsl:for-each>
+    </li>
   </xsl:template>
 
   <xsl:template match="doc:return">
     <h5>Returns</h5>
-    <ul><li><xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></li></ul>
+    <ul><li>
+      <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/>
+      <xsl:for-each select="../doc:comment/doc:return">
+        <xsl:text>: </xsl:text>
+        <xsl:value-of select="normalize-space(.)"/>
+      </xsl:for-each>
+    </li></ul>
   </xsl:template>
 
   <xsl:template match="doc:comment">
@@ -172,7 +189,11 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:description" mode="custom">
-    <p><xsl:apply-templates select="."/></p>
+    <p><xsl:apply-templates mode="custom"/></p>
+  </xsl:template>
+
+  <xsl:template match="*:h1" mode="custom">
+    <h1><xsl:apply-templates/></h1>
   </xsl:template>
 
   <xsl:template match="*:p" mode="custom">
@@ -184,20 +205,38 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="doc:author" mode="custom">
-    Author: <xsl:value-of select="."/>
+    <p>Author: <xsl:value-of select="."/></p>
   </xsl:template>
 
-  <xsl:template match="doc:version">
-    Version: <xsl:value-of select="."/>
+  <xsl:template match="doc:version" mode="custom #default">
+    <p>Version: <xsl:value-of select="."/></p>
   </xsl:template>
 
-  <xsl:template match="doc:version" mode="custom">
-    v.<xsl:value-of select="."/>
+  <xsl:template match="doc:see" mode="custom">
+    See also:
+    <xsl:for-each select="tokenize(.,'[ \t\r\n,]+')[. ne '']">
+      <xsl:if test="position() ne 1"><xsl:text>, </xsl:text></xsl:if>
+      <xsl:choose>
+        <xsl:when test="contains(.,'#')">
+          <a href="#{ concat('func_', replace(substring-before(.,'#'), ':', '_'),
+            '_', substring-after(.,'#')) }">
+            <xsl:value-of select="."/>
+          </a>
+        </xsl:when>
+        <xsl:when test="starts-with(.,'$')">
+          <a href="#{ concat('var_', replace(substring-after(.,'$'), ':', '_')) }">
+            <xsl:value-of select="."/>
+          </a>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="doc:param" mode="custom">
-    <xsl:apply-templates/>
-  </xsl:template>
+  <xsl:template match="doc:param" mode="custom"/>
+  <xsl:template match="doc:return" mode="custom"/>
 
   <!--xsl:template match="doc:custom" mode="custom">
     <xsl:apply-templates select="."/>
