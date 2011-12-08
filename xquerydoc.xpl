@@ -9,13 +9,7 @@
     exclude-inline-prefixes="c ml p">
 
   <p:documentation>generates documentation of a single xquery module</p:documentation>
-
-  <!-- import Calabash library //-->
-  <p:import href="src/lib/library-1.0.xpl"/>
-
-  <!-- import recursive directory list step //-->
-  <p:import href="src/lib/recursive-directory-list.xpl"/>
-
+  
   <!-- config file is main import //-->
   <p:input port="source"/>
 
@@ -30,9 +24,15 @@
 
   <!-- path of current dir  //-->
   <p:option name="output" required="true"/>  
-
+  
   <!-- desired output format  //-->
   <p:option name="format" required="true"/>  
+  
+  <!-- import Calabash library //-->
+  <p:import href="src/lib/library-1.0.xpl"/>
+
+  <!-- import recursive directory list step //-->
+  <p:import href="src/lib/recursive-directory-list.xpl"/>
 
   <p:variable name="dirpath" select="if(starts-with($xquery,'/')) then
                                      $xquery else concat($currentdir,'/',$xquery)"/>
