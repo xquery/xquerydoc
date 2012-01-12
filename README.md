@@ -31,7 +31,7 @@ https://github.com/xquery/xquerydoc
 
 ## Dependencies
 
-You will need Java 1.5 or higher installed
+To run the commandline version you will need Java 1.5 or higher installed
 
 xquerydoc ships with Norman Walsh's XML Calabash an xproc processor
 implemented in Java and runs xquerydoc via xproc xquerydoc step.
@@ -49,24 +49,12 @@ To use provide xquerydoc with a directory containing xquery or single xquery fil
 and the directory you wish to place generated documentation.
 
 ```bash
-xquerydoc {xquery dir} {output dir} {format}
+xquerydoc -x xquery dir -o output dir -f format
 ```
 
 Currently only the HTML format is supported but hoping soon we will be
 able to generate other formats (like markdown, text, docbook, etc...).
 
-The following example will process a directory containing xquery and
-output documentation to another directory.
-
-```bash
-xquerydoc som/xquery/ output/api html
-```
-
-To get help on commandline usage 
-
-```bash
-xquerydoc -h|--help
-```
 
 ##Invoking xquerydoc from XQuery
 
@@ -83,37 +71,6 @@ xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes'))
 ```
 Note that we are using SAXON convention with collection to bring in
 unparsed xquery file.
-
-As with the commandline version we provide for your convenience a
-MarkLogic version (though the XQuery v1.0 should also run within
-MarkLogic just as well). 
-
-###Invoking xquerydoc with MarkLogic
-
-In addition we provide a MarkLogic variant of this script which will
-connect to MarkLogic server (via XDBC) and invoke the MarkLogic v1.0
-xquerydoc and generate documentation. These can be found in the
-*extras/marklogic* directory.
-
-```
-ml-xquerydoc /some/directory/containing/xquery/ /output/html/to/some/directory/
-```
-
-To use this variant you will need to setup MarkLogic XDBC server and
-provide details in *extras/marklogic/config.xml* file.
-
-Note that you do not need to use ml-xquerydoc to genreate
-documentation from a set of 1.0-ml version scripts, xquerydoc will do
-that for you. 
-
-####MarkLogic Example
-```xquery
-xquery version "1.0-ml" encoding "UTF-8";
-
-import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/ml-xquerydoc.xq";
-
-xqdoc:xqdoc(xdmp:document-get('/path/to/xquery/file.xqy')) 
-```
 
 ## xqDoc Markup
 
@@ -154,9 +111,7 @@ dynamic  real-time viewing.
 ```
 
 Its relatively easy to then take this XML and style it using provided
-XSLT stylesheets provided for under *src/lib*. The Marklogic variant
-XQuery library provides this in a utility function contained in *src/xquery/ml-utils.xqy*.
-
+XSLT stylesheets provided for under *src/lib*. 
 
 ## API Docs
 
@@ -246,7 +201,7 @@ submit issue to https://github.com/xquery/xquerydoc/issues
 
 Please make an issue submission here
 
-
+https://github.com/xquery/xquerydoc/issues
 
 ##More Info
 

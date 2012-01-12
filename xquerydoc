@@ -64,9 +64,8 @@ echo ""
 # run xproc pipeline
 deps/xmlcalabash/calabash -oresult=$OUTPUT/index.html xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT 
 
-mkdir -p $OUTPUT/lib
-
 # copy lib resources
+mkdir -p $OUTPUT/lib
 cp src/lib/prettify.js $OUTPUT/lib/prettify.js
 cp src/lib/prettify.css $OUTPUT/lib/prettify.css
 cp src/lib/lang-xq.js $OUTPUT/lib/lang-xq.js
