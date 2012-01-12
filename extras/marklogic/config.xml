@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config>
-  <path>/Users/jfuller/Source/Webcomposite/xquerydoc</path>
-  <connection protocol="http" host="localhost" port="8050" username="marklogic" password="marklogic"/>
-  <connection protocol="xdbc" host="localhost" port="8051" username="marklogic" password="marklogic"/>
-</config>
