@@ -20,22 +20,27 @@ version="2.0">
         <meta http-equiv="Generator" content="xquerydoc - https://github.com/xquery/xquerydoc" />
 	<title>xqDoc - </title>
         <style type="text/css">
-	body,
 	html {
+        width:100%;
 	margin:0;
 	padding:0;
 	color:#000;
-	background:#a7a09a;
+        overflow-y: hidden;
 	}
+        h1,h2,h3,h4,h5,h6 { font-family: Tahoma, Helvetica, Arial, sans-serif; }
+        body { padding: 0; background-color:#FFFFFF; color: #16291A; 
+        font: normal normal 14px Tahoma, Verdana,"Lucida Sans","Lucida Sans Unicode", Arial, sans-serif;
+	}
+        a:link    { color: #16291A }
+        a:visited { color: #16291A }
+        a:active  { color: #16291A }
 	#wrap {
 	width:100%;
         height:100%;
 	margin:0 auto;
-	background:#99c;
 	}
 	#header {
     	padding:5px 10px;
-	background:#ddd;
 	}
 	h1 {
 	margin:0;
@@ -43,18 +48,17 @@ version="2.0">
 	#main {
 	float:right;
 	width:75%;
+        height:100%;
 	padding:0px;
-	background:#9c9;
-        overflow:auto;
 	}
 	h2 {
 	margin:0 0 1em;
 	}
 	#sidebar {
         float:left;
+        height:100%;
 	width:25%;
 	padding:0px;
-	background:#99c;
         overflow:auto;
 	}
 	#footer {
@@ -68,6 +72,12 @@ version="2.0">
 	* html #footer {
 	height:1px;
 	}
+        iframe {
+        border-top: #c00 1px dotted;
+        border-right: #c00 2px dotted;
+        border-left: #c00 2px dotted;
+        border-bottom: #c00 4px dotted;
+        }
         </style>
 	<link rel="stylesheet" type="text/css" href="lib/prettify.css">&#160;</link>
 	<script src="lib/prettify.js" type="lib/javascript">&#160; </script>
@@ -75,16 +85,13 @@ version="2.0">
       </head>
       <body>
         <div id="wrap">
-          <div id="header">
-            <h1>docs</h1>
-          </div>
           <div id="sidebar">
             <ul>
               <xsl:apply-templates select="//*:file"/>
             </ul>
           </div>
           <div id="main">
-          <iframe name="docs" style="height:100%;width:100%"/>
+            <iframe name="docs" style="height:100%;width:100%;border: 0px solid #ffffff; "/>
           </div>
           <div id="footer">
               <i>

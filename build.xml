@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="xquerydoc" default="default" basedir=".">
+<project name="xquerydoc" default="dist" basedir=".">
   <description>
   </description>
 
@@ -59,7 +59,7 @@
       <fileset dir="deps"/>
      </copy>
 
-     <copy todir="${dist.dir}/xquerydoc-${version}/lib">
+     <copy todir="${dist.dir}/xquerydoc-${version}/src/lib">
       <fileset dir="src/lib"/>
      </copy>
 

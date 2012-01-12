@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2011-2012 Jim Fuller, John Snelson
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+//-->
 <p:declare-step 
     xmlns:c="http://www.w3.org/ns/xproc-step"
     xmlns:p="http://www.w3.org/ns/xproc"
@@ -46,52 +61,47 @@
     <p:with-option name="path" select="$dirpath"/>
   </cx:recursive-directory-list>
 
-    <p:xslt name="generate-manifest">
-      <p:input port="stylesheet">
-        <p:inline>
-          <xsl:stylesheet
-              xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-              version="1.0">
-
-            <xsl:template match="/">
-              <manifest ts="">
-                <xsl:apply-templates select="*:directory">
-                  <xsl:with-param name="base" select="@name"/>
-                </xsl:apply-templates>
-              </manifest>
-            </xsl:template>
-
-            <xsl:template match="*:directory">
-              <xsl:param name="base"/>
-              <xsl:apply-templates select="*:file">
-                <xsl:with-param name="base" select="concat($base,'/',@name)"/>
-                <xsl:with-param name="base1" select="@xml:base"/>
-              </xsl:apply-templates>
-
+  <p:xslt name="generate-manifest">
+    <p:input port="stylesheet">
+      <p:inline>
+        <xsl:stylesheet
+            xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+            version="1.0">
+          <xsl:template match="/">
+            <manifest ts="">
               <xsl:apply-templates select="*:directory">
-                <xsl:with-param name="base" select="concat($base,'/',@name)"/>
+                <xsl:with-param name="base" select="@name"/>
               </xsl:apply-templates>
-            </xsl:template>
-
-            <xsl:template match="*:file[matches(@name,'xq')]">
-              <xsl:param name="base"/>
+            </manifest>
+          </xsl:template>
+          <xsl:template match="*:directory">
+            <xsl:param name="base"/>
+            <xsl:apply-templates select="*:file">
+              <xsl:with-param name="base" select="concat($base,'/',@name)"/>
+              <xsl:with-param name="base1" select="@xml:base"/>
+          </xsl:apply-templates>
+          <xsl:apply-templates select="*:directory">
+              <xsl:with-param name="base" select="concat($base,'/',@name)"/>
+          </xsl:apply-templates>
+          </xsl:template>          
+          <xsl:template match="*:file[ends-with(@name,'xq') or
+                               ends-with(@name,'xqm') or
+                               ends-with(@name,'xqy') or ends-with(@name,'xql')]">
+            <xsl:param name="base"/>
               <xsl:param name="base1"/>
               <xsl:variable name="gname" select="concat($base,'/',@name)"/>
               <file name="{@name}" base="{$base}"
                     href="{$gname}" base1="{$base1}"
                     gname="{replace($gname,'/','_')}"/>
-            </xsl:template>
-
-            <xsl:template match="*:file"/>
-
-          </xsl:stylesheet>
-        </p:inline>
-      </p:input>
-      <p:input port="parameters">
-        <p:pipe step="vars" port="result"/>
-      </p:input>   
-    </p:xslt>
-
+          </xsl:template>
+          <xsl:template match="*:file"/>
+        </xsl:stylesheet>
+      </p:inline>
+    </p:input>
+    <p:input port="parameters">
+      <p:pipe step="vars" port="result"/>
+    </p:input>   
+  </p:xslt>
 
   <p:for-each name="iterate">
     <p:iteration-source select="//file"/>
@@ -162,8 +172,6 @@
     -- End:
     :)
 
-    deps/xmlcalabash/calabash -oresult=test/index.html xquerydoc.xpl
-    xquery=/Users/jfuller/Source/Thieme/eneurosurgery/src/xquery/application output=test currentdir=/Users/jfuller/Source/Webcomposite/xquerydoc/ format=html
   </p:documentation>
 
 
