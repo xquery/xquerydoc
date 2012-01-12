@@ -69,9 +69,7 @@
             version="1.0">
           <xsl:template match="/">
             <manifest ts="">
-              <xsl:apply-templates select="*:directory">
-                <xsl:with-param name="base" select="@name"/>
-              </xsl:apply-templates>
+              <xsl:apply-templates select="*:directory"/>
             </manifest>
           </xsl:template>
           <xsl:template match="*:directory">

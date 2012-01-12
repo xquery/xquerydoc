@@ -54,12 +54,15 @@ case $OPTION in
   esac
 done
 
-echo "xquerydoc procesing ..."
+echo "xquerydoc 0.1, generates xquery api documentation"
+echo "Copyright (c) 2011, 2012 Jim Fuller, John Snelson"
+echo "see https://github.com/xquery/xquerydoc"
 echo ""
-echo "xquery: $XQUERY"
-echo "output: $OUTPUT"
-echo "format: $FORMAT"
+echo "xquery dir: $XQUERY"
+echo "output dir: $OUTPUT"
+echo "    format: $FORMAT"
 echo ""
+echo "generating documentation ..."
 
 # run xproc pipeline
 deps/xmlcalabash/calabash -oresult=$OUTPUT/index.html xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT 
@@ -70,4 +73,7 @@ cp src/lib/prettify.js $OUTPUT/lib/prettify.js
 cp src/lib/prettify.css $OUTPUT/lib/prettify.css
 cp src/lib/lang-xq.js $OUTPUT/lib/lang-xq.js
 
-exit
+echo "xquerydoc processing is done."
+
+
+ 

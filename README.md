@@ -1,4 +1,4 @@
-#xquerydoc 
+#xquerydoc v0.1
 
 Parses [xqDoc](http://xqdoc.org/source.html) style comments from your xquery and generates a set of API
 level html documentation all implemented in pure XQuery v1.0.
@@ -9,6 +9,7 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ## Features
 
+* parsing of XQuery 1.0, XQuery 3.0 and other variants (MarkLogic)
 * pure XQuery parsing of xqdoc comments
 * generation of simple, customizable documentation
 * support for html, markdown output formats
@@ -164,7 +165,7 @@ bounty contest ;) ) and can be obtained [here](http://www.patrick-wied.at/static
 
 xquerydoc is released under Apache License v2.0
 
-Copyright 2011 John Snelson, James Fuller
+Copyright 2011, 2012 Jim Fuller, John Snelson
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
