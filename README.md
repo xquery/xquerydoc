@@ -18,14 +18,19 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ##Install (Mac/Unix/Linux)
 
-Download the appropriate installer version from 
+Download the xquerydoc installer from 
 
 https://github.com/xquery/xquerydoc/downloads
 
-Double click the installation package and it will start a step by step
-graphical installation.
+Double click the installation package or run 
 
-Alternatively you could get a copy from github
+```bash
+java -jar xquerydoc-0.1.jar
+```
+
+and it should start a step by step graphical installation.
+
+Alternatively you could can always clone a copy from github
 
 https://github.com/xquery/xquerydoc
 

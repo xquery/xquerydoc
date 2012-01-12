@@ -20,6 +20,9 @@
 # usage: xquerydoc [-x xquery directory] [-o output directory ] [-f output format ]
 #
 
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+XQUERYDOC_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 CURRENTDIR=`pwd`
 
@@ -65,13 +68,13 @@ echo ""
 echo "generating documentation ..."
 
 # run xproc pipeline
-deps/xmlcalabash/calabash -oresult=$OUTPUT/index.html xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT 
+$XQUERYDOC_DIR/deps/xmlcalabash/calabash -oresult=$OUTPUT/index.html $XQUERYDOC_DIR/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT 
 
 # copy lib resources
 mkdir -p $OUTPUT/lib
-cp src/lib/prettify.js $OUTPUT/lib/prettify.js
-cp src/lib/prettify.css $OUTPUT/lib/prettify.css
-cp src/lib/lang-xq.js $OUTPUT/lib/lang-xq.js
+cp $XQUERYDOC_DIR/src/lib/prettify.js $OUTPUT/lib/prettify.js
+cp $XQUERYDOC_DIR/src/lib/prettify.css $OUTPUT/lib/prettify.css
+cp $XQUERYDOC_DIR/src/lib/lang-xq.js $OUTPUT/lib/lang-xq.js
 
 echo "xquerydoc processing is done."
 

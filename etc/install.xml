@@ -66,6 +66,7 @@
       <executable targetfile="$INSTALL_PATH/xquerydoc.bat" stage="never">
         <os family="windows"/>
       </executable>
+      <executable targetfile="$INSTALL_PATH/deps/xmlcalabash/calabash" stage="never"/>
     </pack>
   </packs>
 </installation>

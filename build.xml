@@ -63,6 +63,10 @@
       <fileset dir="src/lib"/>
      </copy>
 
+     <copy todir="${dist.dir}/xquerydoc-${version}/src/xquery">
+      <fileset dir="src/xquery"/>
+     </copy>
+
      <copy todir="${dist.dir}/xquerydoc-${version}/docs">
       <fileset dir="docs"/>
      </copy>
