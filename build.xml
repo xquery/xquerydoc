@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xquerydoc" default="default" basedir=".">
+  <description>
+  </description>
+
+  <property name="version" value="0.1"/>
+
+  <property name="dist.dir" value="dist"/>
+
+  <property name="izpack.dir" value="/Applications/IzPack"/>
+
+  <available property="izpack.present"
+             classname="com.izforge.izpack.ant.IzPackTask"
+             classpath="${izpack.dir}/lib/compiler.jar"/>
+
+  <target name="izpacktool" if="izpack.present">
+    <taskdef name="izpack"
+             classpath="${izpack.dir}/lib/compiler.jar"
+             classname="com.izforge.izpack.ant.IzPackTask"/>
+  </target>
+
+  <target name="izpackmissing" unless="izpack.present">
+    <echo>Cannot find IzPack; request to build dist ignored.</echo>
+  </target>
+
+  <target name="init">
+    <mkdir dir="${dist.dir}"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${dist.dir}"/>
+  </target>
+
+  <target name="dist" depends="init,distrib,izpacktool"
+          if="izpack.present">
+
+    <izpack input="${dist.dir}/install.xml"
+            output="${dist.dir}/xquerydoc-${version}.jar"
+            installerType="standard"
+            basedir="${dist.dir}"
+            izPackDir="${izpack.dir}"/>
+  </target>
+
+  <target name="distrib">
+
+     <copy todir="${dist.dir}">
+      <fileset file="etc/install.xml"/>
+    </copy>
+
+     <copy todir="${dist.dir}/xquerydoc-${version}/">
+      <fileset file="LICENCE"/>
+      <fileset file="README.md"/>
+      <fileset file="xquerydoc"/>
+      <fileset file="xquerydoc.bat"/>
+      <fileset file="xquerydoc.xpl"/>
+     </copy>
+
+     <copy todir="${dist.dir}/xquerydoc-${version}/deps">
+      <fileset dir="deps"/>
+     </copy>
+
+     <copy todir="${dist.dir}/xquerydoc-${version}/lib">
+      <fileset dir="src/lib"/>
+     </copy>
+
+     <copy todir="${dist.dir}/xquerydoc-${version}/docs">
+      <fileset dir="docs"/>
+     </copy>
+
+  </target>
+
+</project>

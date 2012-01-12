@@ -93,7 +93,6 @@ version="2.0">
 	<link rel="stylesheet" type="text/css" href="lib/prettify.css"/>
       </head>
       <body class="home">
-        <div style="text-align:right;"><a href="index.html">XQuery API index</a></div>
 	<div id="main">
           <xsl:apply-templates/>
 

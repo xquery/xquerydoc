@@ -7,41 +7,40 @@ The xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which shi
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
+## Features
 
-##Install for Commandline usage (Mac/Unix/Linux)
+* pure XQuery parsing of xqdoc comments
+* generation of simple, customizable documentation
+* support for html, markdown output formats
+* recursive directory processing
+* Invoke from commandline or from within your own XQuery applications
 
-To use from the commandline you should run Makefile e.g.
+##Install (Mac/Unix/Linux)
 
-```bash
-make install
-```
+Download the appropriate installer version from 
 
-This will try to install calabash as well. You will need to make sure
-calabash is on your system path.
+https://github.com/xquery/xquerydoc/downloads
 
-##Install for Commandline usage (Windows)
+Double click the installation package and it will start a step by step
+graphical installation.
 
-TBA
+Alternatively you could get a copy from github
 
-##Install as XQuery library
+https://github.com/xquery/xquerydoc
 
-xquerydoc can also be invoked directly from your own XQuery scripts
-but for now you will have to take care of applying XSLT stylesheets to
-the xqdoc markup. 
 
-The following directories are needed for use when directly invoking
-from XQuery.
+## Dependencies
 
-* src/xquery: contains XQuery implementation
-* src/lib: contains css/xslt/js used to transform to final html 
+You will need Java 1.5 or higher installed
 
-The entrypoint is contained in *src/xquery/xquerydoc.xq* module.
+xquerydoc ships with Norman Walsh's XML Calabash an xproc processor
+implemented in Java and runs xquerydoc via xproc xquerydoc step.
 
-##Usage
+Note that Java and XProc processor is not required as you can run
+xquerydoc directly from XQuery itself (see 'invoking xquerydoc from XQuery')
 
-There are two ways to use xquerydoc.
 
-###Invoking xquerydoc from the commandline
+##Commandline Usage
 
 The *bin/xquerydoc* script can be invoked from the commandline and
 generate documentation from xquery containing xqdoc comments. 
@@ -63,7 +62,13 @@ output documentation to another directory.
 xquerydoc som/xquery/ output/api html
 ```
 
-###Invoking xquerydoc from xquery
+To get help on commandline usage 
+
+```bash
+xquerydoc -h|--help
+```
+
+##Invoking xquerydoc from XQuery
 
 As xquerydoc is itself written in pure XQuery v1.0  you can invoke  directly
 from your own xquery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
@@ -112,7 +117,7 @@ xqdoc:xqdoc(xdmp:document-get('/path/to/xquery/file.xqy'))
 
 ## xqDoc Markup
 
-The following markup is what the xqdoc:xqdoc() function outputs.
+The following markup is an example of what the xqdoc:xqdoc() function outputs.
 
 ```xml
 <doc:xqdoc xmlns:doc="http://www.xqdoc.org/1.0">
@@ -157,14 +162,15 @@ XQuery library provides this in a utility function contained in *src/xquery/ml-u
 
 Yup we eat our own dog chow, view API docs here.
 
-https://github.com/xquery/xquerydoc/tree/master/docs/api
-
+https://xquery.github.com/xquerydoc/api
 
 ## Distro
 
 xquerydoc
 
-* bin: contains bash run scripts
+xquerydoc - unix/mac commandline run script
+xquerydoc.bat - windows commandline run script
+
 * docs: contains api generated documentation
 * ebnf: contains Extended Backus–Naur Form definitions of XQuery language
 
@@ -174,44 +180,26 @@ xquerydoc/src
 * lib: contains xslt and associated javascript, css, etc
 * src: contains xquerydoc XQuery modules 
 
-##Running Tests
-
-To run all tests
-
-```bash
-bin/run-all-tests.sh
-```
-All this script does is run the following xquery processor specific scripts.
-
-```bash
-bin/run-saxon-tests.sh 
-bin/run-marklogic-tests.sh
-```
-
-Test scripts work by invoking an XProc pipeline in *src/tests* (either saxon-test.xpl or marklogic-test.xpl).
-
-To run MarkLogic tests you will need to setup XDBC server and edit
-*src/tests/config.xml* with relevant details.
-
-If you want to invoke these scripts manually please review the test
-run scripts to understand what needs to be passed into Calabash.
 
 ##Credit, Acknowledgements
 
 Created by John Snelson, James Fuller 
 
 Thanks to [Darin McBeath](http://xqdoc.org/history.html) for creating
-the original xqdoc, which we have opted to reuse the xqDoc xml format
-from. xqDoc is released under Apache License, Version 2.0
+the original xqDoc, which xquerydoc reuses.xqDoc is released under the
+Apache License, Version 2.0
 
-XQuery parsers were generated from EBNF using Gunther Rademacher
+XQuery parsers were generated from EBNF using Gunther Rademacher's
 excellent http://www.bottlecaps.de/rex/
 
-Norman Walsh's XML Calabash is [available](http://xmlcalabash.org) under either the GPLv2 or Sun's CDDL license 
+Norman Walsh's xproc processor XML Calabash is
+[available](http://xmlcalabash.org) under either the GPLv2 or Sun's CDDL license 
 
-[Saxon](http://www.saxonica.com) XQuery and XSLT 2.0 Processor by Michael Kay is released under Mozilla Public License
+Michael Kay's [Saxon](http://www.saxonica.com) XQuery and XSLT 2.0
+Processor is released under the Mozilla Public License
 
-[Prettify](http://code.google.com/p/google-code-prettify/) (used by api doc and testsuite) is released under Apache License, Version 2.0
+[Prettify](http://code.google.com/p/google-code-prettify/) (used by
+api doc and testsuite)  is released under Apache License, Version 2.0
 
 XQuery prettify 'brush' was provided by Patrick Wied (as part of a MarkLogic
 bounty contest ;) ) and can be obtained [here](http://www.patrick-wied.at/static/xquery/prettify/) 
@@ -246,28 +234,19 @@ This means you can generate api level documentation using just XQuery
 As we are applying an XQuery process and an XSLT process on a set of
 xquery documents it seemed like a good match for the commandline
 invokation. You can of course use the XQuery v1.0 libraries without
-XProc but you will need to apply XSLT stylesheets using your
+XProc but you will need to apply XSLT stylesheets using your own
 processors capabilities.
-
-*How can I build xquerydoc ?*
-
-The build process is not included in the distro currently.
 
 *xquerydoc does not seem to parse correctly !*
 
 We are very interested in parsing as correctly as possible so please
 submit issue to https://github.com/xquery/xquerydoc/issues
 
-*Doesn't work on windows!*
+*Doesn't work!*
 
-The commandline scripts have been written with unix/linux/osx in mind
-but xquerydoc can be invoked by any XQuery v1.0 compliant processor.
+Please make an issue submission here
 
-As the commandline scripts are just a wrapper around an XProc pipeline
-you should be able to easily work out invoking XML Calabash.
 
-Otherwise very happy to review pull requests and patch any windows
-support but I am not setup to test for this platform.
 
 ##More Info
 
@@ -277,7 +256,6 @@ https://github.com/xquery/xquerydoc
 ## Status
 
 * add specific parsing options (XQueryv3.0, etc)
-* add recursive directory processing
 * create markdown output format
 * create docbook output format
 * create text output format

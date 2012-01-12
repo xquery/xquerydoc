@@ -29,10 +29,10 @@
   <p:option name="format" required="true"/>  
   
   <!-- import Calabash library //-->
-  <p:import href="src/lib/library-1.0.xpl"/>
+  <p:import href="deps/xmlcalabash/library-1.0.xpl"/>
 
   <!-- import recursive directory list step //-->
-  <p:import href="src/lib/recursive-directory-list.xpl"/>
+  <p:import href="deps/xmlcalabash/recursive-directory-list.xpl"/>
 
   <p:variable name="dirpath" select="if(starts-with($xquery,'/')) then
                                      $xquery else concat($currentdir,'/',$xquery)"/>
@@ -40,21 +40,71 @@
   <p:variable name="outputdirpath" select="if(starts-with($output,'/')) then
                                      $output else concat($currentdir,'/',$output)"/>
 
-  <cx:recursive-directory-list name="dirlist"
-                               include-filter="^(.)*.xq(.)*$"
-                               exclude-filter="(XQueryML10.xq|XQueryV10.xq|XQueryV30.xq)">
-    <p:with-option name="depth" select="3"/>
+  <p:in-scope-names name="vars"/>
+
+  <cx:recursive-directory-list name="dirlist" exclude-filter=".svn">
     <p:with-option name="path" select="$dirpath"/>
   </cx:recursive-directory-list>
 
+    <p:xslt name="generate-manifest">
+      <p:input port="stylesheet">
+        <p:inline>
+          <xsl:stylesheet
+              xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+              version="1.0">
+
+            <xsl:template match="/">
+              <manifest ts="">
+                <xsl:apply-templates select="*:directory">
+                  <xsl:with-param name="base" select="@name"/>
+                </xsl:apply-templates>
+              </manifest>
+            </xsl:template>
+
+            <xsl:template match="*:directory">
+              <xsl:param name="base"/>
+              <xsl:apply-templates select="*:file">
+                <xsl:with-param name="base" select="concat($base,'/',@name)"/>
+                <xsl:with-param name="base1" select="@xml:base"/>
+              </xsl:apply-templates>
+
+              <xsl:apply-templates select="*:directory">
+                <xsl:with-param name="base" select="concat($base,'/',@name)"/>
+              </xsl:apply-templates>
+            </xsl:template>
+
+            <xsl:template match="*:file[matches(@name,'xq')]">
+              <xsl:param name="base"/>
+              <xsl:param name="base1"/>
+              <xsl:variable name="gname" select="concat($base,'/',@name)"/>
+              <file name="{@name}" base="{$base}"
+                    href="{$gname}" base1="{$base1}"
+                    gname="{replace($gname,'/','_')}"/>
+            </xsl:template>
+
+            <xsl:template match="*:file"/>
+
+          </xsl:stylesheet>
+        </p:inline>
+      </p:input>
+      <p:input port="parameters">
+        <p:pipe step="vars" port="result"/>
+      </p:input>   
+    </p:xslt>
+
 
   <p:for-each name="iterate">
-    <p:iteration-source select="/c:directory/c:file"/>
+    <p:iteration-source select="//file"/>
 
-    <p:variable name="filename" select="c:file/@name"/>
-    <p:variable name="source" select='collection(concat($dirpath,"?select=",$filename,";unparsed=yes"))'/>
+    <p:variable name="filename" select="file/@name"/>
+    <p:variable name="base" select="file/@base"/>
+    <p:variable name="base1" select="file/@base1"/>
 
-  <!-- this step will run xquerydoc.xq on supplied xquery document //-->
+    <p:variable name="gname" select="file/@gname"/>
+    <p:variable name="href" select="file/@href"/>
+
+    <p:variable name="source" select='collection(concat($base1,"?select=",$filename,";unparsed=yes"))'/>
+
   <p:xquery name="run"> 
     <p:with-param name="source" select='$source'/>
     <p:input port="query">
@@ -74,7 +124,6 @@
     </p:input>    
   </p:xquery>
 
-  <!-- apply html transform //-->
   <p:xslt name="transform">
     <p:with-param name="source" select='$source'/>    
     <p:input port="stylesheet">
@@ -86,16 +135,15 @@
   </p:xslt>
 
   <p:store>
-    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$filename,'.html')"/>
+    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.html')"/>
   </p:store>
 
   </p:for-each>		
 
-
   <!-- generate xquerydoc index page //-->
   <p:xslt name="generate-home">
   <p:input port="source">
-    <p:pipe step="dirlist" port="result"/>
+    <p:pipe step="generate-manifest" port="result"/>
   </p:input>
     <p:input port="stylesheet">
       <p:document href="src/lib/html-index.xsl"/>
@@ -110,9 +158,12 @@
   <p:documentation>
     (:
     -- Local Variables:
-    -- compile-command: "/usr/local/bin/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT"
+    -- compile-command: "deps/xmlcalabash/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT"
     -- End:
     :)
+
+    deps/xmlcalabash/calabash -oresult=test/index.html xquerydoc.xpl
+    xquery=/Users/jfuller/Source/Thieme/eneurosurgery/src/xquery/application output=test currentdir=/Users/jfuller/Source/Webcomposite/xquerydoc/ format=html
   </p:documentation>
 
 
