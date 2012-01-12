@@ -39,7 +39,7 @@ https://github.com/xquery/xquerydoc
 
 To run the commandline version you will need Java 1.5 or higher installed
 
-xquerydoc ships with Norman Walsh's XML Calabash an xproc processor
+xquerydoc ships with Norman Walsh's (XML Calabash)[http://xmlcalabash.com/] an xproc processor
 implemented in Java and runs xquerydoc via xproc xquerydoc step.
 
 Note that Java and XProc processor is not required as you can run
