@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# added by JF 13/1/2012 to be invoked by xquerydoc
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 CALABASH_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"

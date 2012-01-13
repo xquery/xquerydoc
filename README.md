@@ -1,7 +1,7 @@
 #xquerydoc v0.1
 
-Parses [xqDoc](http://xqdoc.org/source.html) style comments from your xquery and generates a set of API
-level html documentation all implemented in pure XQuery v1.0.
+Parses [xqDoc](http://xqdoc.org/source.html) style comments from XQuery and generates a set of API
+level html documentation, implemented in pure XQuery v1.0.
 
 The xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which ships with [Saxon](http://www.saxonica.com)) though 
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
@@ -39,7 +39,7 @@ https://github.com/xquery/xquerydoc
 
 To run the commandline version you will need Java 1.5 or higher installed
 
-xquerydoc ships with Norman Walsh's (XML Calabash)[http://xmlcalabash.com/] an xproc processor
+xquerydoc ships with Norman Walsh's [XML Calabash](http://xmlcalabash.com/), an XP`<roc processor
 implemented in Java and runs xquerydoc via xproc xquerydoc step.
 
 Note that Java and XProc processor is not required as you can run
@@ -48,24 +48,37 @@ xquerydoc directly from XQuery itself (see 'invoking xquerydoc from XQuery')
 
 ##Commandline Usage
 
-The *bin/xquerydoc* script can be invoked from the commandline and
-generate documentation from xquery containing xqdoc comments. 
+The *xquerydoc* script can be invoked from the commandline. To get
+started using xquerydoc just execute it with no options in a directory
+containing XQuery. 
 
-To use provide xquerydoc with a directory containing xquery or single xquery file
-and the directory you wish to place generated documentation.
+```bash
+xquerydoc
+```
+
+xquerydoc will recursively search through for .xq, .xqy, .xqm and .xql
+files and will generate documenation placing in a default directory
+named *xqdocs*.
+
+Alternately you can supply xquerydoc with options, to specify the
+directory containing XQuery, where you want to output documentation as
+well as format of documentation.
 
 ```bash
 xquerydoc -x xquery dir -o output dir -f format
 ```
-
 Currently only the HTML format is supported but hoping soon we will be
 able to generate other formats (like markdown, text, docbook, etc...).
 
 
 ##Invoking xquerydoc from XQuery
 
-As xquerydoc is itself written in pure XQuery v1.0  you can invoke  directly
-from your own xquery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
+As xquerydoc is itself written in pure XQuery v1.0  it can be invoked directly
+from your own XQuery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
+
+You will find the xquerydoc modules under src/xquery.
+
+The following example illustrates how to do this.
 
 ####XQuery v1.0 Example (Saxon)
 ```xquery
@@ -75,12 +88,13 @@ import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/x
 
 xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
 ```
+
 Note that we are using SAXON convention with collection to bring in
 unparsed xquery file.
 
+This function will emit xqdoc markup (akin to
+[xqueryx](http://www.w3.org/TR/xqueryx/)), like the following listing. 
 ## xqDoc Markup
-
-The following markup is an example of what the xqdoc:xqdoc() function outputs.
 
 ```xml
 <doc:xqdoc xmlns:doc="http://www.xqdoc.org/1.0">
@@ -116,7 +130,7 @@ dynamic  real-time viewing.
 </doc:xqdoc>
 ```
 
-Its relatively easy to then take this XML and style it using provided
+Its then relatively easy to then take this XML and style it using provided
 XSLT stylesheets provided for under *src/lib*. 
 
 ## API Docs
@@ -124,22 +138,6 @@ XSLT stylesheets provided for under *src/lib*.
 Yup we eat our own dog chow, view API docs here.
 
 https://xquery.github.com/xquerydoc/api
-
-## Distro
-
-xquerydoc
-
-xquerydoc - unix/mac commandline run script
-xquerydoc.bat - windows commandline run script
-
-* docs: contains api generated documentation
-* ebnf: contains Extended Backus–Naur Form definitions of XQuery language
-
-xquerydoc/src
-
-* tests: contains tests
-* lib: contains xslt and associated javascript, css, etc
-* src: contains xquerydoc XQuery modules 
 
 
 ##Credit, Acknowledgements
@@ -216,7 +214,6 @@ https://github.com/xquery/xquerydoc
 
 ## Status
 
-* add specific parsing options (XQueryv3.0, etc)
 * create markdown output format
 * create docbook output format
 * create text output format
