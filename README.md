@@ -218,6 +218,7 @@ https://github.com/xquery/xquerydoc
 
 ## Status
 
+* test windows script
 * create markdown output format
 * create docbook output format
 * create text output format
