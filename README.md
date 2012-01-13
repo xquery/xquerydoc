@@ -16,6 +16,10 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 * recursive directory processing
 * Invoke from commandline or from within your own XQuery applications
 
+##Install (Windows)
+
+windows support coming soon!
+
 ##Install (Mac/Unix/Linux)
 
 Download the xquerydoc installer from 
