@@ -76,7 +76,7 @@ able to generate other formats (like markdown, text, docbook, etc...).
 As xquerydoc is itself written in pure XQuery v1.0  it can be invoked directly
 from your own XQuery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
 
-You will find the xquerydoc modules under src/xquery.
+You will find the xquerydoc modules under *src/xquery*.
 
 The following example illustrates how to do this.
 
