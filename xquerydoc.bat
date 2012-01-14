@@ -1,5 +1,5 @@
 echo off
-set CURRENTDIR= D:\test\xquerydoc-0.1
+set CURRENTDIR=D:\test\xquerydoc-0.1
 
 set XQUERY=%CURRENTDIR%\src\xquery
 set OUTPUT=%CURRENTDIR%\xqdoc
@@ -15,4 +15,14 @@ echo     format: %FORMAT%
 echo 
 echo generating documentation ...
 
-java -Xmx1024m -jar "deps\xmlcalabash\calabash.jar" -oresult=%OUTPUT%/index.html xquerydoc.xpl xquery=%XQUERY% output=%OUTPUT% currentdir=%CURRENTDIR% format=%FORMAT%
+java -Xmx1024m -jar "deps\xmlcalabash\calabash.jar" -D xquerydoc.xpl "xquery=%XQUERY%" "currentdir=%CURRENTDIR%" "output=%OUTPUT%" "format=%FORMAT%"
+
+IF NOT EXIST "%OUTPUT%" GOTO notestdir
+GOTO endif2
+:notestdir
+echo Creating directory at "%OUTPUT%" ...
+mkdir %OUTPUT%
+mkdir %OUTPUT%\lib
+
+echo.
+:endif2
