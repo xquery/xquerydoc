@@ -7,6 +7,10 @@ The xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which shi
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
+To see an example view (xprocxq
+docs)[http://xquery.github.com/xprocxq/api/] which is a project that
+is still undergoing development.
+
 ## Features
 
 * parsing of XQuery 1.0, XQuery 3.0 and other variants (MarkLogic)
@@ -61,8 +65,8 @@ xquerydoc
 ```
 
 xquerydoc will recursively search through for .xq, .xqy, .xqm and .xql
-files and will generate documenation placing in a default directory
-named *xqdocs*.
+files and will generate documentation placing in a default directory
+named *xqdocs*. Your XQuery most follow xqDoc [coding conventions](https://github.com/xquery/xquerydoc/wiki/xqDoc-comment-style-example).
 
 Alternately you can supply xquerydoc with options, to specify the
 directory containing XQuery, where you want to output documentation as
@@ -149,7 +153,7 @@ https://xquery.github.com/xquerydoc/api
 Created by John Snelson, James Fuller 
 
 Thanks to [Darin McBeath](http://xqdoc.org/history.html) for creating
-the original xqDoc, which xquerydoc reuses.xqDoc is released under the
+the original xqDoc, which xquerydoc reuses. xqDoc is released under the
 Apache License, Version 2.0
 
 XQuery parsers were generated from EBNF using Gunther Rademacher's
@@ -223,4 +227,5 @@ https://github.com/xquery/xquerydoc
 * create docbook output format
 * create text output format
 * enhance output
+
 

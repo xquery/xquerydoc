@@ -90,7 +90,7 @@
               <xsl:variable name="gname" select="concat($base,'/',@name)"/>
               <file name="{@name}" base="{$base}"
                     href="{$gname}" base1="{$base1}"
-                    gname="{replace($gname,'/','_')}"/>
+                    gname="xqdoc{replace($gname,'/','_')}"/>
           </xsl:template>
           <xsl:template match="*:file"/>
         </xsl:stylesheet>
