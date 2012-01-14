@@ -23,6 +23,14 @@ declare namespace html="http://www.w3.org/1999/xhtml";
 declare variable $util:html-homepage-xslt := '../lib/html-home.xsl';
 declare variable $util:html-module-xslt := '../lib/html-module.xsl';
 
+
+(:~ MarkLogic xslt transformation to generate html output
+ :
+ : @param xquery parsed into xqdoc xml markup
+ : @param original xquery source
+ :
+ : @returns element(html:html)
+ :)
 declare function util:generate-html-module($xqdoc,$source as xs:string) {
   let $params := map:map()
   let $_put := map:put(
@@ -30,7 +38,6 @@ declare function util:generate-html-module($xqdoc,$source as xs:string) {
                     xdmp:key-from-QName(fn:QName("", "source")),
                     $source)
   let $transform := xdmp:xslt-invoke( $util:html-module-xslt, $xqdoc, $params)
-
   return
     $transform
 };

@@ -17,11 +17,10 @@ xquery version "1.0" encoding "UTF-8";
 (:~ 
  :  This library module controls the parsing of XQuery xqdoc comments
  : 
- :  @author John Snelson, James Fuller
+ :  @author Jim Fuller, John Snelson
  :  @since Sept 18, 2011
  :  @version 0.1
  :)
-
 
 module namespace xqd="http://github.com/xquery/xquerydoc";
 declare default function namespace "http://github.com/xquery/xquerydoc";
@@ -95,7 +94,11 @@ declare (: private :) function _comment($e as element()+)
 
 
 (:~ 
- :  main entrypoint into xquerydoc
+ : main entrypoint into xquerydoc
+ :
+ : @param xquery parsed as string
+ : 
+ : @returns element(doc:xqdoc)
  :)
 declare function parse($module as xs:string) as element(doc:xqdoc)
 {
@@ -105,6 +108,10 @@ declare function parse($module as xs:string) as element(doc:xqdoc)
 
 (:~ 
  :  main entrypoint into xquerydoc
+ :
+ : @param xquery parsed as string
+ : 
+ : @returns element(doc:xqdoc)
  :)
 declare function parse($module as xs:string, $mode as xs:string) as element(doc:xqdoc)
 {
@@ -173,6 +180,11 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
 
 (:~ 
  :  example function for generating html from within XQuery, will need to employ processor specific method of invoking XSLT 
+ :
+ : @param type determining xquery main or library module  
+ : @param xquery parsed as xqdoc
+ : 
+ : @returns element(html:html)
  :)
 declare function generate-docs($type,$xqdoc ){
   util:generate-html-module($xqdoc)
