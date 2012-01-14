@@ -222,6 +222,8 @@ https://github.com/xquery/xquerydoc
 
 ## Status
 
+* provide XProc xquerydoc step
+* provide Ant macrodef
 * test windows script
 * create markdown output format
 * create docbook output format
