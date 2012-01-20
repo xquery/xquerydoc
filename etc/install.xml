@@ -60,9 +60,7 @@
       <fileset dir="xquerydoc-0.1" targetdir="$INSTALL_PATH"/>
       <parsable type="shell" targetfile="$INSTALL_PATH/xquerydoc"/>
       <parsable type="shell" targetfile="$INSTALL_PATH/xquerydoc.bat"/>
-      <executable targetfile="$INSTALL_PATH/xquerydoc" stage="never">
-        <os family="unix"/>
-      </executable>
+      <executable targetfile="$INSTALL_PATH/xquerydoc" stage="never"/>
       <executable targetfile="$INSTALL_PATH/xquerydoc.bat" stage="never">
         <os family="windows"/>
       </executable>
