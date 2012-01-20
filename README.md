@@ -150,10 +150,10 @@ https://xquery.github.com/xquerydoc/api
 
 ##Credit, Acknowledgements
 
-Created by John Snelson, James Fuller 
+xquerydoc created by John Snelson, James Fuller 
 
 Thanks to [Darin McBeath](http://xqdoc.org/history.html) for creating
-the original xqDoc, which xquerydoc reuses. xqDoc is released under the
+the original xqDoc, which xquerydoc borrows heavily. xqDoc is released under the
 Apache License, Version 2.0
 
 XQuery parsers were generated from EBNF using Gunther Rademacher's
