@@ -77,8 +77,9 @@ xquerydoc -x xquery dir -o output dir -f format
 ```
 Currently there is two supported formats;
 
-* html
-* raw - generates raw xqdoc
+* html - outputs xquery documentation format
+* xqdoc - outputs original xqdoc xml
+* raw - outputs direct from parser (DOES NOT WORK JUST YET)
 
 soon hope to support other formats (like markdown, text, docbook, etc...).
 
@@ -200,7 +201,7 @@ To see the original underlying xqdoc output from the commandline,
 invoke the following command, setting the -f switch to raw.
 
 ```bash
-xquerydoc -x /some/directory/with/xquery/ -o /desired/output -f raw
+xquerydoc -x /some/directory/with/xquery/ -o /desired/output -f xqdoc
 ```
 *Why a pure XQuery v1.0 implementation ?*
 

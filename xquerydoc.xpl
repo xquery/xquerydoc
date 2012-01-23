@@ -133,7 +133,7 @@
   </p:xquery>
 
 <p:choose>
-<p:when test="$format eq 'raw'">
+<p:when test="$format eq 'xqdoc'">
   <p:store>
     <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.xml')"/>
   </p:store>
