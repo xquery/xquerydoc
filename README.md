@@ -194,6 +194,14 @@ See the License for the specific language governing permissions and
 
 ##FAQ
 
+*How do I output xqdoc from commandline ?*
+
+To see the original underlying xqdoc output from the commandline,
+invoke the following command, setting the -f switch to raw.
+
+```bash
+xquerydoc -x /some/directory/with/xquery/ -o /desired/output -f raw
+```
 *Why a pure XQuery v1.0 implementation ?*
 
 This means you can generate api level documentation using just XQuery
