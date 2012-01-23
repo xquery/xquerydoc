@@ -86,7 +86,7 @@ soon hope to support other formats (like markdown, text, docbook, etc...).
 ##Invoking xquerydoc from XQuery
 
 As xquerydoc is itself written in pure XQuery v1.0  it can be invoked directly
-from your own XQuery applications employing the *xqdoc:xqdoc()* function to extract xqDoc comments.
+from your own XQuery applications employing the *xqdoc:parse()* function to extract xqDoc comments.
 
 You will find the xquerydoc modules under *src/xquery*.
 
@@ -98,7 +98,7 @@ xquery version "1.0" encoding "UTF-8";
 
 import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
 
-xqdoc:xqdoc(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
+xqdoc:parse(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
 ```
 
 Note that we are using SAXON convention with collection to bring in
