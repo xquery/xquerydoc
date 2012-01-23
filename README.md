@@ -75,9 +75,12 @@ well as format of documentation.
 ```bash
 xquerydoc -x xquery dir -o output dir -f format
 ```
-Currently only the HTML format is supported but hoping soon we will be
-able to generate other formats (like markdown, text, docbook, etc...).
+Currently there is two supported formats;
 
+* html
+* raw - generates raw xqdoc
+
+soon hope to support other formats (like markdown, text, docbook, etc...).
 
 ##Invoking xquerydoc from XQuery
 

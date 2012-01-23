@@ -132,6 +132,13 @@
     </p:input>    
   </p:xquery>
 
+<p:choose>
+<p:when test="$format eq 'raw'">
+  <p:store>
+    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.xml')"/>
+  </p:store>
+</p:when>
+<p:otherwise>
   <p:xslt name="transform">
     <p:with-param name="source" select='$source'/>    
     <p:input port="stylesheet">
@@ -141,11 +148,11 @@
       <p:empty/>
     </p:input>    
   </p:xslt>
-
   <p:store>
     <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.html')"/>
   </p:store>
-
+</p:otherwise>
+</p:choose>
   </p:for-each>		
 
   <!-- generate xquerydoc index page //-->
