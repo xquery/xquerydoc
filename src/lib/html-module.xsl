@@ -128,6 +128,8 @@ version="2.0">
     </div>
   </xsl:template>
 
+  <xsl:template match="doc:variable[@private]"/>
+
   <xsl:template match="doc:variable">
     <div id="{ concat('var_', replace(doc:uri, ':', '_')) }">
       <h4><pre class="prettyprint lang-xq"><u>Variable</u>:&#160;$<xsl:value-of select="doc:uri"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></pre></h4>

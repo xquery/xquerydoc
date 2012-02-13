@@ -138,6 +138,20 @@
     <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.xml')"/>
   </p:store>
 </p:when>
+<p:when test="$format eq 'markdown'">
+  <p:xslt name="transform_markdown">
+    <p:with-param name="source" select='$source'/>    
+    <p:input port="stylesheet">
+      <p:document href="src/lib/markdown-module.xsl"/>
+    </p:input>
+    <p:input port="parameters">
+      <p:empty/>
+    </p:input>
+  </p:xslt>
+  <p:store method="text">
+    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.md')"/>
+  </p:store>
+</p:when>
 <p:otherwise>
   <p:xslt name="transform">
     <p:with-param name="source" select='$source'/>    
