@@ -137,6 +137,8 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
     element doc:variables {
       for $v in $module/Prolog/AnnotatedDecl/VarDecl
       return element doc:variable {
+        if($v/../Annotation/(TOKEN|EQName) = ("private","fn:private"))
+        then attribute private { "true" } else (),
         element doc:uri { if($v/VarName) then _localname($v/VarName) else () },
         _type($v/TypeDeclaration/SequenceType),
         _comment($v/..)

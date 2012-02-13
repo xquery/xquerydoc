@@ -38,7 +38,7 @@ version="2.0">
 </xsl:text>
   </xsl:template>
 
-  <xsl:template match="doc:variables[empty(doc:variable)]"/>
+  <xsl:template match="doc:variables[empty(doc:variable[not(@private)])]"/>
 
   <xsl:template match="doc:variables">
     <xsl:text>
@@ -62,7 +62,7 @@ version="2.0">
     <xsl:apply-templates select="doc:comment"/>
   </xsl:template>
 
-  <xsl:template match="doc:functions[empty(doc:function)]"/>
+  <xsl:template match="doc:functions[empty(doc:function[not(@private)])]"/>
 
   <xsl:template match="doc:functions">
     <xsl:text>
