@@ -168,7 +168,7 @@ version="2.0">
     <li>
       <xsl:value-of select="doc:name"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/>
       <xsl:variable name="name" select="string(doc:name)"/>
-      <xsl:for-each select="../../doc:comment/doc:param[starts-with(normalize-space(.), $name)]">
+      <xsl:for-each select="../../doc:comment/doc:param[starts-with(normalize-space(.), $name) or starts-with(normalize-space(.), concat('$',$name))]">
         <xsl:value-of select="substring-after(normalize-space(.), $name)"/>
       </xsl:for-each>
     </li>
@@ -194,18 +194,26 @@ version="2.0">
   </xsl:template>
 
   <xsl:template match="*:h1" mode="custom">
-    <h1><xsl:apply-templates/></h1>
+    <h1><xsl:apply-templates mode="custom"/></h1>
+  </xsl:template>
+
+  <xsl:template match="*:ul" mode="custom">
+    <ul><xsl:apply-templates mode="custom"/></ul>
+  </xsl:template>
+
+  <xsl:template match="*:li" mode="custom">
+    <li><xsl:apply-templates mode="custom"/></li>
   </xsl:template>
 
   <xsl:template match="*:p" mode="custom">
-    <p><xsl:apply-templates/></p>
+    <p><xsl:apply-templates mode="custom"/></p>
   </xsl:template>
 
   <xsl:template match="*:pre" mode="custom">
      <pre class="prettyprint lang-xq"><xsl:value-of select="."/></pre>
   </xsl:template>
 
-  <xsl:template match="doc:author" mode="custom">
+  <xsl:template match="doc:author" mode="custom #default">
     <p>Author: <xsl:value-of select="."/></p>
   </xsl:template>
 
@@ -254,7 +262,7 @@ version="2.0">
 
   <xsl:template match="doc:control"/>
 
-  <xsl:template match="text()">
+  <xsl:template match="text()" mode="custom #default">
     <xsl:value-of select="normalize-space(.)"/>
   </xsl:template>
 

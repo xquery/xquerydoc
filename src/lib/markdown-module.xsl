@@ -100,7 +100,7 @@ version="2.0">
 * </xsl:text>
     <xsl:value-of select="doc:name"/><xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/>
     <xsl:variable name="name" select="string(doc:name)"/>
-    <xsl:for-each select="../../doc:comment/doc:param[starts-with(normalize-space(.), $name)]">
+    <xsl:for-each select="../../doc:comment/doc:param[starts-with(normalize-space(.), $name) or starts-with(normalize-space(.), concat('$',$name))]">
       <xsl:value-of select="doc:escape(substring-after(normalize-space(.), $name))"/>
     </xsl:for-each>
     <xsl:text>
@@ -134,14 +134,24 @@ version="2.0">
 
   <xsl:template match="*:h1" mode="custom">
     <xsl:text>
-# </xsl:text><xsl:apply-templates/>
+# </xsl:text><xsl:apply-templates mode="custom"/>
+  </xsl:template>
+
+  <xsl:template match="*:ul" mode="custom">
+     <xsl:text>
+</xsl:text><xsl:apply-templates mode="custom"/>
+  </xsl:template>
+
+  <xsl:template match="*:li" mode="custom">
+    <xsl:text>
+* </xsl:text><xsl:apply-templates mode="custom"/>
   </xsl:template>
 
   <xsl:template match="*:p" mode="custom">
     <xsl:text>
 
 </xsl:text>
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode="custom"/>
     <xsl:text>
 </xsl:text>
   </xsl:template>
@@ -151,16 +161,14 @@ version="2.0">
     </xsl:text><xsl:value-of select="replace(.,'&#10;','&#10;    ')"/>
   </xsl:template>
 
-  <xsl:template match="doc:author" mode="custom">
+  <xsl:template match="doc:author" mode="custom #default">
     <xsl:text>
-Author: </xsl:text><xsl:value-of select="doc:escape(.)"/><xsl:text>
-</xsl:text>
+Author: </xsl:text><xsl:value-of select="doc:escape(.)"/>
   </xsl:template>
 
   <xsl:template match="doc:version" mode="custom #default">
     <xsl:text>
-Version: </xsl:text><xsl:value-of select="doc:escape(.)"/><xsl:text>
-</xsl:text>
+Version: </xsl:text><xsl:value-of select="doc:escape(.)"/>
   </xsl:template>
 
   <xsl:template match="doc:see" mode="custom">
@@ -204,7 +212,7 @@ Version: </xsl:text><xsl:value-of select="doc:escape(.)"/><xsl:text>
 
   <xsl:template match="doc:control"/>
 
-  <xsl:template match="text()">
+  <xsl:template match="text()" mode="custom #default">
     <xsl:value-of select="doc:escape(.)"/>
   </xsl:template>
 
