@@ -154,6 +154,7 @@ version="2.0">
     <div id="{ concat('func_', replace(doc:name, ':', '_'), '_', @arity) }">
       <h4><pre class="prettyprint lang-xq"><u>Function</u>:&#160;<xsl:value-of select="doc:name"/><xsl:value-of select="doc:signature"/></pre></h4>
       <xsl:apply-templates select="* except (doc:name|doc:signature)"/>
+      <xsl:apply-templates select="doc:comment/doc:error"/>
     </div>
   </xsl:template>
 
@@ -183,6 +184,15 @@ version="2.0">
         <xsl:value-of select="normalize-space(.)"/>
       </xsl:for-each>
     </li></ul>
+  </xsl:template>
+
+  <xsl:template match="doc:error" mode="custom"/>
+
+  <xsl:template match="doc:error">
+    <h5>Errors</h5>
+    <p>
+      <xsl:apply-templates mode="custom"/>
+    </p>
   </xsl:template>
 
   <xsl:template match="doc:comment">

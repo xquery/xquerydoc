@@ -95,6 +95,7 @@ $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-
 ```
 </xsl:text>
     <xsl:apply-templates select="* except (doc:name|doc:signature)"/>
+    <xsl:apply-templates select="doc:comment/doc:error"/>
   </xsl:template>
 
   <xsl:template match="doc:parameters">
@@ -128,6 +129,17 @@ $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-
       <xsl:text>: </xsl:text>
       <xsl:value-of select="doc:escape(normalize-space(.))"/>
     </xsl:for-each>
+    <xsl:text>
+</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="doc:error" mode="custom"/>
+
+  <xsl:template match="doc:error">
+    <xsl:text>
+#### Errors
+</xsl:text>
+    <xsl:apply-templates mode="custom"/>
     <xsl:text>
 </xsl:text>
   </xsl:template>
