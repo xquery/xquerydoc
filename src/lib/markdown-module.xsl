@@ -19,7 +19,16 @@ version="2.0">
   <!-- generate module html //-->
   <xsl:template match="//doc:xqdoc">
     <dummy>
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="doc:module"/>
+    <xsl:text>
+
+## Table of Contents
+</xsl:text>
+    <xsl:apply-templates select="* except doc:module" mode="toc"/>
+    <xsl:text>
+
+</xsl:text>
+    <xsl:apply-templates select="* except doc:module"/>
     <xsl:text>
 
 
@@ -38,7 +47,7 @@ version="2.0">
 </xsl:text>
   </xsl:template>
 
-  <xsl:template match="doc:variables[empty(doc:variable[not(@private)])]"/>
+  <xsl:template match="doc:variables[empty(doc:variable[not(@private)])]" mode="toc #default"/>
 
   <xsl:template match="doc:variables">
     <xsl:text>
@@ -54,15 +63,16 @@ version="2.0">
 
   <xsl:template match="doc:variable">
     <xsl:text>
-### $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text>
+### &lt;a name="</xsl:text><xsl:sequence select="concat('var_', replace(doc:uri, ':', '_'))"/><xsl:text>"/&gt; $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text>
 </xsl:text>
-    <xsl:text>    $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/><xsl:text>
-
+    <xsl:text>```xquery
+$</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/><xsl:text>
+```
 </xsl:text>
     <xsl:apply-templates select="doc:comment"/>
   </xsl:template>
 
-  <xsl:template match="doc:functions[empty(doc:function[not(@private)])]"/>
+  <xsl:template match="doc:functions[empty(doc:function[not(@private)])]" mode="toc #default"/>
 
   <xsl:template match="doc:functions">
     <xsl:text>
@@ -78,10 +88,11 @@ version="2.0">
 
   <xsl:template match="doc:function">
     <xsl:text>
-### </xsl:text><xsl:value-of select="doc:name"/><xsl:text>\#</xsl:text><xsl:value-of select="count(.//doc:parameter)"/><xsl:text>
+### &lt;a name="</xsl:text><xsl:sequence select="concat('func_', replace(doc:name, ':', '_'), '_', @arity)"/><xsl:text>"/&gt; </xsl:text><xsl:value-of select="doc:name"/><xsl:text>\#</xsl:text><xsl:value-of select="count(.//doc:parameter)"/><xsl:text>
 </xsl:text>
-    <xsl:text>    </xsl:text><xsl:value-of select="doc:name"/><xsl:value-of select="replace(doc:signature,'&#10;','&#10;    ')"/><xsl:text>
-
+    <xsl:text>```xquery
+</xsl:text><xsl:value-of select="doc:name"/><xsl:value-of select="doc:signature"/><xsl:text>
+```
 </xsl:text>
     <xsl:apply-templates select="* except (doc:name|doc:signature)"/>
   </xsl:template>
@@ -214,6 +225,31 @@ Version: </xsl:text><xsl:value-of select="doc:escape(.)"/>
 
   <xsl:template match="text()" mode="custom #default">
     <xsl:value-of select="doc:escape(.)"/>
+  </xsl:template>
+
+
+
+  <!-- Table of Contents -->
+
+  <xsl:template match="element()" mode="toc"/>
+
+  <xsl:template match="doc:variables" mode="toc">
+    <xsl:text>
+* Variables: </xsl:text>
+    <xsl:for-each select="doc:variable[not(@private)]">
+      <xsl:if test="position() ne 1"><xsl:text>, </xsl:text></xsl:if>
+      <xsl:text>[$</xsl:text><xsl:value-of select="doc:uri"/><xsl:text>](#</xsl:text><xsl:sequence select="concat('var_', replace(doc:uri, ':', '_'))"/><xsl:text>)</xsl:text>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="doc:functions" mode="toc">
+    <xsl:text>
+* Functions: </xsl:text>
+    <xsl:for-each select="doc:function[not(@private)]">
+      <xsl:if test="position() ne 1"><xsl:text>, </xsl:text></xsl:if>
+      <xsl:text>[</xsl:text><xsl:value-of select="doc:name"/><xsl:text>\#</xsl:text><xsl:value-of select="count(.//doc:parameter)"/>
+      <xsl:text>](#</xsl:text><xsl:sequence select="concat('func_', replace(doc:name, ':', '_'), '_', @arity)"/><xsl:text>)</xsl:text>
+    </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -154,7 +154,7 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
         _comment($f/..),
         element doc:name { if ($f/EQName) then _localname($f/EQName) else () },
         element doc:signature {
-          fn:string-join(("(", $f/ParamList/fn:string(), ")",
+          fn:string-join(("(", $f/ParamList/fn:string(), "&#10;)",
             if($f/SequenceType) then (" as ", $f/SequenceType/fn:string()) else ()
             ), "")
         },
