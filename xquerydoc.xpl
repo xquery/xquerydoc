@@ -104,6 +104,8 @@
   <p:for-each name="iterate">
     <p:iteration-source select="//file"/>
 
+    <p:variable name="format" select="$format"/>
+
     <p:variable name="filename" select="file/@name"/>
     <p:variable name="base" select="file/@base"/>
     <p:variable name="base1" select="file/@base1"/>
@@ -120,19 +122,30 @@
         <query>
           xquery version "1.0" encoding "UTF-8";
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "src/xquery/xquerydoc.xq";
+          import module namespace xqp="XQueryML30" at "src/xquery/parsers/XQueryML30.xq";
 
+          declare variable $format as xs:string external;
           declare variable $source as xs:string external;
 
-          xqdoc:parse($source)
+          if($format eq 'raw') then
+             xqp:parse-XQuery($source)
+          else
+             xqdoc:parse($source)
         </query>
       </p:inline>
     </p:input>
     <p:input port="parameters">
-      <p:empty/>
-    </p:input>    
+      <p:pipe step="vars" port="result"/>
+    </p:input>   
   </p:xquery>
 
 <p:choose>
+<p:when test="$format eq 'raw'">
+  <p:store>
+    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'_raw.xml')"/>
+  </p:store>
+</p:when>
+
 <p:when test="$format eq 'xqdoc'">
   <p:store>
     <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.xml')"/>
