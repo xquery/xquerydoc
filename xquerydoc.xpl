@@ -19,7 +19,7 @@
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic" 
     xmlns:cx="http://xmlcalabash.com/ns/extensions"
-    name="xquerydoc-process"
+    name="xquerydoc"
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
