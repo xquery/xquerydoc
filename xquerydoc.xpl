@@ -15,11 +15,13 @@
   limitations under the License.
 //-->
 <p:declare-step 
+    xmlns:xqd="http://github.com/xquery/xquerydoc"
     xmlns:c="http://www.w3.org/ns/xproc-step"
     xmlns:p="http://www.w3.org/ns/xproc"
     xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic" 
     xmlns:cx="http://xmlcalabash.com/ns/extensions"
     name="xquerydoc"
+    type="xqd:xquerydoc"
     version="1.0"
     exclude-inline-prefixes="c ml p">
 
