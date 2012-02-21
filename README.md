@@ -215,26 +215,39 @@ See the License for the specific language governing permissions and
 
 ##FAQ
 
-*How do I output xqdoc from commandline ?*
+*How do I output xqdoc markup from commandline ?*
 
 To see the original underlying xqdoc output from the commandline,
-invoke the following command, setting the -f switch to raw.
+invoke the following command, setting the -f switch to xqdoc.
 
 ```bash
 xquerydoc -x /some/directory/with/xquery/ -o /desired/output -f xqdoc
 ```
+
+*How do I output raw parser output from commandline ?*
+
+The output from the parser can be generated using the raw format
+
+```bash
+xquerydoc -x /some/directory/with/xquery/ -o /desired/output -f raw
+```
+
 *Why a pure XQuery v1.0 implementation ?*
 
 This means you can generate api level documentation using just XQuery
 ! Need we say more ?
 
-*Why use XML Calabash XProc ?*
+*Why use XML Calabash XProc and Java ?*
 
 As we are applying an XQuery process and an XSLT process on a set of
 xquery documents it seemed like a good match for the commandline
 invokation. You can of course use the XQuery v1.0 libraries without
 XProc but you will need to apply XSLT stylesheets using your own
 processors capabilities.
+
+Using XProc means we use Java, which has good cross platform
+characteristics effectively requiring us to maintain a single version
+of the commandline.
 
 *xquerydoc does not seem to parse correctly !*
 
