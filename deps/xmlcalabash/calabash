@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # added by JF 13/1/2012 to be invoked by xquerydoc
 SOURCE="${BASH_SOURCE[0]}"

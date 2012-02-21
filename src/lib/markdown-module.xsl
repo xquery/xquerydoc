@@ -109,8 +109,11 @@ $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-
 
   <xsl:template match="doc:parameter">
     <xsl:text>
-* </xsl:text>
-    <xsl:value-of select="doc:name"/><xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/>
+* $</xsl:text>
+    <xsl:value-of select="doc:name"/>
+    <xsl:if test="doc:type">
+      <xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/>
+    </xsl:if>
     <xsl:variable name="name" select="string(doc:name)"/>
     <xsl:for-each select="../../doc:comment/doc:param[starts-with(normalize-space(.), $name) or starts-with(normalize-space(.), concat('$',$name))]">
       <xsl:value-of select="doc:escape(substring-after(normalize-space(.), $name))"/>
@@ -182,6 +185,15 @@ $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-
   <xsl:template match="*:pre" mode="custom">
     <xsl:text>
     </xsl:text><xsl:value-of select="replace(.,'&#10;','&#10;    ')"/>
+  </xsl:template>
+
+  <xsl:template match="*:code" mode="custom">
+    <xsl:text>
+
+```xquery
+</xsl:text><xsl:value-of select="."/><xsl:text>
+```
+</xsl:text>
   </xsl:template>
 
   <xsl:template match="doc:author" mode="custom #default">
