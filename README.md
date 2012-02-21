@@ -159,7 +159,7 @@ Yup we eat our own dog chow, view API docs here.
 
 ##Credit, Acknowledgements
 
-xquerydoc created by John Snelson, James Fuller 
+xquerydoc created by Jim Fuller, John Snelson
 
 Thanks to [Darin McBeath](http://xqdoc.org/history.html) for creating
 the original xqDoc, which xquerydoc borrows heavily. xqDoc is released under the
