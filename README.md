@@ -18,7 +18,7 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ## For the impatient
 
-1. download the [installer](https://github.com/xquery/xquerydoc/downloads),
+I. download the [installer](https://github.com/xquery/xquerydoc/downloads),
 unzip, click and follow GUI installer instructions or run the
 following one liner.
 
@@ -26,9 +26,9 @@ following one liner.
 curl https://github.com/downloads/xquery/xquerydoc/xquerydoc-0.1.jar | sh
 ```
 
-2. change directory to your applications directory which contains xquery
+II. change directory to your applications directory which contains xquery
 
-3. invoke xquerydoc to generate api docs ```xquerydoc```
+III. invoke xquerydoc to generate api docs ```xquerydoc```
 
 
 ## Dependencies
