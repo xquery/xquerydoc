@@ -156,7 +156,7 @@ dynamic  real-time viewing.
 </doc:xqdoc>
 ```
 
-It iss then relatively easy to  take this XML and style it using
+It is  relatively easy to take this XML and style it using
 provided XSLT stylesheets provided for under *src/lib*. 
 
 ### Integration
