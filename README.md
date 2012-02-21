@@ -20,27 +20,14 @@ is still undergoing development.
 * recursive directory processing
 * Invoke from commandline or from within your own XQuery applications
 
-##Install (Windows)
+## For the impatient
 
-windows support coming soon!
+1. download the [installer](https://github.com/xquery/xquerydoc/downloads),
+unzip, click and follow GUI installer instructions.
 
-##Install (Mac/Unix/Linux)
+2. change directory to your applications directory which contains xquery
 
-Download the xquerydoc installer from 
-
-https://github.com/xquery/xquerydoc/downloads
-
-Double click the installation package or run 
-
-```bash
-java -jar xquerydoc-0.1.jar
-```
-
-and it should start a step by step graphical installation.
-
-Alternatively you could can always clone a copy from github
-
-https://github.com/xquery/xquerydoc
+4. invoke xquerydoc to generate api docs ```xquerydoc```
 
 
 ## Dependencies
@@ -50,11 +37,36 @@ To run the commandline version you will need Java 1.5 or higher installed
 xquerydoc ships with Norman Walsh's [XML Calabash](http://xmlcalabash.com/), an XProc processor
 implemented in Java and runs xquerydoc via xproc xquerydoc step.
 
-Note that Java and XProc processor is not required as you can run
-xquerydoc directly from XQuery itself (see 'invoking xquerydoc from XQuery')
+Note that Java and XProc processor is not required as you could always run
+xquerydoc directly from XQuery itself (see below).
 
 
-##Commandline Usage
+## Installation
+
+### Windows
+
+windows support coming soon!
+
+### Mac/Unix/Linux
+
+Download the xquerydoc installer from https://github.com/xquery/xquerydoc/downloads
+
+Double click the installation package or run 
+
+```bash
+java -jar xquerydoc-0.1.jar
+```
+
+which will start a step by step graphical installation.
+
+Alternatively you could always clone a copy from github
+
+https://github.com/xquery/xquerydoc
+
+
+## Usage
+
+### Commandline
 
 The *xquerydoc* script can be invoked from the commandline. To get
 started using xquerydoc just execute it with no options in a directory
@@ -75,23 +87,23 @@ well as format of documentation.
 ```bash
 xquerydoc -x xquery dir -o output dir -f format
 ```
-Currently there are four supported formats;
 
-* html - outputs xquery documentation format
-* xqdoc - outputs original xqdoc xml
-* markdown - outputs markdown format
-* raw - outputs direct from parser
+There are four supported formats;
 
-soon hope to support other formats (like xslfo, text, docbook, etc...).
+* *html* - outputs xquery documentation format
+* *xqdoc* - outputs original xqdoc xml
+* *markdown* - outputs markdown format
+* *raw* - outputs direct from parser
 
-##Invoking xquerydoc from XQuery
+we soon hope to support other formats (like xslfo, text, docbook, etc...).
 
-As xquerydoc is itself written in pure XQuery v1.0  it can be invoked directly
-from your own XQuery applications employing the *xqdoc:parse()* function to extract xqDoc comments.
+### Invoking xquerydoc from XQuery
 
-You will find the xquerydoc modules under *src/xquery*.
+As xquerydoc is itself written in pure XQuery v1.0 you may invoke it
+directly from xquery itself. You will find the xquerydoc modules under *src/xquery*.
 
-The following example illustrates how to do this.
+The following example illustrates how to do this, using saxon XQuery
+processor.
 
 ####XQuery v1.0 Example (Saxon)
 ```xquery
@@ -103,10 +115,10 @@ xqp:parse-XQuery(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes'))
 
 ```
 
-Note that we are using SAXON convention with collection to bring in
-unparsed xquery file.
+Note that we are using the SAXON convention with fn:collection to
+bring in an unparsed xquery file.
 
-This function will emit xqdoc markup (akin to
+This function invoke will emit xqdoc markup (akin to
 [xqueryx](http://www.w3.org/TR/xqueryx/)), like the following listing. 
 ## xqDoc Markup
 
@@ -144,8 +156,10 @@ dynamic  real-time viewing.
 </doc:xqdoc>
 ```
 
-Its then relatively easy to then take this XML and style it using provided
-XSLT stylesheets provided for under *src/lib*. 
+It iss then relatively easy to  take this XML and style it using
+provided XSLT stylesheets provided for under *src/lib*. 
+
+### Integration
 
 Read more about how to integrate xquerydoc using [xquery](https://github.com/xquery/xquerydoc/wiki/Invoke-xquerydoc-from-XQuery) or [XProc](https://github.com/xquery/xquerydoc/wiki/Invoke-xquerydoc-from-XProc).
 
@@ -156,6 +170,8 @@ Yup we eat our own dog chow, view API docs here.
 * [html format docs](https://xquery.github.com/xquerydoc/api)
 * [markdown format docs](https://github.com/xquery/xquerydoc/tree/master/xqdoc)
 
+Note that we do not include documentation for the parser xquery files
+as they are frankly *HUGE*.
 
 ##Credit, Acknowledgements
 
@@ -236,15 +252,5 @@ https://github.com/xquery/xquerydoc/issues
 
 https://github.com/xquery/xquerydoc
 
-
-## Status
-
-* provide XProc xquerydoc step
-* provide Ant macrodef
-* test windows script
-* create markdown output format
-* create docbook output format
-* create text output format
-* enhance output
 
 
