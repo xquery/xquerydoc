@@ -76,6 +76,11 @@ xquerydoc will recursively search through for .xq, .xqy, .xqm and .xql
 files and will generate html documentation placing the results in a default directory
 named *xqdocs*. Your XQuery most follow xqDoc [coding conventions](https://github.com/xquery/xquerydoc/wiki/xqDoc-comment-style-example).
 
+Note many people try to run xquerydoc on xquerydoc ... which is good
+but realise that there are some *HUGE* parser files written in xquery
+which will take a long time to generate docs for; suggest you test on
+your own xquery.
+
 Alternately you can supply xquerydoc with options, to specify the
 directory containing XQuery, where you want to output documentation as
 well as format of documentation.
