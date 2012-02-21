@@ -101,7 +101,7 @@ we soon hope to support other formats (like xslfo, text, docbook, etc...).
 ### Invoking xquerydoc from XQuery
 
 As xquerydoc is itself written in pure XQuery v1.0 you may invoke it
-directly from xquery itself. You will find the xquerydoc modules under *src/xquery*.
+directly from xquery. You will find the xquerydoc modules under *src/xquery*.
 
 The following example illustrates how to do this, using saxon XQuery
 processor.
