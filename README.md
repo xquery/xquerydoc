@@ -109,7 +109,7 @@ processor.
 ```xquery
 xquery version "1.0" encoding "UTF-8";
 
-import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
+import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "src/xquery/xquerydoc.xq";
 
 xqp:parse-XQuery(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
 
