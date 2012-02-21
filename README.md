@@ -77,7 +77,7 @@ xquerydoc
 ```
 
 xquerydoc will recursively search through for .xq, .xqy, .xqm and .xql
-files and will generate documentation placing in a default directory
+files and will generate html documentation placing the results in a default directory
 named *xqdocs*. Your XQuery most follow xqDoc [coding conventions](https://github.com/xquery/xquerydoc/wiki/xqDoc-comment-style-example).
 
 Alternately you can supply xquerydoc with options, to specify the
