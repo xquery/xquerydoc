@@ -80,7 +80,7 @@ Currently there is two supported formats;
 * html - outputs xquery documentation format
 * xqdoc - outputs original xqdoc xml
 * markdown - outputs markdown format
-* raw - outputs direct from parser (DOES NOT WORK JUST YET)
+* raw - outputs direct from parser
 
 soon hope to support other formats (like markdown, text, docbook, etc...).
 
