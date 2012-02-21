@@ -147,50 +147,14 @@ dynamic  real-time viewing.
 Its then relatively easy to then take this XML and style it using provided
 XSLT stylesheets provided for under *src/lib*. 
 
-## Invoking xquerydoc from XProc
-
-```
-<p:declare-step 
-    xmlns:c="http://www.w3.org/ns/xproc-step"
-    xmlns:p="http://www.w3.org/ns/xproc"
-    xmlns:ml="http://xmlcalabash.com/ns/extensions/marklogic" 
-    xmlns:cx="http://xmlcalabash.com/ns/extensions"
-    name="xquerydoc"
-    version="1.0"
-    exclude-inline-prefixes="c ml p">
-
-  <p:documentation>generates documentation of a single xquery module</p:documentation>
-  
-  <!-- config file is main import //-->
-  <p:input port="source"/>
-
-  <!-- generate xml output which is transformed by report.xpl //-->
-  <p:output port="result"/>
-
-  <!-- path of xquery document //-->
-  <p:option name="xquery" required="true"/>  
-
-  <!-- path of current dir  //-->
-  <p:option name="currentdir" required="true"/>  
-
-  <!-- path of current dir  //-->
-  <p:option name="output" required="true"/>  
-  
-  <!-- desired output format  //-->
-  <p:option name="format" required="true"/>  
-
-  <xqdoc:xquerydoc>
-  </xqdoc:xquerydoc>
-
-</p:declare-step>
-
-```
+Read more about how to integrate xquerydoc using [xquery](https://github.com/xquery/xquerydoc/wiki/Invoke-xquerydoc-from-XQuery) or [XProc](https://github.com/xquery/xquerydoc/wiki/Invoke-xquerydoc-from-XProc).
 
 ## API Docs
 
 Yup we eat our own dog chow, view API docs here.
 
-https://xquery.github.com/xquerydoc/api
+* [html format docs](https://xquery.github.com/xquerydoc/api)
+* [markdownd format docs(https://github.com/xquery/xquerydoc/tree/master/xqdoc)]
 
 
 ##Credit, Acknowledgements
