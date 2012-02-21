@@ -77,7 +77,7 @@ files and will generate html documentation placing the results in a default dire
 named *xqdocs*. Your XQuery most follow xqDoc [coding conventions](https://github.com/xquery/xquerydoc/wiki/xqDoc-comment-style-example).
 
 Note many people try to run xquerydoc on xquerydoc ... which is good
-but realise that there are some *HUGE* parser files written in xquery
+but realise that there are some _HUGE_ parser files written in xquery
 which will take a long time to generate docs for; suggest you test on
 your own xquery source code.
 
