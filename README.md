@@ -28,7 +28,7 @@ curl https://github.com/downloads/xquery/xquerydoc/xquerydoc-0.1.jar | sh
 
 2. change directory to your applications directory which contains xquery
 
-4. invoke xquerydoc to generate api docs ```xquerydoc```
+3. invoke xquerydoc to generate api docs ```xquerydoc```
 
 
 ## Dependencies
