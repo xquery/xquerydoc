@@ -120,7 +120,6 @@ bring in an unparsed xquery file.
 
 This function invoke will emit xqdoc markup (akin to
 [xqueryx](http://www.w3.org/TR/xqueryx/)), like the following listing. 
-## xqDoc Markup
 
 ```xml
 <doc:xqdoc xmlns:doc="http://www.xqdoc.org/1.0">
