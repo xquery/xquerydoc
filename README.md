@@ -16,7 +16,7 @@ is still undergoing development.
 * parsing of XQuery 1.0, XQuery 3.0 and other variants (MarkLogic)
 * pure XQuery parsing of xqdoc comments
 * generation of simple, customizable documentation
-* support for html, markdown output formats
+* support for html, markdown, raw output formats
 * recursive directory processing
 * Invoke from commandline or from within your own XQuery applications
 
@@ -75,14 +75,14 @@ well as format of documentation.
 ```bash
 xquerydoc -x xquery dir -o output dir -f format
 ```
-Currently there is two supported formats;
+Currently there are four supported formats;
 
 * html - outputs xquery documentation format
 * xqdoc - outputs original xqdoc xml
 * markdown - outputs markdown format
 * raw - outputs direct from parser
 
-soon hope to support other formats (like markdown, text, docbook, etc...).
+soon hope to support other formats (like xslfo, text, docbook, etc...).
 
 ##Invoking xquerydoc from XQuery
 
@@ -99,7 +99,8 @@ xquery version "1.0" encoding "UTF-8";
 
 import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
 
-xqdoc:parse(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
+xqp:parse-XQuery(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
+
 ```
 
 Note that we are using SAXON convention with collection to bring in
