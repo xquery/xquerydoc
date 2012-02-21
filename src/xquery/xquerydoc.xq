@@ -16,7 +16,20 @@ xquery version "1.0" encoding "UTF-8";
 
 (:~ 
  :  This library module controls the parsing of XQuery xqdoc comments
- : 
+ :  using the xquerydoc xquery library
+ :
+ :
+ :  the following code snippet illustrates how to invoke processing to genereate xqdoc
+ :
+ :  xquery version "1.0" encoding "UTF-8";
+ :
+ :  import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xque rydoc.xq";
+ :
+ :  xqp:parse-XQuery(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
+ :
+ :  you would then transform the resultant xqdoc xml with one of the supplied stylesheets in src/lib
+ :  directory
+ :
  :  @author Jim Fuller, John Snelson
  :  @since Sept 18, 2011
  :  @version 0.1
@@ -188,6 +201,6 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
  : 
  : @returns element(html:html)
  :)
-declare function generate-docs($type,$xqdoc ){
+declare function generate-docs($format,$xqdoc ){
   util:generate-html-module($xqdoc)
 };
