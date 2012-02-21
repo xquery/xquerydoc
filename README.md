@@ -166,7 +166,7 @@ Read more about how to integrate xquerydoc using [xquery](https://github.com/xqu
 
 Yup we eat our own dog chow, view API docs here.
 
-* [html format docs](https://xquery.github.com/xquerydoc/api)
+* html format docs (NOTE-rearranging docs)
 * [markdown format docs](https://github.com/xquery/xquerydoc/tree/master/xqdoc)
 
 Note that we do not include documentation for the parser xquery files
