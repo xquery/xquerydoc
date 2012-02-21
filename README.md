@@ -7,10 +7,6 @@ The xquerydoc commandline uses [XML Calabash](http://xmlcalabash.com) (which shi
 as xquerydoc is implemented in pure XQuery v1.0 you may also invoke
 from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
-To see an example view [xprocxq
-docs](http://xquery.github.com/xprocxq/api/) which is a project that
-is still undergoing development.
-
 ## Features
 
 * parsing of XQuery 1.0, XQuery 3.0 and other variants (MarkLogic)
