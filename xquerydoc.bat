@@ -1,5 +1,6 @@
 echo off
-set CURRENTDIR=D:\test\xquerydoc-0.1
+
+Set CURRENTDIR=%CD%
 
 set XQUERY=%CURRENTDIR%\src\xquery
 set OUTPUT=%CURRENTDIR%\xqdoc
