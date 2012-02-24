@@ -2,7 +2,7 @@ echo off
 
 Set CURRENTDIR=%CD%
 
-set XQUERY=%CURRENTDIR%\src\xquery
+set XQUERY=%CURRENTDIR%
 set OUTPUT=%CURRENTDIR%\xqdoc
 set FORMAT=html
 
