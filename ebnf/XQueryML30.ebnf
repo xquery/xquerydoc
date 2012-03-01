@@ -479,7 +479,8 @@ TypedFunctionTest
          ::= 'function' '(' ( SequenceType ( ',' SequenceType )* )? ')' 'as' SequenceType
 ParenthesizedItemType
          ::= '(' ItemType ')'
-EQName   ::= FunctionName
+EQName   ::= QName | URIQualifiedName
+QName   ::= FunctionQName
            | 'attribute'
            | 'binary'
            | 'comment'
@@ -497,8 +498,9 @@ EQName   ::= FunctionName
            | 'switch'
            | 'text'
            | 'typeswitch'
-FunctionName
-         ::= EQName^Token
+FunctionName ::= FunctionQName | URIQualifiedName
+FunctionQName
+         ::= QName^Token
            | 'ancestor'
            | 'ancestor-or-self'
            | 'and'
@@ -630,8 +632,6 @@ Wildcard ::= '*'
            | '*' ':' NCName
            | URILiteral ':' '*'
           /* ws: explicit */
-EQName   ::= QName
-           | URIQualifiedName
 URIQualifiedName
          ::= URILiteral ':' NCName
           /* ws: explicit */
@@ -713,7 +713,7 @@ CommentContents
          ::= ( ( [^(:] | '('+ [^(:] | ':'+ [^:)] )+ | '(' ) '('* & '('
            | ( ( [^(:] | '('+ [^(:] | ':'+ [^:)] )+ | ':' ) ':'* & ':'
 '*'       << Wildcard '*'^OccurrenceIndicator
-EQName^Token
+QName^Token
           << 'private' 'ancestor' 'ancestor-or-self' 'and' 'ascending' 'attribute' 'binary' 'catch' 'case' 'cast' 'castable' 'child' 'collation' 'comment' 'count' 'declare' 'default' 'descendant' 'descendant-or-self' 'descending' 'div' 'document' 'document-node' 'element' 'else' 'empty' 'empty-sequence' 'end' 'eq' 'every' 'except' 'following' 'following-sibling' 'for' 'function' 'ge' 'group' 'gt' 'idiv' 'if' 'import' 'instance' 'intersect' 'is' 'item' 'le' 'let' 'lt' 'mod' 'module' 'namespace' 'namespace-node' 'ne' 'node' 'only' 'or' 'order' 'ordered' 'parent' 'preceding' 'preceding-sibling' 'processing-instruction' 'property' 'return' 'satisfies' 'schema-attribute' 'schema-element' 'self' 'some' 'stable' 'start' 'switch' 'text' 'to' 'treat' 'try' 'typeswitch' 'union' 'unordered' 'validate' 'where' 'xquery'
 NCName^Token
           << 'try' 'and' 'ascending' 'case' 'cast' 'castable' 'collation' 'count' 'default' 'descending' 'div' 'else' 'empty' 'end' 'eq' 'except' 'for' 'ge' 'group' 'gt' 'idiv' 'instance' 'intersect' 'is' 'le' 'let' 'lt' 'mod' 'ne' 'only' 'or' 'order' 'return' 'satisfies' 'stable' 'start' 'to' 'treat' 'union' 'where'

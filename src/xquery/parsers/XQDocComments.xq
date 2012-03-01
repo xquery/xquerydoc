@@ -1,13 +1,12 @@
 xquery version "1.0" encoding "UTF-8";
 
-(: This file was generated on Sat Dec  3, 2011 15:09 by REx v5.10 which is Copyright (c) 1979-2011 by Gunther Rademacher <grd@gmx.net> :)
+(: This file was generated on Thu Mar 1, 2012 23:43 (UTC+01) by REx v5.14 which is Copyright (c) 1979-2012 by Gunther Rademacher <grd@gmx.net> :)
 (: REx command line: XQDocComments.ebnf -xquery -tree :)
 
 (:~
  : The parser that was generated for the XQDocComments grammar.
  :)
 module namespace p="XQDocComments";
-
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 (:~
@@ -372,10 +371,10 @@ declare function p:shift($code as xs:integer, $input as xs:string, $state as ite
     $state
   else if ($state[$p:l1] = $code) then
   (
-    $state[position() >= $p:l1 and position() <= $p:e1],
+    subsequence($state, $p:l1, $p:e1 - $p:l1 + 1),
     0,
     $state[$p:e1],
-    $state[position() >= $p:e1],
+    subsequence($state, $p:e1),
     if ($state[$p:e0] != $state[$p:b1]) then
       text {substring($input, $state[$p:e0], $state[$p:b1] - $state[$p:e0])}
     else
@@ -384,13 +383,13 @@ declare function p:shift($code as xs:integer, $input as xs:string, $state as ite
     let $content := substring($input, $state[$p:b1], $state[$p:e1] - $state[$p:b1])
     return
       if (starts-with($name, "'")) then
-		    element TOKEN {$content}
-	    else
-	      element {$name} {$content}
+        element TOKEN {$content}
+      else
+        element {$name} {$content}
   )
   else
   (
-    $state[position() < $p:error],
+    subsequence($state, 1, $p:error - 1),
     element error
     {
       attribute b {$state[$p:b1]},
@@ -400,7 +399,7 @@ declare function p:shift($code as xs:integer, $input as xs:string, $state as ite
       else
         (attribute o {$state[$p:l1]}, attribute x {$code})
     },
-    $state[position() > $p:error]
+    subsequence($state, $p:error + 1)
   )
 };
 
@@ -421,9 +420,9 @@ declare function p:lookahead1($set as xs:integer, $input as xs:string, $state as
     return
     (
       $match[1],
-      $state[position() > $p:lk and position() < $p:l1],
+      subsequence($state, $p:lk + 1, $p:l1 - $p:lk - 1),
       $match,
-      $state[position() > $p:e1]
+      subsequence($state, $p:e1 + 1)
     )
 };
 
@@ -438,10 +437,10 @@ declare function p:lookahead1($set as xs:integer, $input as xs:string, $state as
  :)
 declare function p:reduce($state as item()+, $name as xs:string, $count as xs:integer) as item()+
 {
-  $state[position() <= $count],
+  subsequence($state, 1, $count),
   element {$name}
   {
-    $state[position() > $count]
+    subsequence($state, $count + 1)
   }
 };
 
@@ -886,7 +885,7 @@ declare function p:parse-Comments($s as xs:string) as item()*
     if ($error) then
       element ERROR {$error/@*, p:error-message($s, $error)}
     else
-      $state[position() >= $p:result]
+      subsequence($state, $p:result)
 };
 
 (: End :)
