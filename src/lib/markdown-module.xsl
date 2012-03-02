@@ -63,10 +63,10 @@ version="2.0">
 
   <xsl:template match="doc:variable">
     <xsl:text>
-### &lt;a name="</xsl:text><xsl:sequence select="concat('var_', replace(doc:uri, ':', '_'))"/><xsl:text>"/&gt; $</xsl:text><xsl:value-of select="doc:uri"/><xsl:text>
+### &lt;a name="</xsl:text><xsl:sequence select="concat('var_', replace(doc:name, ':', '_'))"/><xsl:text>"/&gt; $</xsl:text><xsl:value-of select="doc:name"/><xsl:text>
 </xsl:text>
     <xsl:text>```xquery
-$</xsl:text><xsl:value-of select="doc:uri"/><xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/><xsl:text>
+$</xsl:text><xsl:value-of select="doc:name"/><xsl:text> as </xsl:text><xsl:value-of select="doc:escape(doc:type)"/><xsl:value-of select="doc:escape(doc:type/@occurrence)"/><xsl:text>
 ```
 </xsl:text>
     <xsl:apply-templates select="doc:comment"/>
@@ -262,7 +262,7 @@ Version: </xsl:text><xsl:value-of select="doc:escape(.)"/>
 * Variables: </xsl:text>
     <xsl:for-each select="doc:variable[not(@private)]">
       <xsl:if test="position() ne 1"><xsl:text>, </xsl:text></xsl:if>
-      <xsl:text>[$</xsl:text><xsl:value-of select="doc:uri"/><xsl:text>](#</xsl:text><xsl:sequence select="concat('var_', replace(doc:uri, ':', '_'))"/><xsl:text>)</xsl:text>
+      <xsl:text>[$</xsl:text><xsl:value-of select="doc:name"/><xsl:text>](#</xsl:text><xsl:sequence select="concat('var_', replace(doc:name, ':', '_'))"/><xsl:text>)</xsl:text>
     </xsl:for-each>
   </xsl:template>
 

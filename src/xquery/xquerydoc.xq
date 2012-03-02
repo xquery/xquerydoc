@@ -23,7 +23,7 @@ xquery version "1.0" encoding "UTF-8";
  :
  :  xquery version "1.0" encoding "UTF-8";
  :
- :  import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xque rydoc.xq";
+ :  import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "/xquery/xquerydoc.xq";
  :
  :  xqp:parse-XQuery(fn:collection('/some/xquery/?select=file.xqy;unparsed=yes')) 
  :
@@ -39,22 +39,15 @@ module namespace xqd="http://github.com/xquery/xquerydoc";
 declare default function namespace "http://github.com/xquery/xquerydoc";
 declare namespace doc="http://www.xqdoc.org/1.0";
 
-import module namespace xqp="XQueryML30" at "parsers/XQueryML30.xq";
+import module namespace xqp="http://github.com/jpcs/xqueryparser.xq" at "parsers/xqueryparser.xq";
 import module namespace xqdc="XQDocComments" at "parsers/XQDocComments.xq";
 import module namespace util="http://github.com/xquery/xquerydoc/utils" at "utils.xq";
 
-(:~ 
- :  private function trimming string literals
- :)
-declare (: private :) function _trimStringLiteral($literal as xs:string) as xs:string
+declare (: private :) function _name($qname as element())
 {
-  fn:substring($literal, 2, fn:string-length($literal) - 2)
-};
-
-declare (: private :) function _localname($qname as xs:string) as xs:string
-{
-  let $localname := fn:substring-after($qname, ":")
-  return if($localname = "") then $qname else $localname
+  element doc:name {
+    $qname/@*, fn:normalize-space($qname)
+  }
 };
 
 declare (: private :) function _type($t as element(SequenceType)?)
@@ -63,8 +56,15 @@ declare (: private :) function _type($t as element(SequenceType)?)
   element doc:type {
     if($t/OccurrenceIndicator) then
       attribute occurrence { $t/OccurrenceIndicator/TOKEN/fn:string() } else (),
-    if($t/ItemType) then $t/ItemType/fn:string() else $t/fn:string()
+    $t/(node() except OccurrenceIndicator)/descendant-or-self::text()
   }
+};
+
+declare (: private :) function _private($annotations as element()*)
+{
+  let $names := $annotations/(URIQualifiedName|QName)
+  where $names[@uri = "http://www.w3.org/2005/xpath-functions"][@localname = "private"]
+  return attribute private { "true" }
 };
 
 declare (: private :) function _commentContents($e)
@@ -128,7 +128,7 @@ declare function parse($module as xs:string) as element(doc:xqdoc)
  :)
 declare function parse($module as xs:string, $mode as xs:string) as element(doc:xqdoc)
 {
-  let $markup := xqp:parse-XQuery($module)
+  let $markup := xqp:parse($module)
   let $module := $markup/Module/(MainModuleSequence/MainModule | LibraryModule)
   return element doc:xqdoc {
 
@@ -140,7 +140,7 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
 
     element doc:module {
       attribute type { if($module/self::MainModule) then "main" else "library" },
-      element doc:uri { if($module/ModuleDecl/URILiteral) then _trimStringLiteral($module/ModuleDecl/URILiteral) else () },
+      element doc:uri { $module/ModuleDecl/URILiteral/@value/fn:string() },
       if($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) else ()
       (: TBD name and body - jpcs :)
     },
@@ -150,9 +150,8 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
     element doc:variables {
       for $v in $module/Prolog/AnnotatedDecl/VarDecl
       return element doc:variable {
-        if($v/../Annotation/(TOKEN|EQName) = ("private","fn:private"))
-        then attribute private { "true" } else (),
-        element doc:uri { if($v/VarName) then _localname($v/VarName) else () },
+        _private($v/../Annotation),
+        _name($v/VarName/(URIQualifiedName|QName)),
         _type($v/TypeDeclaration/SequenceType),
         _comment($v/..)
       }
@@ -161,11 +160,10 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
     element doc:functions {
       for $f in $module/Prolog/AnnotatedDecl/FunctionDecl
       return element doc:function {
-        if($f/../Annotation/(TOKEN|EQName) = ("private","fn:private"))
-        then attribute private { "true" } else (),
         attribute arity { fn:count($f/ParamList/Param) },
+        _private($f/../Annotation),
         _comment($f/..),
-        element doc:name { if ($f/EQName) then _localname($f/EQName) else () },
+        _name($f/(URIQualifiedName|QName)),
         element doc:signature {
           fn:string-join(("(", $f/ParamList/fn:string(), "&#10;)",
             if($f/SequenceType) then (" as ", $f/SequenceType/fn:string()) else ()
@@ -174,7 +172,7 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
         if($f/ParamList) then element doc:parameters {
           for $p in $f/ParamList/Param
           return element doc:parameter {
-            element doc:name { if($p/EQName) then _localname($p/EQName) else () },
+            _name($p/(URIQualifiedName|QName)),
             _type($p/TypeDeclaration/SequenceType)
           }
         } else (),

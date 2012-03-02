@@ -131,8 +131,8 @@ version="2.0">
   <xsl:template match="doc:variable[@private]"/>
 
   <xsl:template match="doc:variable">
-    <div id="{ concat('var_', replace(doc:uri, ':', '_')) }">
-      <h4><pre class="prettyprint lang-xq"><u>Variable</u>:&#160;$<xsl:value-of select="doc:uri"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></pre></h4>
+    <div id="{ concat('var_', replace(doc:name, ':', '_')) }">
+      <h4><pre class="prettyprint lang-xq"><u>Variable</u>:&#160;$<xsl:value-of select="doc:name"/> as <xsl:value-of select="doc:type"/><xsl:value-of select="doc:type/@occurrence"/></pre></h4>
       <xsl:apply-templates select="doc:comment"/>
     </div>
   </xsl:template>

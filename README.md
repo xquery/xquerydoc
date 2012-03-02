@@ -186,6 +186,9 @@ Thanks to [Darin McBeath](http://xqdoc.org/history.html) for creating
 the original xqDoc, which xquerydoc borrows heavily. xqDoc is released under the
 Apache License, Version 2.0
 
+The [XQuery parser](https://github.com/jpcs/xqueryparser.xq) itself is now a
+separate library under Apache License, Version 2.
+
 XQuery parsers were generated from EBNF using Gunther Rademacher's
 excellent http://www.bottlecaps.de/rex/
 
