@@ -99,7 +99,7 @@ There are four supported formats;
 * *html* - outputs xquery documentation format
 * *xqdoc* - outputs original xqdoc xml
 * *markdown* - outputs markdown format
-* *raw* - outputs direct from parser
+* *raw* - outputs direct from parser, though you could opt to (download xqueryparser.xq)[https://github.com/jpcs/xqueryparser.xq]
 
 we soon hope to support other formats (like xslfo, text, docbook, etc...).
 
