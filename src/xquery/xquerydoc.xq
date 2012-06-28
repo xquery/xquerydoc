@@ -63,7 +63,7 @@ declare (: private :) function _type($t as element(SequenceType)?)
 declare (: private :) function _private($annotations as element()*)
 {
   let $names := $annotations/(URIQualifiedName|QName)
-  where $names[@uri = "http://www.w3.org/2005/xpath-functions"][@localname = "private"]
+  where $names[@uri = "http://www.w3.org/2012/xquery"][@localname = "private"]
   return attribute private { "true" }
 };
 

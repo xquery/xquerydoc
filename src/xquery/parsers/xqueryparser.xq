@@ -355,7 +355,6 @@ declare (: private :) function _resolve_qname($n, $ns)
   let $uri :=
     if($prefix != "") then fn:string($ns[@prefix=$prefix][1]/@uri)
     else if($n/(parent::FunctionCall|
-                parent::Annotation|
                 parent::FunctionDecl|
                 parent::LiteralFunctionItem))
       then fn:string(($ns/self::function)[1]/@uri)
@@ -365,8 +364,9 @@ declare (: private :) function _resolve_qname($n, $ns)
                 parent::ElementName|
                 parent::TypeName))
       then fn:string(($ns/self::element)[1]/@uri)
-    else if($n/(parent::OptionDecl))
-      then "http://www.w3.org/2011/xquery-options"
+    else if($n/(parent::OptionDecl|
+                parent::Annotation))
+      then "http://www.w3.org/2012/xquery"
     else if($n/(parent::NameTest) and fn:not(
         $n/../preceding-sibling::TOKEN = "@" or
         $n/../preceding-sibling::ForwardAxis/TOKEN = "attribute"
