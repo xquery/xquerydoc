@@ -13,7 +13,7 @@ version="2.0">
 
   <xsl:function name="doc:escape" as="xs:string">
     <xsl:param name="string"/>
-    <xsl:sequence select="replace($string,'\*','\\*')"/>
+    <xsl:sequence select="replace(replace($string,'\*','\\*'),'&amp;lt;','&lt;')"/>
   </xsl:function>
 
   <!-- generate module html //-->
@@ -191,7 +191,7 @@ $</xsl:text><xsl:value-of select="doc:name"/><xsl:text> as </xsl:text><xsl:value
     <xsl:text>
 
 ```xquery
-</xsl:text><xsl:value-of select="."/><xsl:text>
+</xsl:text><xsl:value-of select="doc:escape(.)"/><xsl:text>
 ```
 </xsl:text>
   </xsl:template>

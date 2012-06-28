@@ -71,7 +71,7 @@ declare (: private :) function _commentContents($e)
 {
   typeswitch($e)
   case element(Char) return $e/node()
-  case element(Trim) return text { " " }
+  case element(Trim) return text { "&#xa;" }
   case element(ElementContentChar) return $e/node()
   case element(QuotAttrContentChar) return $e/node()
   case element(AposAttrContentChar) return $e/node()
