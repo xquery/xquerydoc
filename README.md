@@ -9,7 +9,7 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ## Features
 
-* parsing of XQuery 1.0, XQuery 3.0 and other variants (MarkLogic)
+* parsing of XQuery 1.0, XQuery 3.0, XQuery Update, XQuery Full Text, and other variants (MarkLogic)
 * pure XQuery parsing of xqdoc comments
 * generation of simple, customizable documentation
 * support for html, markdown, raw output formats

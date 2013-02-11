@@ -16,11 +16,11 @@ xquery version "1.0";
 
 (:~ 
  : <h1>xqueryparser.xq</h1>
- : <p>An parser for XQuery 3.0 and MarkLogic extensions.</p>
+ : <p>A parser for XQuery 3.0, XQuery Update, XQuery Full Text, and MarkLogic XQuery extensions.</p>
  : 
  :  @author John Snelson
  :  @since Feb 17, 2012
- :  @version 0.1
+ :  @version 0.2
  :)
 module namespace xqp="http://github.com/jpcs/xqueryparser.xq";
 declare default function namespace "http://github.com/jpcs/xqueryparser.xq";
@@ -99,6 +99,18 @@ declare (: private :) function _simplify($nodes)
       case element(ComputedConstructor) return _process_skip($n)
       case element(ItemType) return _process_skip($n)
       case element(KindTest) return _process_skip($n)
+
+      case element(FTContainsExpr) return _process_skip($n)
+      case element(FTSelection) return _process_skip($n)
+      case element(FTOr) return _process_skip($n)
+      case element(FTAnd) return _process_skip($n)
+      case element(FTMildNot) return _process_skip($n)
+      case element(FTUnaryNot) return _process_skip($n)
+      case element(FTPrimaryWithOptions) return _process_skip($n)
+      case element(FTPrimary) return _process_skip($n)
+      case element(FTWords) return _process_skip($n)
+      case element(FTPosFilter) return _process_skip($n)
+      case element(FTMatchOption) return _process_skip($n)
 
       case element(EQName) return _process_skip($n)
       case element(FunctionName) return _process_skip($n)
