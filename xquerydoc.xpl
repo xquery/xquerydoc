@@ -132,18 +132,19 @@
         <query>
           xquery version "1.0" encoding "UTF-8";
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "src/xquery/xquerydoc.xq";
-          import module namespace xqp="XQueryML30" at "src/xquery/parsers/XQueryML30.xq";
+          import module namespace xqp="http://github.com/jpcs/xqueryparser.xq" at "src/xquery/parsers/xqueryparser.xq";
+          import module namespace p="XQueryML30" at "src/xquery/parsers/XQueryML30.xq";
 
           declare variable $format as xs:string external;
           declare variable $source as xs:string external;
 
           if($format eq 'raw') then
-             xqp:parse-XQuery($source)
+               p:parse-XQuery($source)
           else  if($format eq 'raw2') then
-               let $markup := xqp:parse-XQuery($source)
-               let $markup := xqdoc:_simplify($markup)
-               let $ns :=  xqdoc:_build_namespaces($markup)
-               return xqdoc:_analyze($markup,$ns)
+               let $markup := p:parse-XQuery($source)
+               let $markup := xqp:_simplify($markup)
+               let $ns :=  xqp:_build_namespaces($markup)
+               return xqp:_analyze($markup,$ns)
           else 
              xqdoc:parse($source)
         </query>
