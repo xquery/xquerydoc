@@ -23,7 +23,7 @@ unzip, click and follow GUI installer instructions or run the
 following one liner.
 
 ```
-curl https://github.com/downloads/xquery/xquerydoc/xquerydoc-0.1.jar | sh
+curl https://github.com/xquery/xquerydoc/blob/master/xquerydoc-0.1.jar.zip?raw=true
 ```
 
 II. change directory to your applications directory which contains xquery
