@@ -43,7 +43,7 @@ echo see https://github.com/xquery/xquerydoc
 set -
 echo generating documentation ...
 
-java -Xmx1024m -jar "%BATPATH%deps\xmlcalabash\calabash.jar" -oresult="%-o%/index.html" "%BATPATH%probe.xpl" "xquery=%XQUERY%" "currentdir=/%CURRENTDIR%" "output=%OUTPUT%" "format=%-f%"
+java -Xmx1024m -jar "%BATPATH%deps\xmlcalabash\calabash.jar" -oresult="%-o%/index.html" "%BATPATH%xquerydoc.xpl" "xquery=%XQUERY%" "currentdir=/%CURRENTDIR%" "output=%OUTPUT%" "format=%-f%"
 
 :: IF NOT EXIST "%-o%\lib" GOTO notestdir
 :: GOTO endif2
