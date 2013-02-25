@@ -18,7 +18,7 @@ from most XQuery processors (Saxon, MarkLogic, XQilla, eXist ...).
 
 ## For the impatient
 
-I. download the [installer](from top level directory),
+I. download a zipped installer (from top level directory),
 unzip, click and follow GUI installer instructions or run the
 following one liner.
 
