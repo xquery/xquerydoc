@@ -26,12 +26,14 @@
     exclude-inline-prefixes="c ml p">
 
   <p:documentation>generates documentation of a single xquery module</p:documentation>
-  
+
   <!-- config file is main import //-->
+   
   <p:input port="source"/>
+ 
 
   <!-- generate xml output which is transformed by report.xpl //-->
-  <p:output port="result"/>
+  <p:output port="result" />
 
   <!-- path of xquery document //-->
   <p:option name="xquery" required="true"/>  
@@ -39,7 +41,7 @@
   <!-- path of current dir  //-->
   <p:option name="currentdir" required="true"/>  
 
-  <!-- path of current dir  //-->
+  <!-- path of for o/p  //-->
   <p:option name="output" required="true"/>  
   
   <!-- desired output format  //-->
@@ -47,18 +49,24 @@
   
   <!-- import Calabash library //-->
   <p:import href="deps/xmlcalabash/library-1.0.xpl"/>
+ <p:variable name="dirpath" select="if(starts-with($xquery,'/')) then
+                                     $xquery else concat($currentdir,'/',$xquery)
+                                    
+                                     "/>
 
+  <p:variable name="outdir1" select="replace(
+                                  replace(
+                                     if(starts-with($output,'/')) then
+                                     $output else concat($currentdir,'/',$output),
+                                     '\\','/'),
+                                     ' ','%20')
+                                     "/>
+  <!-- APB @TODO fix for unix -->
+  <p:variable name="outputdirpath" select="concat('file://',$outdir1)"/>
   <!-- import recursive directory list step //-->
   <p:import href="deps/xmlcalabash/recursive-directory-list.xpl"/>
-
-  <p:variable name="dirpath" select="if(starts-with($xquery,'/')) then
-                                     $xquery else concat($currentdir,'/',$xquery)"/>
-
-  <p:variable name="outputdirpath" select="if(starts-with($output,'/')) then
-                                     $output else concat($currentdir,'/',$output)"/>
-
   <p:in-scope-names name="vars"/>
-
+ 
   <cx:recursive-directory-list name="dirlist" exclude-filter=".svn">
     <p:with-option name="path" select="$dirpath"/>
   </cx:recursive-directory-list>
@@ -124,14 +132,20 @@
         <query>
           xquery version "1.0" encoding "UTF-8";
           import module namespace xqdoc="http://github.com/xquery/xquerydoc" at "src/xquery/xquerydoc.xq";
-          import module namespace xqp="XQueryML30" at "src/xquery/parsers/XQueryML30.xq";
+          import module namespace xqp="http://github.com/jpcs/xqueryparser.xq" at "src/xquery/parsers/xqueryparser.xq";
+          import module namespace p="XQueryML30" at "src/xquery/parsers/XQueryML30.xq";
 
           declare variable $format as xs:string external;
           declare variable $source as xs:string external;
 
           if($format eq 'raw') then
-             xqp:parse-XQuery($source)
-          else
+               p:parse-XQuery($source)
+          else  if($format eq 'raw2') then
+               let $markup := p:parse-XQuery($source)
+               let $markup := xqp:_simplify($markup)
+               let $ns :=  xqp:_build_namespaces($markup)
+               return xqp:_analyze($markup,$ns)
+          else 
              xqdoc:parse($source)
         </query>
       </p:inline>
@@ -144,13 +158,17 @@
 <p:choose>
 <p:when test="$format eq 'raw'">
   <p:store>
-    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'_raw.xml')"/>
+    <p:with-option name="href" select="concat($outputdirpath,'/',$gname,'_raw.xml')"/>
   </p:store>
 </p:when>
-
+<p:when test="$format eq 'raw2'">
+  <p:store>
+    <p:with-option name="href" select="concat($outputdirpath,'/',$gname,'_raw2.xml')"/>
+  </p:store>
+</p:when>
 <p:when test="$format eq 'xqdoc'">
   <p:store>
-    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.xml')"/>
+    <p:with-option name="href" select="concat($outputdirpath,'/',$gname,'.xml')"/>
   </p:store>
 </p:when>
 <p:when test="$format eq 'markdown'">
@@ -164,7 +182,7 @@
     </p:input>
   </p:xslt>
   <p:store method="text">
-    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.md')"/>
+    <p:with-option name="href" select="concat($outputdirpath,'/',$gname,'.md')"/>
   </p:store>
 </p:when>
 <p:otherwise>
@@ -178,13 +196,14 @@
     </p:input>    
   </p:xslt>
   <p:store>
-    <p:with-option name="href" select="concat('file://',$outputdirpath,'/',$gname,'.html')"/>
+    <p:with-option name="href" select="concat($outputdirpath,'/',$gname,'.html')"/>
   </p:store>
 </p:otherwise>
 </p:choose>
+ 
   </p:for-each>		
 
-  <!-- generate xquerydoc index page //-->
+  <!-- generate xquerydoc index page  //-->
   <p:xslt name="generate-home">
   <p:input port="source">
     <p:pipe step="generate-manifest" port="result"/>
@@ -196,17 +215,5 @@
       <p:empty/>
     </p:input>   
   </p:xslt>
-
-
-  <!-- run pipeline manually in emacs with m-x compile //-->
-  <p:documentation>
-    (:
-    -- Local Variables:
-    -- compile-command: "deps/xmlcalabash/calabash -isource=$XQUERYDOC_HOME/etc/config.xml -oresult=$OUTPUT/index.html $XQUERYDOC_HOME/xquerydoc.xpl xquery=$XQUERY output=$OUTPUT currentdir=$CURRENTDIR format=$FORMAT"
-    -- End:
-    :)
-
-  </p:documentation>
-
-
+  
 </p:declare-step>
