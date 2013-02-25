@@ -204,6 +204,7 @@ api doc and testsuite)  is released under Apache License, Version 2.0
 XQuery prettify 'brush' was provided by Patrick Wied (as part of a MarkLogic
 bounty contest ;) ) and can be obtained [here](http://www.patrick-wied.at/static/xquery/prettify/) 
 
+Andy Bunce [apb2006] with patch for windows batch and minor amends to raw format
 
 ## License
 
