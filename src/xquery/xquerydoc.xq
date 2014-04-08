@@ -86,7 +86,7 @@ declare (: private :) function _commentContents($e)
 
 declare (: private :) function _comment($e as element()+)
 {
-  for $text in $e/node()[1]/self::text()
+  for $text in $e/(node()[1]/self::text()|preceding-sibling::text()[1])
   let $markup := xqdc:parse-Comments($text)
   for $comment in ($markup/XQDocComment)[fn:last()]
   return element doc:comment {
@@ -139,9 +139,11 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
     },
 
     element doc:module {
-      attribute type { if($module/self::MainModule) then "main" else "library" },
+      attribute type { if($module/(self::MainModule|MainModule)) then "main" else if($module/*:LibraryModule)  then "library" else "error" },
       element doc:uri { $module/ModuleDecl/URILiteral/@value/fn:string() },
-      if($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport)) else ()
+      if($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport|self::LibraryModule)) 
+      then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport|self::LibraryModule)) 
+      else ()
       (: TBD name and body - jpcs :)
     },
 
