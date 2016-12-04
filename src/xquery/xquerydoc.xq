@@ -129,7 +129,7 @@ declare function parse($module as xs:string) as element(doc:xqdoc)
 declare function parse($module as xs:string, $mode as xs:string) as element(doc:xqdoc)
 {
   let $markup := xqp:parse($module)
-  let $module := $markup/Module/(MainModuleSequence/MainModule | LibraryModule)
+  let $module := $markup/Module/(MainModuleSequence/MainModule | MainModule | LibraryModule)
   return element doc:xqdoc {
 
     element doc:control {
@@ -139,7 +139,7 @@ declare function parse($module as xs:string, $mode as xs:string) as element(doc:
     },
 
     element doc:module {
-      attribute type { if($module/(self::MainModule|MainModule)) then "main" else if($module/*:LibraryModule)  then "library" else "error" },
+      attribute type { if($module/self::MainModule) then "main" else if($module/self::LibraryModule) then "library" else "error" },
       element doc:uri { $module/ModuleDecl/URILiteral/@value/fn:string() },
       if($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport|self::LibraryModule)) 
       then _comment($module/(ModuleDecl | self::MainModule/Prolog/Import/ModuleImport|self::LibraryModule)) 
